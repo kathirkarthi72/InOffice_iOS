@@ -127,6 +127,8 @@ class InOfficeManager: NSObject {
         do {
             if isUserLoggedIn {
                 try FileManager.default.removeItem(atPath: userPlistPath)
+                
+                TimeSheetManager.current.trashAllData()
             }
         } catch let error {
             print(error)

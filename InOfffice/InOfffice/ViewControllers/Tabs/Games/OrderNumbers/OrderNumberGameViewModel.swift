@@ -93,8 +93,8 @@ class OrderNumberGameViewModel: NSObject {
         }
         return false
     }
-    
 }
+
 
 extension MutableCollection {
     /// Shuffles the contents of this collection.
@@ -112,6 +112,7 @@ extension MutableCollection {
 }
 
 extension Sequence {
+    
     /// Returns an array with the contents of this sequence, shuffled.
     func shuffled() -> [Element] {
         var result = Array(self)
@@ -119,4 +120,5 @@ extension Sequence {
         return result
     }
 }
+
 

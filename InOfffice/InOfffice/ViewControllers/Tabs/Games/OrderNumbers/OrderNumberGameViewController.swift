@@ -355,8 +355,6 @@ extension OrderNumberGameViewController : UICollectionViewDragDelegate, UICollec
             return
         }
     }
-    
-    
 }
 
 extension OrderNumberGameViewController : UITabBarControllerDelegate {

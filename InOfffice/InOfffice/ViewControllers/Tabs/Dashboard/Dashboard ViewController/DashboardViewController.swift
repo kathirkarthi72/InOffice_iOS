@@ -11,6 +11,7 @@ import UIKit
 class DashboardViewController: UIViewController {
     
     @IBOutlet weak var dashboardCollectionView: UICollectionView!
+    @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
     
     /// Logout Bar Button
     var logoutBarButton: UIBarButtonItem {
@@ -23,19 +24,26 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+        [NSNotification.Name.NSManagedObjectContextDidSave].forEach { (notificationName) in
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(notificationObserved(_:)),
+                                                   name: notificationName,
+                                                   object: nil)
+        }
+        
         print("Howdy, \(UIDevice.current.name)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         self.navigationItem.leftBarButtonItem = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
+        
         updateUI()
     }
     
@@ -44,16 +52,68 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Notification Observer
+    @objc func notificationObserved(_ notified: Notification) {
+        
+        switch notified.name {
+        case NSNotification.Name.NSManagedObjectContextDidSave:
+            print("Context Saved")
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "toTodayHistory" {
+            let detailVC = segue.destination as! TimeSheetDetailViewController
+            detailVC.cameBy = .dashBoard
 
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+            if TimeSheetManager.current.today != nil {
+                detailVC.sheedID = TimeSheetManager.current.today
+                detailVC.title = "Today"
+            }
+        }
+    }
+    
+    // MARK: - Button Action
+    
+    /// Timesheet shift in and out button was clicked.
+    @objc func timeSheetShiftInOutButtonWasClicked(_ sender: Any) {
+        
+        if TimeSheetManager.current.today == nil {
+            TimeSheetManager.current.today = Date().convert(.toDateOnly)
+        }
+        
+        if TimeSheetManager.current.isGetIn {
+            TimeSheetManager.current.updateShiftOutData()
+        } else {
+            TimeSheetManager.current.insertShiftInData()
+        }
+        
+        TimeSheetManager.current.isGetIn = !TimeSheetManager.current.isGetIn
+        
+        DispatchQueue.main.async {
+            self.dashboardCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
+        }
+    }
+    
+    /// Show Today sheet.
+    @IBAction func showTodaySheet(_ sender: Any) {
+        let longPressGesture = sender as! UILongPressGestureRecognizer
+        
+        if longPressGesture.state == .ended {
+            print("Show Today sheet")
+            
+            self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
+        }
+    }
+    
 }
 
 // MARK: - Collectionview delegate
@@ -75,7 +135,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
             
             if let greetingLabel = headerView.subviews[0] as?  UILabel {
-               greetingLabel.text = "Howdy, \(UIDevice.current.name)"
+                greetingLabel.text = "Howdy, \(UIDevice.current.name)"
             }
             
             //do other header related calls or settups
@@ -88,7 +148,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -103,13 +163,13 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-       let timeSheetCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeSheetCell", for: indexPath)
+        let timeSheetCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeSheetCell", for: indexPath)
         
         let overView = timeSheetCell.contentView.subviews[0]
         overView.layer.cornerRadius = 10
-
+        
         if overView.subviews.count > 0 {
-           
+            
             let timeSheetOverView = overView.subviews[1]
             timeSheetOverView.layer.cornerRadius = 10
             
@@ -122,10 +182,19 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             }
             
             if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
-                shiftInOutButton.isSelected = false
+                
+                if TimeSheetManager.current.isGetIn {
+                    shiftInOutButton.isSelected = true
+                } else {
+                    shiftInOutButton.isSelected = false
+                }
+                
+                shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
             }
         }
-       
+        
+        overView.addGestureRecognizer(longPressGesture)
+        
         return timeSheetCell
     }
     
@@ -143,7 +212,10 @@ extension DashboardViewController {
     /// Check user logged in state and update UI
     fileprivate func updateUI() {
         if InOfficeManager.current.isUserLoggedIn {
-            print("Was LoggedIn")
+            
+            DispatchQueue.main.async {
+                self.dashboardCollectionView.reloadData()
+            }
         } else {
             self.performSegue(withIdentifier: Constants.Segues.Dashboard.toInitialVC, sender: nil)
         }

@@ -10,10 +10,16 @@ import Foundation
 
 extension Date {
     
+    enum ConvertType: String {
+        case withMonthNumber = "dd-MM-yyyy hh:mm:ss aa"
+        case withMonthName = "dd-MMM-yyyy hh:mm:ss aa"
+        case toDateOnly = "dd-MM-yyyy"
+    }
+    
     /// Convert Date to String
-    var toString: String {
+    func convert(_ type: ConvertType = .withMonthName) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm:ss aa" // Your New Date format as per requirement change it own
+        dateFormatter.dateFormat = type.rawValue // Your New Date format as per requirement change it own
         
         let newDate: String = dateFormatter.string(from: self) // pass Date here
         return newDate

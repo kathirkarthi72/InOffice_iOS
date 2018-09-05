@@ -81,6 +81,22 @@
 		9F112922212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
 		9F112923212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
 		9F112924212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
+		9F2070C82135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
+		9F2070C92135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
+		9F2070CA2135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
+		9F2070CC2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
+		9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
+		9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
+		9F8281F5213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
+		9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
+		9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
+		9F8281F9213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */; };
+		9F8281FA213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */; };
+		9F8281FB213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */; };
+		9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9F828200213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +176,11 @@
 		9F112917212EDDEB00A599E8 /* OrderNumberGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNumberGameViewController.swift; sourceTree = "<group>"; };
 		9F11291C212EDDFF00A599E8 /* OrderNumberGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNumberGameViewModel.swift; sourceTree = "<group>"; };
 		9F112921212EDFA700A599E8 /* GamesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesManager.swift; sourceTree = "<group>"; };
+		9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewController.swift; sourceTree = "<group>"; };
+		9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewModel.swift; sourceTree = "<group>"; };
+		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
+		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
+		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +314,8 @@
 		9F1128C3212E833A00A599E8 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				9F8281F3213D2AD800BEEF45 /* TimeSheetDetails */,
+				9F2070C6213527CA00033B78 /* TimeSheet History */,
 				9F1128C7212E83DF00A599E8 /* Dashboard ViewController */,
 			);
 			path = Dashboard;
@@ -354,6 +377,7 @@
 				9F1128F7212E940100A599E8 /* ViewExtension.swift */,
 				9F11290C212EA2BF00A599E8 /* TextFieldExtension.swift */,
 				9F112911212EA4DC00A599E8 /* UIColorExtension.swift */,
+				9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -365,6 +389,24 @@
 				9F11291C212EDDFF00A599E8 /* OrderNumberGameViewModel.swift */,
 			);
 			path = OrderNumbers;
+			sourceTree = "<group>";
+		};
+		9F2070C6213527CA00033B78 /* TimeSheet History */ = {
+			isa = PBXGroup;
+			children = (
+				9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */,
+				9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */,
+			);
+			path = "TimeSheet History";
+			sourceTree = "<group>";
+		};
+		9F8281F3213D2AD800BEEF45 /* TimeSheetDetails */ = {
+			isa = PBXGroup;
+			children = (
+				9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */,
+				9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */,
+			);
+			path = TimeSheetDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,15 +571,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2070CC2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F112918212EDDEB00A599E8 /* OrderNumberGameViewController.swift in Sources */,
 				9F1128DD212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128F0212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E6212E859D00A599E8 /* InitialViewModel.swift in Sources */,
+				9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F112908212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F112912212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9F112876212E7B3400A599E8 /* AppDelegate.swift in Sources */,
+				9F8281F9213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128C9212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E2212E858E00A599E8 /* InitialViewController.swift in Sources */,
+				9F8281F5213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
 				9F11287E212E7B3400A599E8 /* InOfffice.xcdatamodeld in Sources */,
 				9F1128D9212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F11290D212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
@@ -545,6 +591,7 @@
 				9F1128CD212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
 				9F1128F8212E940100A599E8 /* ViewExtension.swift in Sources */,
 				9F1128D5212E844B00A599E8 /* HealthViewModel.swift in Sources */,
+				9F2070C82135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
 				9F1128F4212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F1128D1212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F11291D212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
@@ -560,18 +607,23 @@
 			files = (
 				9F112919212EDDEB00A599E8 /* OrderNumberGameViewController.swift in Sources */,
 				9F112923212EDFA700A599E8 /* GamesManager.swift in Sources */,
+				9F8281FA213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128DE212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128CE212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
 				9F11288E212E7B3E00A599E8 /* InOffficeTests.swift in Sources */,
 				9F11290E212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
+				9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DA212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112913212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
+				9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128EC212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128D2212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F1212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E7212E859D00A599E8 /* InitialViewModel.swift in Sources */,
 				9F1128F5212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291E212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
+				9F2070C92135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
 				9F1128D6212E844B00A599E8 /* HealthViewModel.swift in Sources */,
 				9F1128FD212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F112909212E9D3E00A599E8 /* Constancts.swift in Sources */,
@@ -588,18 +640,23 @@
 			files = (
 				9F11291A212EDDEB00A599E8 /* OrderNumberGameViewController.swift in Sources */,
 				9F112924212EDFA700A599E8 /* GamesManager.swift in Sources */,
+				9F8281FB213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128DF212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128CF212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
 				9F112899212E7B3E00A599E8 /* InOffficeUITests.swift in Sources */,
 				9F11290F212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
+				9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DB212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112914212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
+				9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128ED212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128D3212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F2212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E8212E859D00A599E8 /* InitialViewModel.swift in Sources */,
 				9F1128F6212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291F212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
+				9F2070CA2135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
 				9F1128D7212E844B00A599E8 /* HealthViewModel.swift in Sources */,
 				9F1128FE212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F11290A212E9D3E00A599E8 /* Constancts.swift in Sources */,
@@ -617,6 +674,7 @@
 				9F112910212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
 				9F1128B0212E7B9600A599E8 /* TodayViewController.swift in Sources */,
 				9F11290B212E9D3E00A599E8 /* Constancts.swift in Sources */,
+				9F828200213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F112915212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
