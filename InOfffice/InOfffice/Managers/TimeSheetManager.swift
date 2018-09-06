@@ -112,7 +112,8 @@ extension TimeSheetManager {
             newRecord.notes = "New Day"
             do {
                 try context.save()
-                
+                TimeSheetManager.current.isGetIn = true
+
                 createNewSummary(with: Date())
                 
             } catch let error {
@@ -121,43 +122,50 @@ extension TimeSheetManager {
         }
     }
     
-    func updateShiftOutData() {
+    func updateShiftOutData(toSheet: String) {
         
-        if let fetchedData = fetchAllData() {
+        fetchData(for: toSheet) { (error, sheetDetail, additionalInfos) in
             
-            if let last = fetchedData.last {
+            if let err = error {
+                print("Error: \(err.localizedDescription)")
+                return
+            }
+
+            if let fetchedData = sheetDetail {
                 
-                let now = Date()
-                if let getIn = last.getIn {
+                if let last = fetchedData.last {
                     
-                    let timeInterval = now.timeIntervalSince(getIn)
-                    last.productionHours = Int64(timeInterval)
-                    
-                    last.getOut = now
-                    
-                    if let context = objectContext {
-                        do {
-                            try context.save()
-                            
-                            if let today = today {
-                                updateSummary(id: today, outTime: now, lastWorkedHours: last.productionHours)
+                    let now = Date()
+                    if let getIn = last.getIn {
+                        
+                        let timeInterval = now.timeIntervalSince(getIn)
+                        last.productionHours = Int64(timeInterval)
+                        
+                        last.getOut = now
+                        
+                        if let context = self.objectContext {
+                            do {
+                                try context.save()
+                                TimeSheetManager.current.isGetIn = false
+                                
+                                self.updateSummary(id: toSheet, outTime: now, lastWorkedHours: last.productionHours)
+                            } catch let error {
+                                print("Unable to save ShiftIn Data: \(error.localizedDescription)")
                             }
-                            
-                        } catch let error {
-                            print("Unable to save ShiftIn Data: \(error.localizedDescription)")
                         }
                     }
                 }
+                
+                /*  if let context = objectContext {
+                 
+                 let newRecord = TimeSheet(context: context)
+                 newRecord.getOut = Date()
+                 newRecord.productionHours = "5"
+                 newRecord.notes = "New Day"
+                 }
+                 */
             }
             
-            /*  if let context = objectContext {
-             
-             let newRecord = TimeSheet(context: context)
-             newRecord.getOut = Date()
-             newRecord.productionHours = "5"
-             newRecord.notes = "New Day"
-             }
-             */
         }
     }
     
@@ -258,7 +266,7 @@ extension TimeSheetManager {
     func fetchAllSummary(completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
        
         let fetchRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
-        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sheetID", ascending: true)]
         if let context = objectContext {
             do {
                 let summaries = try context.fetch(fetchRequest)

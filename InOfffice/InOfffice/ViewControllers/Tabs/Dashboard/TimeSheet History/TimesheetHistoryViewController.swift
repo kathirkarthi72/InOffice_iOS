@@ -70,6 +70,27 @@ class TimesheetHistoryViewController: UIViewController {
     //MARK: - Bar button aciton
     
     @IBAction func deleteBarButtonClickedAction(_ sender: Any) {
+        
+        let sheet = UIAlertController(title: "Delete all records", message: nil, preferredStyle: .actionSheet)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { (okAction) in
+            TimeSheetManager.current.trashAllSummary()
+            TimeSheetManager.current.trashAllData()
+            
+            self.timesheetHistoryViewModel.summaries = nil
+            TimeSheetManager.current.today = nil
+            
+            DispatchQueue.main.async {
+                self.historyTableView.reloadData()
+            }
+        }
+        sheet.addAction(confirmAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        sheet.addAction(cancelAction)
+        
+        self.present(sheet, animated: true, completion: nil)
+        
     }
     
     @IBAction func downloadBarButtonClickedAction(_ sender: Any) {

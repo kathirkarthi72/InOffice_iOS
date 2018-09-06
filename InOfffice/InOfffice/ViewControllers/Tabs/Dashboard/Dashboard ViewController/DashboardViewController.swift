@@ -91,12 +91,10 @@ class DashboardViewController: UIViewController {
         }
         
         if TimeSheetManager.current.isGetIn {
-            TimeSheetManager.current.updateShiftOutData()
+            TimeSheetManager.current.updateShiftOutData(toSheet: TimeSheetManager.current.today!)
         } else {
             TimeSheetManager.current.insertShiftInData()
         }
-        
-        TimeSheetManager.current.isGetIn = !TimeSheetManager.current.isGetIn
         
         DispatchQueue.main.async {
             self.dashboardCollectionView.reloadItems(at: [IndexPath(item: 0, section: 0)])
@@ -107,7 +105,7 @@ class DashboardViewController: UIViewController {
     @IBAction func showTodaySheet(_ sender: Any) {
         let longPressGesture = sender as! UILongPressGestureRecognizer
         
-        if longPressGesture.state == .ended {
+        if longPressGesture.state == .began {
             print("Show Today sheet")
             
             self.performSegue(withIdentifier: "toTodayHistory", sender: nil)

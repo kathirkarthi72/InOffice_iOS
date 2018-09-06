@@ -97,6 +97,10 @@
 		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F828200213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF3A98021416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +185,7 @@
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		9FF3A97C21416DA200D3A653 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +370,7 @@
 				9F1128FB212E944400A599E8 /* RichNotificationManager.swift */,
 				9F1128FF212E956400A599E8 /* InOfficeManager.swift */,
 				9F112921212EDFA700A599E8 /* GamesManager.swift */,
+				9FF3A97C21416DA200D3A653 /* DownloadManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -598,6 +604,7 @@
 				9F112900212E956400A599E8 /* InOfficeManager.swift in Sources */,
 				9F1128FC212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F112922212EDFA700A599E8 /* GamesManager.swift in Sources */,
+				9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +628,7 @@
 				9F1128D2212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F1212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E7212E859D00A599E8 /* InitialViewModel.swift in Sources */,
+				9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */,
 				9F1128F5212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291E212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
 				9F2070C92135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
@@ -654,6 +662,7 @@
 				9F1128D3212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F2212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E8212E859D00A599E8 /* InitialViewModel.swift in Sources */,
+				9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */,
 				9F1128F6212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291F212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
 				9F2070CA2135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
@@ -672,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F112910212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
+				9FF3A98021416DA200D3A653 /* DownloadManager.swift in Sources */,
 				9F1128B0212E7B9600A599E8 /* TodayViewController.swift in Sources */,
 				9F11290B212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F828200213D3A6B00BEEF45 /* IntExtension.swift in Sources */,

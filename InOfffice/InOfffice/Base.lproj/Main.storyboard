@@ -783,7 +783,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DsN-i0-B5i" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ykz-3q-n0d" customClass="InitialViewModel" customModule="InOfffice" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="2821.5999999999999" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="3097" y="0.0"/>
         </scene>
         <!--Health-->
         <scene sceneID="XKQ-Aj-SXl">
@@ -811,6 +811,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="TJH-cl-vDC" kind="relationship" relationship="viewControllers" id="x0V-cO-8ke"/>
@@ -826,7 +827,7 @@
         <scene sceneID="HCG-pp-1lF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TJH-cl-vDC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" id="GXa-lM-uST"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" selectedImage="dashboard" id="GXa-lM-uST"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sRQ-kM-MTo">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -967,7 +968,7 @@
         <scene sceneID="7FX-wu-vyD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HS1-wS-5Em" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Health" id="gND-SH-WCT"/>
+                    <tabBarItem key="tabBarItem" title="Health" selectedImage="Health" id="gND-SH-WCT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0d3-5c-tzT">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -986,7 +987,7 @@
         <scene sceneID="iej-Eh-kNn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oMW-FU-JHs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" id="m2E-xi-7ac"/>
+                    <tabBarItem key="tabBarItem" title="Games" selectedImage="Games" id="m2E-xi-7ac"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4Ao-E7-Jx4">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -1005,9 +1006,12 @@
     <resources>
         <image name="Delete" width="30" height="30"/>
         <image name="Download" width="30" height="30"/>
+        <image name="Games" width="30" height="30"/>
         <image name="GettingIn" width="80" height="80"/>
         <image name="GettingOut" width="80" height="80"/>
+        <image name="Health" width="30" height="30"/>
         <image name="NewTimeSheet" width="30" height="30"/>
+        <image name="dashboard" width="30" height="30"/>
         <image name="in" width="16" height="16"/>
         <image name="remindHours" width="20" height="20"/>
         <image name="workedHours" width="20" height="20"/>

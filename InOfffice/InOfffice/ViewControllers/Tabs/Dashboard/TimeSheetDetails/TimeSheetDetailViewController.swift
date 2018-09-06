@@ -59,24 +59,54 @@ class TimeSheetDetailViewController: UIViewController {
     // MARK: - Button Action
     @IBAction func createNewSheetBarButtonAction(_ sender: Any) {
         
-        let sheet = UIAlertController(title: "Create new sheet", message: "Check your reminding hours before creating new sheet.", preferredStyle: .actionSheet)
-        
-        let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
-            TimeSheetManager.current.createNewRecord(withSave: true)
+        if TimeSheetManager.current.isGetIn {
+            
+            let sheet = UIAlertController(title: "Your in office", message: "Make you are logged out?", preferredStyle: .actionSheet)
+            
+            let logoutAction = UIAlertAction(title: "Logout Now", style: .default) { (okAction) in
+               
+                if TimeSheetManager.current.today == nil {
+                    TimeSheetManager.current.today = Date().convert(.toDateOnly)
+                }
+                
+                if let sheedID = TimeSheetManager.current.today, !sheedID.isEmpty {
+                    
+                    TimeSheetManager.current.updateShiftOutData(toSheet: sheedID)
+                    
+                    self.detailViewModel.fetchDetail(sheedID: sheedID)
+                    
+                    DispatchQueue.main.async {
+                        self.detailTableView.reloadData()
+                    }
+                }
+            }
+            sheet.addAction(logoutAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
+        } else {
+            let sheet = UIAlertController(title: "Create new sheet", message: "Check your reminding hours before creating new sheet.", preferredStyle: .actionSheet)
+            
+            let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
+                TimeSheetManager.current.createNewRecord(withSave: true)
+                
+                self.navigationController?.popViewController(animated: true)
+            }
+            sheet.addAction(saveCreateAction)
+            
+            let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
+                TimeSheetManager.current.createNewRecord(withSave: false)
+                
+            }
+            sheet.addAction(createAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
         }
-        sheet.addAction(saveCreateAction)
-        
-        let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
-            TimeSheetManager.current.createNewRecord(withSave: false)
-
-        }
-        sheet.addAction(createAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        sheet.addAction(cancelAction)
-        
-        self.present(sheet, animated: true, completion: nil)
-        
     }
     
     @IBAction func downloadBarButtonAction(_ sender: Any) {
