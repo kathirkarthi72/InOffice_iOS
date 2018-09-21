@@ -61,9 +61,11 @@ class TimeSheetDetailViewController: UIViewController {
         
         if TimeSheetManager.current.isGetIn {
             
-            let sheet = UIAlertController(title: "Your in office", message: "Make you are logged out?", preferredStyle: .actionSheet)
+            let sheet = UIAlertController(title: "You are still in office",
+                                          message: "Make as to shift out?",
+                                          preferredStyle: .actionSheet)
             
-            let logoutAction = UIAlertAction(title: "Logout Now", style: .default) { (okAction) in
+            let logoutAction = UIAlertAction(title: "Shift Now", style: .default) { (okAction) in
                
                 if TimeSheetManager.current.today == nil {
                     TimeSheetManager.current.today = Date().convert(.toDateOnly)
@@ -91,14 +93,17 @@ class TimeSheetDetailViewController: UIViewController {
             
             let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
                 TimeSheetManager.current.createNewRecord(withSave: true)
-                
+               
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
                 self.navigationController?.popViewController(animated: true)
             }
             sheet.addAction(saveCreateAction)
             
             let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
                 TimeSheetManager.current.createNewRecord(withSave: false)
-                
+               
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+                self.navigationController?.popViewController(animated: true)
             }
             sheet.addAction(createAction)
             
@@ -112,7 +117,6 @@ class TimeSheetDetailViewController: UIViewController {
     @IBAction func downloadBarButtonAction(_ sender: Any) {
         
     }
-    
 }
 
 extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -168,5 +172,10 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
             let middleCell = tableView.dequeueReusableCell(withIdentifier: "center", for: indexPath)
             return detailViewModel.updateHistoryDetail(cell: middleCell, indexPath: indexPath)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        /// Notes button tapped.
+        _ = detailViewModel.notesFor(indexPath: indexPath)
     }
 }

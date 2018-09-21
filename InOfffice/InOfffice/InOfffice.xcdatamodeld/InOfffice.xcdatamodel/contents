@@ -14,7 +14,7 @@
         <attribute name="sheetID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TimeSheetDetails" positionX="-288" positionY="-36" width="128" height="118"/>
+        <element name="TimeSheetDetails" positionX="-288" positionY="-36" width="128" height="120"/>
         <element name="TimeSheetSummary" positionX="-54" positionY="27" width="128" height="28"/>
     </elements>
 </model>

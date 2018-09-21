@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>Beta01</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -41,5 +41,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSHomeKitUsageDescription</key>
+	<string>InOffice could like to help daily to intake water.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>InOffice could like to update daily to intake water details</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>InOffice could like to share daily to intake water details to health app</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>InOffice could like to record daily to intake water details</string>
 </dict>
 </plist>

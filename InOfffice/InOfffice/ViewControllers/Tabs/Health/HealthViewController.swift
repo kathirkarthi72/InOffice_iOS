@@ -10,10 +10,13 @@ import UIKit
 
 class HealthViewController: UIViewController {
 
+    @IBOutlet var healthViewModel: HealthViewModel!
+    @IBOutlet weak var inTakeWaterButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+       healthViewModel.requestAuthorization()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +24,21 @@ class HealthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
+    }
 
+    @IBAction func inTakeWaterButtonClicked(_ sender: Any) {
+        healthViewModel.addWaterInTake(onces: 0.100) // 100 ml drunk
+        
+        self.inTakeWaterButton.isSelected = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.inTakeWaterButton.isSelected = false
+        }
+        
+    }
     /*
     // MARK: - Navigation
 

@@ -17,4 +17,19 @@ struct Constants {
             static let toTimesheetHistory = "ShowTimesheetHistoryPage"
         }
     }
+    
+    struct Notification {
+        struct CategoryID {
+            static let timeSheet = "timesheet"
+        }
+        
+        struct RequestID {
+            
+            static let logOut = "today_logout"
+            
+            static let takeBreak = "take_break"
+            
+            static let comeBackAfterBreak = "break_time_over"
+        }
+    }
 }

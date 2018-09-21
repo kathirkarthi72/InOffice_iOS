@@ -21,3 +21,36 @@ extension UIView {
         self.layer.shadowPath = shadowPath.cgPath
     }
 }
+
+extension UIViewController {
+    
+    /// Get notification settings
+    public func getNotificationAccess() {
+        let getNotificationPermission = UIAlertController(title: "Allow notification to notify your logout time", message: "Go to settings and change permission", preferredStyle: .alert)
+        
+        let settings = UIAlertAction(title: "Settings", style: .default, handler: { (action) in
+            UIApplication.shared.open(NSURL(string: UIApplicationOpenSettingsURLString + Bundle.main.bundleIdentifier!)! as URL, options: [:], completionHandler: nil)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            //Do nothing.
+        })
+        
+        getNotificationPermission.addAction(settings)
+        getNotificationPermission.addAction(cancel)
+        
+        present(getNotificationPermission, animated: true, completion: nil)
+    }
+}
+
+extension UIApplication {
+    
+    /// Current Visible viewController
+    var visibleViewController : UIViewController? {
+        
+        if UIApplication.shared.keyWindow?.rootViewController is UINavigationController {
+            return (UIApplication.shared.keyWindow?.rootViewController as! UINavigationController).visibleViewController
+        }
+        return nil
+    }
+}

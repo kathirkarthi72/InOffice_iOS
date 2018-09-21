@@ -97,10 +97,12 @@
 		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F828200213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9FE4E2C821536D0200EA2E15 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE4E2C721536D0200EA2E15 /* HealthKit.framework */; };
 		9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A98021416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF7A5FE2148043200A84D89 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF7A5FD2148043200A84D89 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,7 +187,10 @@
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InOfffice.entitlements; sourceTree = "<group>"; };
 		9FF3A97C21416DA200D3A653 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		9FF7A5FD2148043200A84D89 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FF7A5FE2148043200A84D89 /* UserNotifications.framework in Frameworks */,
+				9FE4E2C821536D0200EA2E15 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +254,7 @@
 		9F112874212E7B3400A599E8 /* InOfffice */ = {
 			isa = PBXGroup;
 			children = (
+				9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */,
 				9F112875212E7B3400A599E8 /* AppDelegate.swift */,
 				9F112907212E9D3E00A599E8 /* Constancts.swift */,
 				9F1128EE212E939600A599E8 /* Extensions */,
@@ -282,6 +290,8 @@
 		9F1128AB212E7B9600A599E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FE4E2C721536D0200EA2E15 /* HealthKit.framework */,
+				9FF7A5FD2148043200A84D89 /* UserNotifications.framework */,
 				9F1128AC212E7B9600A599E8 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -502,6 +512,11 @@
 				TargetAttributes = {
 					9F112871212E7B3400A599E8 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					9F112888212E7B3E00A599E8 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -856,6 +871,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6CLW9ML4WV;
 				INFOPLIST_FILE = InOfffice/Info.plist;
@@ -875,6 +891,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6CLW9ML4WV;
 				INFOPLIST_FILE = InOfffice/Info.plist;

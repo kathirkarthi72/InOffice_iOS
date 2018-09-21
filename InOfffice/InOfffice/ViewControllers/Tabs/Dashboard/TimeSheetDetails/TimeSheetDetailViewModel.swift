@@ -19,7 +19,7 @@ class TimeSheetDetailViewModel: NSObject {
         TimeSheetManager.current.fetchData(for: sheedID) { (error, timeSheets, additionalInfos) in
         
             if let err = error {
-                print("Error: \(err.localizedDescription)")
+                debugPrint("Error: \(err.localizedDescription)")
             }
             
             self.details = timeSheets
@@ -42,5 +42,15 @@ class TimeSheetDetailViewModel: NSObject {
         }
         
         return cell
+    }
+    
+    /// Notes for Indexpath
+    func notesFor(indexPath: IndexPath) -> String? {
+        
+         if let detail = details {
+            return detail[indexPath.row].notes
+        }
+        
+        return nil
     }
 }

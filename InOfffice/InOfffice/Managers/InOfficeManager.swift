@@ -61,7 +61,7 @@ class InOfficeManager: NSObject {
     var userInfos : UserDetail? {
         
         if let userInfos = NSDictionary(contentsOfFile: userPlistPath), isUserLoggedIn {
-            print("Created: \(userPlistPath)")
+          //  debugPrint("Created: \(userPlistPath)")
             
             return UserDetail(name: userInfos["name"] as! String,
                        office: userInfos["office"] as! String,
@@ -91,14 +91,15 @@ class InOfficeManager: NSObject {
                 ]
                 
                 if userInfos.write(toFile: self.userPlistPath, atomically: true) {
-                    print("Created: \(self.userPlistPath)")
+                  //  debugPrint("Created: \(self.userPlistPath)")
                     return true
                 } else {
-                    print("Not created")
+                    debugPrint("Not created")
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
+            
         } else {
             let userInfos : NSDictionary = ["name": detail.name,
                                             "office": detail.office,
@@ -109,10 +110,10 @@ class InOfficeManager: NSObject {
             ]
             
             if userInfos.write(toFile: self.userPlistPath, atomically: true) {
-                print("Created: \(self.userPlistPath)")
+              // debugPrint("Created: \(self.userPlistPath)")
                 return true
             } else {
-                print("Not created")
+                debugPrint("Not created")
             }
         }
         
@@ -128,10 +129,10 @@ class InOfficeManager: NSObject {
             if isUserLoggedIn {
                 try FileManager.default.removeItem(atPath: userPlistPath)
                 
-                TimeSheetManager.current.trashAllData()
+                TimeSheetManager.current.trashSummary(sheetID: nil)
             }
         } catch let error {
-            print(error)
+            debugPrint(error)
             return false
         }
         

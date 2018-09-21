@@ -11,7 +11,14 @@ import UIKit
 class DashboardViewController: UIViewController {
     
     @IBOutlet weak var dashboardCollectionView: UICollectionView!
+    
     @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
+    
+    @IBOutlet var dashBoardViewModel: DashboardViewModel!
+    
+    var timeSheetWorkedLabel: UILabel?
+    
+    var timeSheetBalanceLabel: UILabel?
     
     /// Logout Bar Button
     var logoutBarButton: UIBarButtonItem {
@@ -25,26 +32,28 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        [NSNotification.Name.NSManagedObjectContextDidSave].forEach { (notificationName) in
+        [NSNotification.Name.NSManagedObjectContextDidSave,
+         NSNotification.Name.UIApplicationWillEnterForeground].forEach { (notificationName) in
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(notificationObserved(_:)),
                                                    name: notificationName,
                                                    object: nil)
         }
-        
-        print("Howdy, \(UIDevice.current.name)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.leftBarButtonItem = nil
+       applicationBecomeActive()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        updateUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dashBoardViewModel.stopTimer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,12 +61,44 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /// Dashboard is become active
+    func applicationBecomeActive() {
+        
+        checkIfLoggedIn()
+        
+        updateValues()
+        
+        if TimeSheetManager.current.isGetIn {
+            startTimer()
+        }
+        self.navigationItem.leftBarButtonItem = nil
+    }
+    
+    func updateValues() {
+        let fetched = dashBoardViewModel.fetchTodayWorkedHoursInSec()
+        
+        var totalWorked = fetched.worked
+        
+        if TimeSheetManager.current.isGetIn {
+            
+            if let loggedIn = fetched.loggedIn {
+                
+                let timeInterval = Date().timeIntervalSince(loggedIn)
+                totalWorked += Int64(timeInterval)
+            }
+        }
+        dashBoardViewModel.workedHoursInSec = totalWorked
+    }
+    
     // MARK: - Notification Observer
     @objc func notificationObserved(_ notified: Notification) {
         
         switch notified.name {
         case NSNotification.Name.NSManagedObjectContextDidSave:
-            print("Context Saved")
+            debugPrint("Context Saved")
+        case NSNotification.Name.UIApplicationWillEnterForeground: // Application entered forground.
+            // Get current date and calculate balance working time.
+            applicationBecomeActive()
         default:
             break
         }
@@ -73,7 +114,7 @@ class DashboardViewController: UIViewController {
         if segue.identifier == "toTodayHistory" {
             let detailVC = segue.destination as! TimeSheetDetailViewController
             detailVC.cameBy = .dashBoard
-
+            
             if TimeSheetManager.current.today != nil {
                 detailVC.sheedID = TimeSheetManager.current.today
                 detailVC.title = "Today"
@@ -90,10 +131,18 @@ class DashboardViewController: UIViewController {
             TimeSheetManager.current.today = Date().convert(.toDateOnly)
         }
         
-        if TimeSheetManager.current.isGetIn {
+        if TimeSheetManager.current.isGetIn { // Logging out
             TimeSheetManager.current.updateShiftOutData(toSheet: TimeSheetManager.current.today!)
-        } else {
+            
+            dashBoardViewModel.stopTimer()
+            
+            dashBoardViewModel.scheduleNotifications(isUserLoggedIn: false) // Logged out
+
+        } else { // Logging In
             TimeSheetManager.current.insertShiftInData()
+            startTimer()
+            
+            dashBoardViewModel.scheduleNotifications(isUserLoggedIn: true)  // Logged in
         }
         
         DispatchQueue.main.async {
@@ -106,12 +155,11 @@ class DashboardViewController: UIViewController {
         let longPressGesture = sender as! UILongPressGestureRecognizer
         
         if longPressGesture.state == .began {
-            print("Show Today sheet")
+            debugPrint("Show Today sheet")
             
             self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
         }
     }
-    
 }
 
 // MARK: - Collectionview delegate
@@ -133,7 +181,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
             
             if let greetingLabel = headerView.subviews[0] as?  UILabel {
-                greetingLabel.text = "Howdy, \(UIDevice.current.name)"
+                greetingLabel.text = "Howdy, \(InOfficeManager.current.userInfos?.name ?? "")"
             }
             
             //do other header related calls or settups
@@ -159,6 +207,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let timeSheetCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeSheetCell", for: indexPath)
@@ -171,12 +220,16 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             let timeSheetOverView = overView.subviews[1]
             timeSheetOverView.layer.cornerRadius = 10
             
-            if let workedHourLabel = timeSheetOverView.subviews[2] as? UILabel {
-                workedHourLabel.text = "Worked:"
+            timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? UILabel
+            timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? UILabel
+            
+            if let workedLabel = timeSheetWorkedLabel {
+                workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
             }
             
-            if let balanceHourLabel = timeSheetOverView.subviews[3] as? UILabel {
-                balanceHourLabel.text = "Balance:"
+            if let balanceLabel = timeSheetBalanceLabel {
+                let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
+                balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
             }
             
             if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
@@ -204,12 +257,45 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     }
 }
 
+//MARK: - Update TimeSheet Timer - Live updater
+
+extension DashboardViewController {
+    
+    func startTimer() {
+        
+        dashBoardViewModel.stopTimer()
+        
+        dashBoardViewModel.timeSheetLiveUpdated = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeSheetLiveUpdater), userInfo: nil, repeats: true)
+    }
+    
+    /// Update timesheet timer
+    @objc func timeSheetLiveUpdater() {
+        
+        dashBoardViewModel.workedHoursInSec += 1
+        
+        debugPrint("\(dashBoardViewModel.workedHoursInSec)")
+        
+        if let workedLabel = timeSheetWorkedLabel {
+            workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
+        }
+        
+        
+        if let balanceLabel = timeSheetBalanceLabel {
+            let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.workedHoursInSec
+            balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
+        }
+    }
+}
+
 // MARK: - Logout Module
 extension DashboardViewController {
     
     /// Check user logged in state and update UI
-    fileprivate func updateUI() {
+    fileprivate func checkIfLoggedIn() {
+        
         if InOfficeManager.current.isUserLoggedIn {
+            
+            RichNotificationManager.current.registerUserNotification()
             
             DispatchQueue.main.async {
                 self.dashboardCollectionView.reloadData()
@@ -236,19 +322,47 @@ extension DashboardViewController {
     // MARK: - Button Action
     @objc func logoutBarButtonClickedAction() {
         
-        let sheet = UIAlertController(title: "Logout", message: "Clear all records and reset user details", preferredStyle: .actionSheet)
-        
-        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (okAction) in
+        if TimeSheetManager.current.isGetIn {
             
-            if InOfficeManager.current.userLoggedOut() {
-                self.updateUI()
+            let sheet = UIAlertController(title: "You are still in office",
+                                          message: "Make as to shift out?",
+                                          preferredStyle: .actionSheet)
+            
+            let shiftoutAction = UIAlertAction(title: "Shift out now", style: .default) { (okAction) in
+                
+                if TimeSheetManager.current.today == nil {
+                    TimeSheetManager.current.today = Date().convert(.toDateOnly)
+                }
+                
+                if let sheedID = TimeSheetManager.current.today, !sheedID.isEmpty {
+                    self.timeSheetShiftInOutButtonWasClicked(self)
+                    
+                    DispatchQueue.main.async {
+                        self.dashboardCollectionView.reloadData()
+                    }
+                }
             }
+            sheet.addAction(shiftoutAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
+        } else {
+            let sheet = UIAlertController(title: "Logout", message: "Clear all records and reset user details", preferredStyle: .actionSheet)
+            
+            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (okAction) in
+                
+                if InOfficeManager.current.userLoggedOut() {
+                    self.checkIfLoggedIn()
+                }
+            }
+            sheet.addAction(confirmAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
         }
-        sheet.addAction(confirmAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        sheet.addAction(cancelAction)
-        
-        self.present(sheet, animated: true, completion: nil)
     }
 }

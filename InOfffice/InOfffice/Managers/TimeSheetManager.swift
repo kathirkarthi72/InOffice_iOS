@@ -45,8 +45,8 @@ class TimeSheetManager: NSObject {
             today = nil
         } else { // Create record only. Delete today records from summary and timesheetDetail
             if let today = today {
-                trashDetail(today)
-                trashSummary(today)
+                trashDetail(sheetID: today)
+                trashSummary(sheetID: today)
             }
         }
     }
@@ -68,36 +68,24 @@ extension TimeSheetManager {
      }
      */
     
-    /// Delete all datas from Timesheet Table
-    func trashAllData() {
-        
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: TimeSheetDetails.fetchRequest())
-        do {
-            try objectContext?.execute(deleteRequest)
-            
-            if let context = objectContext {
-                try context.save()
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
     /// trash TimesheetDetails with sheetID
-    func trashDetail(_ sheedID: String) {
+    func trashDetail(sheetID: String?) {
         
-        let fetchRequest: NSFetchRequest = TimeSheetDetails.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "sheedID = %@", sheedID)
+        let fetchSheetRequest: NSFetchRequest = TimeSheetDetails.fetchRequest()
+     
+        if let sheetID = sheetID {
+            fetchSheetRequest.predicate = NSPredicate(format: "sheetID = %@", sheetID)
+        }
         
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: TimeSheetDetails.fetchRequest())
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchSheetRequest as! NSFetchRequest<NSFetchRequestResult>)
         do {
             try objectContext?.execute(deleteRequest)
-            
+          
             if let context = objectContext {
                 try context.save()
             }
         } catch let error {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
         }
     }
     
@@ -110,6 +98,7 @@ extension TimeSheetManager {
             newRecord.getIn = Date()
             newRecord.sheetID = today
             newRecord.notes = "New Day"
+           
             do {
                 try context.save()
                 TimeSheetManager.current.isGetIn = true
@@ -117,7 +106,7 @@ extension TimeSheetManager {
                 createNewSummary(with: Date())
                 
             } catch let error {
-                print("Unable to save ShiftIn Data: \(error.localizedDescription)")
+                debugPrint("Unable to save ShiftIn Data: \(error.localizedDescription)")
             }
         }
     }
@@ -127,7 +116,7 @@ extension TimeSheetManager {
         fetchData(for: toSheet) { (error, sheetDetail, additionalInfos) in
             
             if let err = error {
-                print("Error: \(err.localizedDescription)")
+                debugPrint("Error: \(err.localizedDescription)")
                 return
             }
 
@@ -150,7 +139,7 @@ extension TimeSheetManager {
                                 
                                 self.updateSummary(id: toSheet, outTime: now, lastWorkedHours: last.productionHours)
                             } catch let error {
-                                print("Unable to save ShiftIn Data: \(error.localizedDescription)")
+                                debugPrint("Unable to save ShiftIn Data: \(error.localizedDescription)")
                             }
                         }
                     }
@@ -165,7 +154,6 @@ extension TimeSheetManager {
                  }
                  */
             }
-            
         }
     }
     
@@ -199,7 +187,7 @@ extension TimeSheetManager {
                 
                 completed(nil, timeSheets, timeSheets.getAdditionalInfos())
             } catch let error {
-                print("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
+                debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
                 completed(FetchDataError.failedToFetch, nil, nil)
             }
         }
@@ -219,7 +207,7 @@ extension TimeSheetManager {
                 let timeSheets = try context.fetch(fetchRequest)
                 return timeSheets
             } catch let error {
-                print("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
+                debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
             }
         }
         
@@ -238,11 +226,11 @@ extension TimeSheetManager {
         fetchSummary(today) { (error, summaries) in
             
             if let error = error {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
             
             if let summaries = summaries, summaries.count > 0, let _ = summaries.first {
-               print("Already created.") // Do nothing.
+               debugPrint("Already created.") // Do nothing.
                 return
             } else { // Not exist.
                 
@@ -255,30 +243,32 @@ extension TimeSheetManager {
                     do {
                         try context.save()
                     } catch let error {
-                        print("Unable to Create new sheet: \(error.localizedDescription)")
+                        debugPrint("Unable to Create new sheet: \(error.localizedDescription)")
                     }
                 }
             }
         }
     }
 
-    /// Fetch all summary report
+    /// Fetch all summary sheet history on descending order
+    /// paratemers - completed: (error, summary sheet)
     func fetchAllSummary(completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
        
         let fetchRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sheetID", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sheetID", ascending: false)]
+       
         if let context = objectContext {
             do {
                 let summaries = try context.fetch(fetchRequest)
                 completed(nil, summaries)
             } catch let error {
-                print("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
+                debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
                 completed(FetchDataError.failedToFetch, nil)
             }
         }
     }
     
-    func fetchSummary(_ sheetID: String, completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
+    func fetchSummary(_ sheetID: String, propertiesToFetch: [String]? = nil, completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
         
         if sheetID.isEmpty {
             completed(FetchDataError.invalidSheetId, nil)
@@ -286,18 +276,20 @@ extension TimeSheetManager {
         
         let fetchRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "sheetID = %@", sheetID)
-      
+        fetchRequest.propertiesToFetch = propertiesToFetch
+        
         if let context = objectContext {
             do {
                 let summary = try context.fetch(fetchRequest)
                 
                 completed(nil, summary)
             } catch let error {
-                print("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
+                debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
                 completed(FetchDataError.failedToFetch, nil)
             }
         }
     }
+
     
     /// Update summary Sheet with OutTime and Last workedHours
     func updateSummary(id sheetID: String, outTime: Date, lastWorkedHours: Int64) {
@@ -305,7 +297,7 @@ extension TimeSheetManager {
         fetchSummary(sheetID) { (error, summaries) in
             
             if let error = error {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
                 return
             }
             
@@ -318,45 +310,35 @@ extension TimeSheetManager {
                 do {
                     try context.save()
                 } catch let error {
-                    print("Unable to save ShiftIn Data: \(error.localizedDescription)")
+                    debugPrint("Unable to save ShiftIn Data: \(error.localizedDescription)")
                 }
             }
         }
     }
 
-    /// Trash all summary records
-    func trashAllSummary() {
+    /// Trash Summary records
+    func trashSummary(sheetID: String?) {
         
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: TimeSheetSummary.fetchRequest())
+        let fetchSummaryRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
+        
+        if let sheetID = sheetID {
+            fetchSummaryRequest.predicate = NSPredicate(format: "sheetID = %@", sheetID)
+        }
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchSummaryRequest as! NSFetchRequest<NSFetchRequestResult>)
+        
         do {
             try objectContext?.execute(deleteRequest)
             
             if let context = objectContext {
                 try context.save()
+                
+                trashDetail(sheetID: sheetID)
             }
         } catch let error {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
         }
     }
-    
-    /// trashSummary with sheetID
-    func trashSummary(_ sheedID: String) {
-        
-        let fetchRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "sheedID = %@", sheedID)
-        
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: TimeSheetSummary.fetchRequest())
-        do {
-            try objectContext?.execute(deleteRequest)
-            
-            if let context = objectContext {
-                try context.save()
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-
 }
 
 /// Additional informations of timesheet day details
