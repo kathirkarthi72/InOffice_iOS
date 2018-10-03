@@ -34,11 +34,11 @@ class DashboardViewModel: NSObject {
     var workedHoursInSec: Int64 = 0
     
     func fetchTodayWorkedHoursInSec() -> (loggedIn: Date?, loggedOut: Date?, worked: Int64) {
-       
+        
         var workedHours: Int64 = 0
         var loggedOutDate : Date?
         var loggedInDate : Date?
-
+        
         if let today = TimeSheetManager.current.today {
             
             TimeSheetManager.current.fetchSummary(today, propertiesToFetch: ["hours"]) { (error, summaries) in
@@ -65,43 +65,74 @@ class DashboardViewModel: NSObject {
         return (loggedInDate, loggedOutDate, workedHours)
     }
     
-}
-
-// MARK: User notifications
-extension DashboardViewModel {
     
+    // MARK: User notifications
+    /**
+     schedule notifications
+     - Parameters:
+     - isUserLoggedIn: user was logged In or not.
+     */
     func scheduleNotifications(isUserLoggedIn: Bool) {
-     
+        
         if isUserLoggedIn {
+            
             // Break notification
             RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.comeBackAfterBreak]) // Break notification removed.
+            breakNotification()
+            logoutNotification()
             
-            RichNotificationManager.current.requestRichNotification(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                    requestID: Constants.Notification.RequestID.takeBreak,
-                                                                    header: "Take a break",
-                                                                    content: "You are worked more that 1 hour 30 mins. please take a break",
-                                                                    triggerAfter: TimeInterval(90 * 60),
-                                                                    userInfo: nil)
+            /// Health notificaiton
+            takeWaterNotification()
             
-            // Logout notification
-            let logoutAfter = totalProductionHoursInSec - workedHoursInSec
-            
-            RichNotificationManager.current.requestRichNotification(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                    requestID: Constants.Notification.RequestID.logOut,
-                                                                    header: "Shift time was completed",
-                                                                    content: "Your today production hours is almost done. This is right time to logout",
-                                                                    triggerAfter: TimeInterval(logoutAfter),
-                                                                    userInfo: nil)
         } else { // Logged out
-            RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut]) // Log out notification removed.
+            RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeWater]) // Log out notification removed.
             
-            RichNotificationManager.current.requestRichNotification(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                    requestID: Constants.Notification.RequestID.comeBackAfterBreak,
-                                                                    header: "Get back to work",
-                                                                    content: "Your break was already crossed 10 Mins. Please go back to work.",
-                                                                    triggerAfter: TimeInterval(10 * 60),
-                                                                    userInfo: nil)
+            backToWorkNotification()
         }
     }
     
+    private func breakNotification() {
+        
+        RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
+                                                                requestID: Constants.Notification.RequestID.takeBreak,
+                                                                header: "Take a break",
+                                                                content: "You are worked more that 1 hour 30 mins. please take a break",
+                                                                triggerAfter: TimeInterval(90 * 60),
+                                                                userInfo: nil)
+        
+        
+    }
+    
+    private  func logoutNotification() {
+        // Logout notification
+        let logoutAfter = totalProductionHoursInSec - workedHoursInSec
+        
+        RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
+                                                                requestID: Constants.Notification.RequestID.logOut,
+                                                                header: "Shift time was completed",
+                                                                content: "Your today production hours is almost done. This is right time to logout",
+                                                                triggerAfter: TimeInterval(logoutAfter),
+                                                                userInfo: nil)
+    }
+    
+    private func backToWorkNotification() {
+        RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
+                                                                requestID: Constants.Notification.RequestID.comeBackAfterBreak,
+                                                                header: "Get back to work",
+                                                                content: "Your break was already crossed 10 Mins. Please go back to work.",
+                                                                triggerAfter: TimeInterval(10 * 60),
+                                                                userInfo: nil)
+    }
+    
+    // MARK: - Health module notifications
+    private func takeWaterNotification() {
+        RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.health,
+                                                                requestID: Constants.Notification.RequestID.takeWater,
+                                                                header: "Health notification",
+                                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
+                                                                repeat: true,
+                                                                userInfo: nil)
+    }
+    
 }
+

@@ -21,6 +21,8 @@ struct Constants {
     struct Notification {
         struct CategoryID {
             static let timeSheet = "timesheet"
+            
+            static let health = "health"
         }
         
         struct RequestID {
@@ -30,6 +32,8 @@ struct Constants {
             static let takeBreak = "take_break"
             
             static let comeBackAfterBreak = "break_time_over"
+            
+            static let takeWater = "take_some_water"
         }
     }
 }

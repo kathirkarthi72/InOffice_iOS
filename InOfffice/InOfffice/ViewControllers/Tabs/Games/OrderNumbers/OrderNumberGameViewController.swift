@@ -39,7 +39,7 @@ class OrderNumberGameViewController: UIViewController {
         numbersCollectionView.dragDelegate = self
         numbersCollectionView.dropDelegate = self
         numbersCollectionView.dragInteractionEnabled = true
-        numbersCollectionView.allowsMultipleSelection = true
+        numbersCollectionView.allowsMultipleSelection = false
         
         createNewLevel()
         
@@ -54,6 +54,20 @@ class OrderNumberGameViewController: UIViewController {
         }
     }
     
+    /*
+     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+      //  self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+      //  self.navigationController?.isNavigationBarHidden = false
+    }
+     
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -232,6 +246,7 @@ extension OrderNumberGameViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     /*
      func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
      
@@ -266,7 +281,7 @@ extension OrderNumberGameViewController : UICollectionViewDragDelegate, UICollec
     }
     
     // Multiple items drag
-  /*  func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+  func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
         if let level = levelDetail {
             let item = level.unOrdered[indexPath.row]
             let itemProvider = NSItemProvider(object: "\(item)" as NSItemProviderWriting)
@@ -277,7 +292,7 @@ extension OrderNumberGameViewController : UICollectionViewDragDelegate, UICollec
         }
         return []
     }
-    */
+  
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         

@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 class RichNotificationManager: NSObject {
-
+    
     static let current: RichNotificationManager = {
         let instance = RichNotificationManager()
         return instance
@@ -25,19 +25,20 @@ class RichNotificationManager: NSObject {
             debugPrint("User notification allow status:\(permitted)")
         }
     }
-
+    
     // MARK: - Timesheet Rich notifications
     
     /// Fire local Notification with message string
-    func requestRichNotification(categoryID cateID: String,
+    func request(categoryID cateID: String,
                                  requestID reqID: String,
                                  header title: String,
                                  content message: String,
                                  triggerAfter fireAt: TimeInterval,
+                                 repeat isRepeat: Bool = false,
                                  userInfo: [String: Any]?) {
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-          
+            
             if settings.authorizationStatus == .authorized {
                 
                 let notificationContent = UNMutableNotificationContent() // Create Notification Content
@@ -48,7 +49,7 @@ class RichNotificationManager: NSObject {
                 notificationContent.body = message
                 notificationContent.sound = UNNotificationSound.default()
                 
-                let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: false)  // Add Trigger schudled notification
+                let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: isRepeat)  // Add Trigger schudled notification
                 
                 // Create Notification Request
                 let request = UNNotificationRequest(identifier: reqID,
@@ -71,11 +72,22 @@ class RichNotificationManager: NSObject {
     }
     
     //MARK: -  Clear Notifications
+    
+    /**
+     Clear pending notifications
+     - Parameters:
+        - requestIDs: user notification request id
+     */
     func clearPendingNotification(requestIDs: [String]? = nil) {
         if let requestedIDs = requestIDs {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: requestedIDs)
         } else {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests() // Remove all local notifications
         }
+    }
+    
+    /// Clear all delivered notifications
+    func clearAllDeliveredNotifications() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 }

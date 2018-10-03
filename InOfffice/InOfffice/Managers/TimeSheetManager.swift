@@ -255,7 +255,7 @@ extension TimeSheetManager {
     func fetchAllSummary(completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
        
         let fetchRequest: NSFetchRequest = TimeSheetSummary.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sheetID", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "inTime", ascending: false)]
        
         if let context = objectContext {
             do {

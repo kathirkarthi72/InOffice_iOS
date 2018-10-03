@@ -55,7 +55,6 @@ class TimesheetHistoryViewController: UIViewController {
      }
      */
     
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -65,7 +64,6 @@ class TimesheetHistoryViewController: UIViewController {
         
         if segue.identifier == "toTimesheetHistoryDetails" {
             let detailVC = segue.destination as! TimeSheetDetailViewController
-            detailVC.cameBy = .history
             if sender != nil {
                 let sheetID = sender as? String
                 detailVC.sheedID = sheetID

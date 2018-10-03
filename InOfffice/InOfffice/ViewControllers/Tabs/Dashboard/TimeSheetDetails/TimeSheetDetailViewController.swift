@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum CameBy {
-    case dashBoard
-    case history
-}
-
 class TimeSheetDetailViewController: UIViewController {
     
     @IBOutlet weak var detailTableView: UITableView!
@@ -22,16 +17,9 @@ class TimeSheetDetailViewController: UIViewController {
     /// Sheet ID
     var sheedID : String?
     
-    /// Came by
-    var cameBy: CameBy = .dashBoard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if cameBy == .history {
-          self.navigationItem.rightBarButtonItems?.remove(at: 0)
-        }
-
         if let sheedID = sheedID, !sheedID.isEmpty {
             detailViewModel.fetchDetail(sheedID: sheedID)
         }
@@ -57,66 +45,10 @@ class TimeSheetDetailViewController: UIViewController {
     */
 
     // MARK: - Button Action
-    @IBAction func createNewSheetBarButtonAction(_ sender: Any) {
-        
-        if TimeSheetManager.current.isGetIn {
-            
-            let sheet = UIAlertController(title: "You are still in office",
-                                          message: "Make as to shift out?",
-                                          preferredStyle: .actionSheet)
-            
-            let logoutAction = UIAlertAction(title: "Shift Now", style: .default) { (okAction) in
-               
-                if TimeSheetManager.current.today == nil {
-                    TimeSheetManager.current.today = Date().convert(.toDateOnly)
-                }
-                
-                if let sheedID = TimeSheetManager.current.today, !sheedID.isEmpty {
-                    
-                    TimeSheetManager.current.updateShiftOutData(toSheet: sheedID)
-                    
-                    self.detailViewModel.fetchDetail(sheedID: sheedID)
-                    
-                    DispatchQueue.main.async {
-                        self.detailTableView.reloadData()
-                    }
-                }
-            }
-            sheet.addAction(logoutAction)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            sheet.addAction(cancelAction)
-            
-            self.present(sheet, animated: true, completion: nil)
-        } else {
-            let sheet = UIAlertController(title: "Create new sheet", message: "Check your reminding hours before creating new sheet.", preferredStyle: .actionSheet)
-            
-            let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
-                TimeSheetManager.current.createNewRecord(withSave: true)
-               
-                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
-                self.navigationController?.popViewController(animated: true)
-            }
-            sheet.addAction(saveCreateAction)
-            
-            let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
-                TimeSheetManager.current.createNewRecord(withSave: false)
-               
-                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
-                self.navigationController?.popViewController(animated: true)
-            }
-            sheet.addAction(createAction)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            sheet.addAction(cancelAction)
-            
-            self.present(sheet, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func downloadBarButtonAction(_ sender: Any) {
         
     }
+    
 }
 
 extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDelegate {

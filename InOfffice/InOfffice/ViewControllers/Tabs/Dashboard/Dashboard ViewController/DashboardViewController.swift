@@ -12,13 +12,13 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var dashboardCollectionView: UICollectionView!
     
-    @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
-    
     @IBOutlet var dashBoardViewModel: DashboardViewModel!
     
     var timeSheetWorkedLabel: UILabel?
     
     var timeSheetBalanceLabel: UILabel?
+    
+    var addNewSheet: UIButton?
     
     /// Logout Bar Button
     var logoutBarButton: UIBarButtonItem {
@@ -47,10 +47,6 @@ class DashboardViewController: UIViewController {
        applicationBecomeActive()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         dashBoardViewModel.stopTimer()
@@ -64,6 +60,8 @@ class DashboardViewController: UIViewController {
     /// Dashboard is become active
     func applicationBecomeActive() {
         
+        RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
+
         checkIfLoggedIn()
         
         updateValues()
@@ -113,7 +111,6 @@ class DashboardViewController: UIViewController {
         
         if segue.identifier == "toTodayHistory" {
             let detailVC = segue.destination as! TimeSheetDetailViewController
-            detailVC.cameBy = .dashBoard
             
             if TimeSheetManager.current.today != nil {
                 detailVC.sheedID = TimeSheetManager.current.today
@@ -151,14 +148,8 @@ class DashboardViewController: UIViewController {
     }
     
     /// Show Today sheet.
-    @IBAction func showTodaySheet(_ sender: Any) {
-        let longPressGesture = sender as! UILongPressGestureRecognizer
-        
-        if longPressGesture.state == .began {
-            debugPrint("Show Today sheet")
-            
+    @objc func showTodaySheet(_ sender: Any) {
             self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
-        }
     }
 }
 
@@ -199,14 +190,16 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        switch UIDevice.current.orientation {
+        return CGSize(width: self.view.frame.size.width, height: 230.0)
+
+       /* switch UIDevice.current.orientation {
         case .landscapeLeft, .landscapeRight:
-            return CGSize(width: 350, height: 140.0)
+            return CGSize(width: 230.0, height:  self.view.frame.size.width)
         default:
-            return CGSize(width: self.view.frame.size.width, height: 140.0)
+            return CGSize(width: self.view.frame.size.width, height: 230.0)
         }
+        */
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -222,6 +215,10 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             
             timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? UILabel
             timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? UILabel
+            
+            addNewSheet = overView.subviews[2] as? UIButton
+            
+            addNewSheet?.addTarget(self, action: #selector(addNewTimeSheetbuttonTapped), for: .touchUpInside) // Add new timesheet
             
             if let workedLabel = timeSheetWorkedLabel {
                 workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
@@ -242,9 +239,12 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 
                 shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
             }
+            
+            if let detailButton = timeSheetOverView.subviews[5] as? UIButton {
+                
+                  detailButton.addTarget(self, action: #selector(showTodaySheet(_:)), for: .touchUpInside)
+            }
         }
-        
-        overView.addGestureRecognizer(longPressGesture)
         
         return timeSheetCell
     }
@@ -283,6 +283,67 @@ extension DashboardViewController {
         if let balanceLabel = timeSheetBalanceLabel {
             let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.workedHoursInSec
             balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
+        }
+    }
+    
+    /// Add new timesheet button tapped.
+    @objc func addNewTimeSheetbuttonTapped() {
+        
+        if TimeSheetManager.current.isGetIn {
+            
+            let sheet = UIAlertController(title: "You are still in office",
+                                          message: "Make as to shift out?",
+                                          preferredStyle: .actionSheet)
+            
+            let logoutAction = UIAlertAction(title: "Shift Now", style: .default) { (okAction) in
+                
+                self.timeSheetShiftInOutButtonWasClicked(self)
+
+                self.updateValues()
+                DispatchQueue.main.async {
+                    self.dashboardCollectionView.reloadData()
+                }
+            }
+            sheet.addAction(logoutAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
+        } else {
+            
+            let sheet = UIAlertController(title: "Create new sheet", message: "Check your reminding hours before creating new sheet.", preferredStyle: .actionSheet)
+            
+            let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
+                TimeSheetManager.current.createNewRecord(withSave: true)
+                
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+
+                self.updateValues()
+
+                DispatchQueue.main.async {
+                    self.dashboardCollectionView.reloadData()
+                }
+            }
+            sheet.addAction(saveCreateAction)
+            
+            let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
+                TimeSheetManager.current.createNewRecord(withSave: false)
+                
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+                
+                self.updateValues()
+
+                DispatchQueue.main.async {
+                    self.dashboardCollectionView.reloadData()
+                }
+            }
+            sheet.addAction(createAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
         }
     }
 }

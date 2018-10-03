@@ -87,6 +87,13 @@
 		9F2070CC2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
 		9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
 		9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
+		9F2E700D2164DCE5009723D4 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2E700C2164DCE4009723D4 /* SpriteKit.framework */; };
+		9F2E700F2164DD55009723D4 /* TicTacToeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */; };
+		9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */; };
+		9F2E70112164DD55009723D4 /* TicTacToeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */; };
+		9F2E70132164DE44009723D4 /* TicTacToeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E70122164DE44009723D4 /* TicTacToeScene.swift */; };
+		9F2E70142164DE44009723D4 /* TicTacToeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E70122164DE44009723D4 /* TicTacToeScene.swift */; };
+		9F2E70152164DE44009723D4 /* TicTacToeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E70122164DE44009723D4 /* TicTacToeScene.swift */; };
 		9F8281F5213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
 		9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
 		9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */; };
@@ -102,6 +109,12 @@
 		9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A98021416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF77BDF2164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
+		9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
+		9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
+		9FF77BE32164918100E56837 /* TicTacToeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */; };
+		9FF77BE42164918100E56837 /* TicTacToeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */; };
+		9FF77BE52164918100E56837 /* TicTacToeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */; };
 		9FF7A5FE2148043200A84D89 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF7A5FD2148043200A84D89 /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
 
@@ -184,12 +197,17 @@
 		9F112921212EDFA700A599E8 /* GamesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesManager.swift; sourceTree = "<group>"; };
 		9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewController.swift; sourceTree = "<group>"; };
 		9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewModel.swift; sourceTree = "<group>"; };
+		9F2E700C2164DCE4009723D4 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TicTacToeScene.sks; sourceTree = "<group>"; };
+		9F2E70122164DE44009723D4 /* TicTacToeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeScene.swift; sourceTree = "<group>"; };
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InOfffice.entitlements; sourceTree = "<group>"; };
 		9FF3A97C21416DA200D3A653 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
+		9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewModel.swift; sourceTree = "<group>"; };
 		9FF7A5FD2148043200A84D89 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -198,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2E700D2164DCE5009723D4 /* SpriteKit.framework in Frameworks */,
 				9FF7A5FE2148043200A84D89 /* UserNotifications.framework in Frameworks */,
 				9FE4E2C821536D0200EA2E15 /* HealthKit.framework in Frameworks */,
 			);
@@ -290,6 +309,7 @@
 		9F1128AB212E7B9600A599E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F2E700C2164DCE4009723D4 /* SpriteKit.framework */,
 				9FE4E2C721536D0200EA2E15 /* HealthKit.framework */,
 				9FF7A5FD2148043200A84D89 /* UserNotifications.framework */,
 				9F1128AC212E7B9600A599E8 /* NotificationCenter.framework */,
@@ -348,6 +368,7 @@
 		9F1128C6212E835C00A599E8 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				9FF77BDD2164911700E56837 /* Tic tac toe */,
 				9F1128D8212E845900A599E8 /* GamesViewModel.swift */,
 				9F1128DC212E846800A599E8 /* GamesViewController.swift */,
 				9F112916212EDDB400A599E8 /* OrderNumbers */,
@@ -423,6 +444,17 @@
 				9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */,
 			);
 			path = TimeSheetDetails;
+			sourceTree = "<group>";
+		};
+		9FF77BDD2164911700E56837 /* Tic tac toe */ = {
+			isa = PBXGroup;
+			children = (
+				9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */,
+				9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */,
+				9F2E70122164DE44009723D4 /* TicTacToeScene.swift */,
+				9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */,
+			);
+			path = "Tic tac toe";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +592,7 @@
 				9F112883212E7B3D00A599E8 /* LaunchScreen.storyboard in Resources */,
 				9F112880212E7B3D00A599E8 /* Assets.xcassets in Resources */,
 				9F11287B212E7B3400A599E8 /* Main.storyboard in Resources */,
+				9F2E700F2164DD55009723D4 /* TicTacToeScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +600,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +608,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F2E70112164DD55009723D4 /* TicTacToeScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,9 +640,11 @@
 				9F1128C9212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E2212E858E00A599E8 /* InitialViewController.swift in Sources */,
 				9F8281F5213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9FF77BE32164918100E56837 /* TicTacToeViewModel.swift in Sources */,
 				9F11287E212E7B3400A599E8 /* InOfffice.xcdatamodeld in Sources */,
 				9F1128D9212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F11290D212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
+				9F2E70132164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F1128EB212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128CD212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
 				9F1128F8212E940100A599E8 /* ViewExtension.swift in Sources */,
@@ -620,6 +657,7 @@
 				9F1128FC212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F112922212EDFA700A599E8 /* GamesManager.swift in Sources */,
 				9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */,
+				9FF77BDF2164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,12 +670,14 @@
 				9F8281FA213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128DE212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128CE212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
+				9FF77BE42164918100E56837 /* TicTacToeViewModel.swift in Sources */,
 				9F11288E212E7B3E00A599E8 /* InOffficeTests.swift in Sources */,
 				9F11290E212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
 				9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DA212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112913212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128EC212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128D2212E843400A599E8 /* HealthViewController.swift in Sources */,
@@ -652,6 +692,7 @@
 				9F112909212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F1128CA212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E3212E858E00A599E8 /* InitialViewController.swift in Sources */,
+				9F2E70142164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F112901212E956400A599E8 /* InOfficeManager.swift in Sources */,
 				9F1128F9212E940100A599E8 /* ViewExtension.swift in Sources */,
 			);
@@ -666,12 +707,14 @@
 				9F8281FB213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128DF212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128CF212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
+				9FF77BE52164918100E56837 /* TicTacToeViewModel.swift in Sources */,
 				9F112899212E7B3E00A599E8 /* InOffficeUITests.swift in Sources */,
 				9F11290F212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
 				9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DB212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112914212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128ED212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128D3212E843400A599E8 /* HealthViewController.swift in Sources */,
@@ -686,6 +729,7 @@
 				9F11290A212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F1128CB212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E4212E858E00A599E8 /* InitialViewController.swift in Sources */,
+				9F2E70152164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F112902212E956400A599E8 /* InOfficeManager.swift in Sources */,
 				9F1128FA212E940100A599E8 /* ViewExtension.swift in Sources */,
 			);
