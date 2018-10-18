@@ -15,6 +15,8 @@ class TimesheetHistoryViewController: UIViewController {
     /// UITableView
     @IBOutlet weak var historyTableView: UITableView!
     
+    @IBOutlet weak var intervalPicker: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,18 +45,6 @@ class TimesheetHistoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     func fetchSheet(_ byID: String) {
-     
-     TimeSheetManager.current.fetchData(for: byID) { (error, sheets, additionalInfos) in
-     
-     if let err = error {
-     debugPrint(err.hashValue)
-     }
-     }
-     }
-     */
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -64,11 +54,68 @@ class TimesheetHistoryViewController: UIViewController {
         
         if segue.identifier == "toTimesheetHistoryDetails" {
             let detailVC = segue.destination as! TimeSheetDetailViewController
+            
             if sender != nil {
-                let sheetID = sender as? String
-                detailVC.sheedID = sheetID
+                let sents: [String: String?] = sender as! [String : String?]
+                detailVC.sheedID = sents["sheetID"] ?? ""
+                    detailVC.title = sents["show"] ?? "Details"
+            }
+            
+        } else if segue.identifier == "showIntevalPicker" {
+            let intervalPicker = segue.destination as! IntervalPickerViewController
+            if let old = timesheetHistoryViewModel.olders, let toDate = old.first?.inTime, let fromDate = old.last?.inTime {
+                
+                intervalPicker.minmumDate = fromDate
+                intervalPicker.maximumDate = toDate
+                intervalPicker.picked(completed: { (from, to) in
+                    self.downloadRecord(from: from, to: to)
+                })
+/*
+                let gregorian: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                let components: DateComponents = DateComponents()
+                
+                if let min = gregorian.date(byAdding: components, to: fromDate, wrappingComponents: false),
+                    let max = gregorian.date(byAdding: components, to: toDate, wrappingComponents: false) {
+                    
+                    intervalPicker.modalPresentationStyle = .overFullScreen
+                    intervalPicker.datePicker.minimumDate = min
+                    intervalPicker.datePicker.maximumDate = max
+                    
+                    
+                }
+                */
             }
         }
+        
+    }
+    
+    func downloadRecord(from: Date, to: Date) {
+        
+        if let timesheetRecord = TimeSheetManager.current.fetchDate(from: from, to: to) {
+            let formattedString = DownloadManager.current.crateFile(timeSheets: timesheetRecord)
+            
+            do {
+                try formattedString.write(to: DownloadManager.current.filePath, atomically: true, encoding: .utf8)
+                
+                let activityVC = UIActivityViewController(activityItems: [DownloadManager.current.filePath], applicationActivities: [])
+                activityVC.title = "Share your Timesheet.csv"
+                activityVC.excludedActivityTypes = [.assignToContact,
+                                                    .saveToCameraRoll,
+                                                    .postToFlickr,
+                                                    .postToVimeo,
+                                                    .postToWeibo,
+                                                    .postToTwitter,
+                                                    .postToFacebook,
+                                                    .openInIBooks]
+                DispatchQueue.main.async {
+                    self.present(activityVC, animated: true, completion: nil)
+                }
+            } catch  {
+                print("Error while creating file")
+            }
+
+        }
+        
         
     }
     
@@ -79,7 +126,7 @@ class TimesheetHistoryViewController: UIViewController {
         let sheet = UIAlertController(title: "Delete all records", message: nil, preferredStyle: .actionSheet)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { (okAction) in
-           
+            
             TimeSheetManager.current.trashDetail(sheetID: nil)
             
             self.timesheetHistoryViewModel.today = nil
@@ -99,8 +146,6 @@ class TimesheetHistoryViewController: UIViewController {
         
     }
     
-    @IBAction func downloadBarButtonClickedAction(_ sender: Any) {
-    }
 }
 
 // MARK: TableView data source
@@ -166,17 +211,22 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
         switch indexPath.section {
         case 0:
             if let today = self.timesheetHistoryViewModel.today {
-                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender: today.sheetID)
+                let sending: [String: String?] = ["sheetID": today.sheetID,
+                                                 "show": "\(today.sheetID ?? "")-\(today.hours.secondsToHoursMinutesSeconds())"]
+                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender: sending)
             }
         default: // Older
             if let olders = self.timesheetHistoryViewModel.olders {
-                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender: olders[indexPath.row].sheetID)
+                let sending: [String: String?] = ["sheetID": olders[indexPath.row].sheetID,
+                                                  "show": "\(olders[indexPath.row].sheetID ?? "")-\(olders[indexPath.row].hours.secondsToHoursMinutesSeconds())"]
+                
+                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender:sending)
             }
         }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 1 ? true : false // Today : // Older
+        return false //indexPath.section == 1 ? true : false // Today : // Older
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

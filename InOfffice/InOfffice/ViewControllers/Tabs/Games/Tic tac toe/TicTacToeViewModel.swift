@@ -18,6 +18,16 @@ enum Placed: String {
     case player = "O"
 }
 
+/// Next move
+///
+/// - computer: computer turn
+/// - player: player turn
+enum Turn {
+    case computer
+    case player
+}
+
+
 class TicTacToeViewModel: NSObject {
     
     /// Game state
@@ -32,45 +42,55 @@ class TicTacToeViewModel: NSObject {
         case wonByComputer
         case wonByPlayer
     }
-    
-    
-    /// Next move
-    ///
-    /// - computer: computer turn
-    /// - player: player turn
-    enum Turn {
-        case computer
-        case player
-    }
-    
+   
     var source: [Placed] = Array(repeatElement(Placed.none, count: 9))
     
     var turn: Turn = .player
     
     func newGame() {
         source = Array(repeatElement(Placed.none, count: 9))
-      
-        print(source)
     }
-   
+    
     /// Result of the game
     func result() ->GameState {
         
         let indexes = source.placedIndex
         
-        if indexes.computer.isValid {
+        if indexes.computer.isValid() {
+            newGame()
+
             return GameState.wonByComputer
-        } else if indexes.player.isValid {
+        } else if indexes.player.isValid() {
+            newGame()
+
             return GameState.wonByPlayer
+
         } else if indexes.empty.count > 0 {
             return GameState.play
         } else {
+            newGame()
             return GameState.draw
         }
     }
     
     
+    /// Insert new index
+    ///
+    /// - Parameter at: position
+    func insert(at: Int) {
+        
+        if source[at] == .none {
+            if turn == .computer {
+                source[at] = .computer
+            } else {
+                source[at] = .player                
+            }
+        }
+    }
+    
     /// Best move
+    ///
+    /// - Returns: best posibile index
     func bestMove() -> Int {
         
         let indexes = source.placedIndex
@@ -78,6 +98,7 @@ class TicTacToeViewModel: NSObject {
         if indexes.player.count == 0 {
             return indexes.empty.randomElement() ?? 0
         } else if indexes.player.count  == 1 {
+            
             if let first = indexes.player.first {
                 switch first {
                 case 0:
@@ -100,20 +121,72 @@ class TicTacToeViewModel: NSObject {
                     return [0,2,4,5,6,7].randomElement() ?? 1
                 }
             }
-            return 0
-        } else if indexes.player.count == 2 {
+            return indexes.empty.randomElement() ?? 0
+        } else  {
             
-            if let first = indexes.player.first, let last = indexes.player.last {
-          
+            let computerPosibileIndex = getPosibilities(playiedIndexies: indexes.computer, emptyIndexies: indexes.empty)
+            
+            var temp = indexes.computer
+            temp.append(computerPosibileIndex)
+            
+            if temp.isValid() {
+                return computerPosibileIndex
+            } else {
+                return getPosibilities(playiedIndexies: indexes.player, emptyIndexies: indexes.empty) // Get posibilities
             }
-            
-            return 0
         }
-        
-        return indexes.empty.first ?? 0
     }
- 
-
+    
+    // variadic function
+    func isPosibleIndex(_ index: Int, places: [Int]..., empties: [Int], placedIndex: [Int]) -> Bool {
+        
+        var posibile = false
+        if empties.contains(index) {
+            
+            for item in 0..<places.count {
+                let place = places[item]
+                
+                if let first = place.first, let last = place.last {
+                    if placedIndex.contains(first), placedIndex.contains(last) {
+                        posibile = true
+                        break
+                    } else {
+                        posibile = false
+                    }
+                }
+            }
+        }
+        return posibile
+    }
+    
+    /// get Posibile index
+    ///
+    /// - Parameters:
+    ///   - placedIndex: already placed index
+    ///   - empties: empty indexes
+    /// - Returns: posibile index
+    public func getPosibilities(playiedIndexies: [Int], emptyIndexies: [Int]) -> Int {
+        
+        if isPosibleIndex(0, places: [1,2], [4,8], [3,6], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 0
+        } else if isPosibleIndex(1, places: [0,2], [4,7], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 1
+        } else if isPosibleIndex(2, places: [0,1],[4,6],[5,8], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 2
+        } else if isPosibleIndex(3, places: [0,6],[4,5], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 3
+        } else if isPosibleIndex(4, places: [0,8],[1,7],[2,6],[3,5], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 4
+        } else if isPosibleIndex(5, places: [2,8],[4,3], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 5
+        } else if isPosibleIndex(6, places: [3,0],[2,4],[7,8], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 6
+        } else if isPosibleIndex(7, places: [1,4],[6,8], empties: emptyIndexies, placedIndex: playiedIndexies) {
+            return 7
+        }  else {
+            return 8
+        }
+    }
 }
 
 extension Array where Element == Placed {
@@ -121,6 +194,7 @@ extension Array where Element == Placed {
     /// Placed Indexes
     /// return empty object index, computer placed index, player placed index
     var placedIndex: (empty: [Int], computer: [Int], player: [Int]) {
+        
         let empty = self.indexes(of: .none)
         let computer = self.indexes(of: .computer)
         let player = self.indexes(of: .player)
@@ -131,20 +205,23 @@ extension Array where Element == Placed {
 
 extension Array where Element == Int {
     
-    var isValid: Bool {
-        if self.contains(0), self.contains(1), self.contains(2) ||
-            self.contains(3), self.contains(4), self.contains(5) ||
-            self.contains(6), self.contains(7), self.contains(8) ||
-            self.contains(0), self.contains(3), self.contains(6) ||
-            self.contains(1), self.contains(4), self.contains(7) ||
-            self.contains(2), self.contains(5), self.contains(8) ||
-            self.contains(0), self.contains(4), self.contains(8) ||
-            self.contains(2), self.contains(4), self.contains(6) {
-          
-            return true
+    func isValid() -> Bool {
+        
+        let places: [Int] = self
+        
+        func verify(first: Int, second: Int, last: Int) -> Bool {
+            
+            if places.contains(first), places.contains(second), places.contains(last) {
+                return true
+            }
+            return false
         }
         
-        return false
+        if verify(first: 0, second: 1, last: 2) || verify(first: 3, second: 4, last: 5) || verify(first: 6, second: 7, last: 8) || verify(first: 0, second: 3, last: 6) || verify(first: 1, second: 4, last: 7) || verify(first: 2, second: 5, last: 8) || verify(first: 0, second: 4, last: 8) || verify(first: 2, second: 4, last: 6) {
+            return  true
+        } else {
+            return false
+        }
     }
     
 }

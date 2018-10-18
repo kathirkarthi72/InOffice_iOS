@@ -61,7 +61,6 @@ class InOfficeManager: NSObject {
     var userInfos : UserDetail? {
         
         if let userInfos = NSDictionary(contentsOfFile: userPlistPath), isUserLoggedIn {
-          //  debugPrint("Created: \(userPlistPath)")
             
             return UserDetail(name: userInfos["name"] as! String,
                        office: userInfos["office"] as! String,
@@ -91,7 +90,6 @@ class InOfficeManager: NSObject {
                 ]
                 
                 if userInfos.write(toFile: self.userPlistPath, atomically: true) {
-                  //  debugPrint("Created: \(self.userPlistPath)")
                     return true
                 } else {
                     debugPrint("Not created")
@@ -110,7 +108,6 @@ class InOfficeManager: NSObject {
             ]
             
             if userInfos.write(toFile: self.userPlistPath, atomically: true) {
-              // debugPrint("Created: \(self.userPlistPath)")
                 return true
             } else {
                 debugPrint("Not created")

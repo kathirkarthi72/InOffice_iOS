@@ -99,23 +99,25 @@ class DashboardViewModel: NSObject {
                                                                 content: "You are worked more that 1 hour 30 mins. please take a break",
                                                                 triggerAfter: TimeInterval(90 * 60),
                                                                 userInfo: nil)
-        
-        
     }
     
     private  func logoutNotification() {
         // Logout notification
         let logoutAfter = totalProductionHoursInSec - workedHoursInSec
         
-        RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                requestID: Constants.Notification.RequestID.logOut,
-                                                                header: "Shift time was completed",
-                                                                content: "Your today production hours is almost done. This is right time to logout",
-                                                                triggerAfter: TimeInterval(logoutAfter),
-                                                                userInfo: nil)
+        if logoutAfter > 0 {
+            RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
+                                                    requestID: Constants.Notification.RequestID.logOut,
+                                                    header: "Shift time was completed",
+                                                    content: "Your today production hours is almost done. This is right time to logout",
+                                                    triggerAfter: TimeInterval(logoutAfter),
+                                                    userInfo: nil)
+        }
+        
     }
     
     private func backToWorkNotification() {
+        
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
                                                                 requestID: Constants.Notification.RequestID.comeBackAfterBreak,
                                                                 header: "Get back to work",
@@ -126,6 +128,7 @@ class DashboardViewModel: NSObject {
     
     // MARK: - Health module notifications
     private func takeWaterNotification() {
+        
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.health,
                                                                 requestID: Constants.Notification.RequestID.takeWater,
                                                                 header: "Health notification",

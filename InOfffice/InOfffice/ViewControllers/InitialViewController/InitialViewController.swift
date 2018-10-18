@@ -100,7 +100,7 @@ extension InitialViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
-            nameTextField = cell.contentView.viewWithTag(100) as! UITextField
+            nameTextField = cell.contentView.viewWithTag(100) as? UITextField
             nameTextField.delegate = self
             nameTextField.text = viewModel.userEnteredDetails.name
 
@@ -108,7 +108,7 @@ extension InitialViewController: UITableViewDataSource, UITableViewDelegate {
             
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "officeCell", for: indexPath)
-            officeTextField = cell.contentView.viewWithTag(100) as! UITextField
+            officeTextField = cell.contentView.viewWithTag(100) as? UITextField
             officeTextField.delegate = self
             
             return cell

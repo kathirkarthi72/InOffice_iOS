@@ -138,7 +138,6 @@ class DashboardViewController: UIViewController {
         } else { // Logging In
             TimeSheetManager.current.insertShiftInData()
             startTimer()
-            
             dashBoardViewModel.scheduleNotifications(isUserLoggedIn: true)  // Logged in
         }
         
@@ -272,13 +271,10 @@ extension DashboardViewController {
     @objc func timeSheetLiveUpdater() {
         
         dashBoardViewModel.workedHoursInSec += 1
-        
-        debugPrint("\(dashBoardViewModel.workedHoursInSec)")
-        
+                
         if let workedLabel = timeSheetWorkedLabel {
             workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
         }
-        
         
         if let balanceLabel = timeSheetBalanceLabel {
             let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.workedHoursInSec

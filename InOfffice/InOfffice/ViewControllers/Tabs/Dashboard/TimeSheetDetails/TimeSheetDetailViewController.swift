@@ -43,11 +43,6 @@ class TimeSheetDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    // MARK: - Button Action
-    @IBAction func downloadBarButtonAction(_ sender: Any) {
-        
-    }
     
 }
 

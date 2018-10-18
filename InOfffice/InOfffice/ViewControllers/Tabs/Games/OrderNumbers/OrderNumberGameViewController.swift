@@ -211,6 +211,25 @@ class OrderNumberGameViewController: UIViewController {
     
 }
 
+extension OrderNumberGameViewController {
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
+
 // MARK: CollectionView delegates
 extension OrderNumberGameViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
@@ -238,6 +257,14 @@ extension OrderNumberGameViewController: UICollectionViewDataSource, UICollectio
         
         if let levelDetail = levelDetail {
             title.text = "\(String(describing: levelDetail.unOrdered[indexPath.item]))"
+            
+           /* if levelDetail.ordered[indexPath.item] == levelDetail.unOrdered[indexPath.item] {
+                title.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+            } else {
+                title.backgroundColor = UIColor.white
+            }
+            */
+            
             title.layer.cornerRadius = 2.0
         }
         return cell

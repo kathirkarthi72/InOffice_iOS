@@ -91,3 +91,23 @@ class RichNotificationManager: NSObject {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
 }
+
+extension RichNotificationManager: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        switch response.notification.request.content.categoryIdentifier  {
+            
+        case Constants.Notification.CategoryID.timeSheet:
+            // Open Timesheet tap
+            UIApplication.shared.visibleViewController?.tabBarController?.selectedIndex = 0
+            
+        case Constants.Notification.CategoryID.health:
+            // Open Health tap
+            UIApplication.shared.visibleViewController?.tabBarController?.selectedIndex = 1
+        default:
+            break
+        }
+        
+    }
+}
