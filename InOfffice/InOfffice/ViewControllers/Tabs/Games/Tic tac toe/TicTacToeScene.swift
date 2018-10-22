@@ -15,10 +15,17 @@ class TicTacToeScene: SKScene {
     var computer: Int = 0
     var player: Int = 0
     
+    var playTileBG: SKSpriteNode? {
+        if let bgNode = childNode(withName: "playTileBG") as? SKSpriteNode {
+            return bgNode
+        }
+        return nil
+    }
+    
     /// Play tiles nodes
     var playTilesNodes: [SKSpriteNode]? {
         
-        if let bgNode = childNode(withName: "playTileBG") as? SKSpriteNode {
+        if let bgNode = playTileBG {
             var  nodes: [SKSpriteNode] = []
             bgNode.children.forEach({ nodes.append($0 as! SKSpriteNode) })
             
@@ -52,7 +59,38 @@ class TicTacToeScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        self.scoreBG?.isHidden = true
+    }
+    
+    var resultSpriteNode: SKLabelNode?
+    
+    var scoreBG: SKSpriteNode? {
+        if let reset = childNode(withName: "ResultNode") as? SKSpriteNode {
+            return reset
+        }
+        return nil
+    }
+    
+    var scoreTitle: SKLabelNode? {
+        if let reset = scoreBG?.children[0] as? SKLabelNode {
+            return reset
+        }
+        return nil
+    }
+    
+    func showResult(title: String) {
         
+        scoreBG?.run(SKAction.fadeIn(withDuration: 0.5))
+        self.scoreTitle?.text = title
+        self.scoreBG?.isHidden = false
+    }
+    
+    func hideResult() {
+        
+        scoreBG?.run(SKAction.fadeOut(withDuration: 0.5)) {
+            self.scoreBG?.isHidden = true
+            self.scoreTitle?.text = ""
+        }
     }
     
     @objc func computerMove() {
@@ -60,8 +98,8 @@ class TicTacToeScene: SKScene {
         viewModel.turn = .computer
         
         let index = self.viewModel.bestMove()
-        self.viewModel.insert(at: index)
-
+        self.viewModel.insert(at: index, doneBy: .computer)
+        
         run(SKAction.wait(forDuration: 0.5)) {
             let label = SKLabelNode(text: "O")
             label.fontColor = UIColor.black
@@ -70,8 +108,10 @@ class TicTacToeScene: SKScene {
                 playNodes[index].addChild(label)
             }
             self.showGameResult(or: .player)
-        }
-       
+            self.printValue(title:"ComputerMoved")
+            
+            self.isUserInteractionEnabled = true
+        }       
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,25 +124,25 @@ class TicTacToeScene: SKScene {
         
         guard let first = touchedNode.first else { return }
         
-            if first is SKLabelNode, first.name == "Reset" {
-                resetGame()
-            } else {
+        if first is SKLabelNode, first.name == "Reset" {
+            resetGame()
+        } else {
+            
+            if let spriteNode = first as? SKSpriteNode, let playNodes = self.playTilesNodes, playNodes.contains(spriteNode), spriteNode.children.count == 0, let index = playNodes.indexes(of: spriteNode).first {
                 
-                if let spriteNode = first as? SKSpriteNode,
-                    let playNodes = self.playTilesNodes,
-                    playNodes.contains(spriteNode),
-                    spriteNode.children.count == 0,
-                    let index = playNodes.indexes(of: spriteNode).first {
-                    
-                    viewModel.insert(at: index)
-                    
-                    let label = SKLabelNode(text: "X")
-                    label.fontColor = UIColor.black
-                    spriteNode.addChild(label)
-                    
-             showGameResult(or: .computer)
-                }
+                self.isUserInteractionEnabled = false
+
+                viewModel.insert(at: index, doneBy: .player)
+                
+                let label = SKLabelNode(text: "X")
+                label.fontColor = UIColor.black
+                spriteNode.addChild(label)
+                
+                printValue(title: "User moved")
+                
+                showGameResult(or: .computer)
             }
+        }
     }
     
     /// Show game result
@@ -114,37 +154,55 @@ class TicTacToeScene: SKScene {
             if move == Turn.computer {
                 computerMove()
             }
-        case .wonByComputer:
-            print("Computer was won")
             
+        case .wonByComputer:
             computer += 1
             computerScoreNode?.text = "O : \(computer)"
             run(SKAction.wait(forDuration: 0.5)) {
-                self.resetGame()
+                self.showResult(title: "O Won")
+                self.viewModel.lastWon = .computer
             }
             
         case .wonByPlayer:
-            print("Player was won")
-            
             player += 1
             playerScoreNode?.text = "X : \(player)"
             run(SKAction.wait(forDuration: 0.5)) {
-            self.resetGame()
+                self.showResult(title: "X Won")
+                self.viewModel.lastWon = .player
             }
         case .draw:
-            print("Match draw")
             run(SKAction.wait(forDuration: 0.5)) {
-            self.resetGame()
+                self.showResult(title: "Draw")
             }
         }
+        
+        self.isUserInteractionEnabled = true
     }
     
     /// Clear all field and reset game
     func resetGame() {
-        viewModel.newGame()
+        self.isUserInteractionEnabled = false
         if let playNodes = self.playTilesNodes {
             playNodes.forEach({ $0.removeAllChildren() })
         }
+        self.isUserInteractionEnabled = true
+        viewModel.newGame()
+        
+        printValue(title: "Reset")
+        
+        hideResult()
+        
+        if viewModel.lastWon == .computer {
+            computerMove()
+        }
+    }
+    
+    func printValue(title: String) {
+        
+//        print(title)
+//        viewModel.source.enumerated().forEach { (offset, element) in
+//            print("\(offset) - \(element)")
+//        }
     }
     
 }

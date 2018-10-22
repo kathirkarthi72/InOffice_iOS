@@ -95,6 +95,7 @@ class DashboardViewModel: NSObject {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
                                                                 requestID: Constants.Notification.RequestID.takeBreak,
+                                                                threadID: "Take a break",
                                                                 header: "Take a break",
                                                                 content: "You are worked more that 1 hour 30 mins. please take a break",
                                                                 triggerAfter: TimeInterval(90 * 60),
@@ -108,6 +109,7 @@ class DashboardViewModel: NSObject {
         if logoutAfter > 0 {
             RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
                                                     requestID: Constants.Notification.RequestID.logOut,
+                                                    threadID: "Shift time was completed",
                                                     header: "Shift time was completed",
                                                     content: "Your today production hours is almost done. This is right time to logout",
                                                     triggerAfter: TimeInterval(logoutAfter),
@@ -120,6 +122,7 @@ class DashboardViewModel: NSObject {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
                                                                 requestID: Constants.Notification.RequestID.comeBackAfterBreak,
+                                                                threadID: "Get back to work",
                                                                 header: "Get back to work",
                                                                 content: "Your break was already crossed 10 Mins. Please go back to work.",
                                                                 triggerAfter: TimeInterval(10 * 60),
@@ -131,6 +134,7 @@ class DashboardViewModel: NSObject {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.health,
                                                                 requestID: Constants.Notification.RequestID.takeWater,
+                                                                threadID: "Take some water",
                                                                 header: "Health notification",
                                                                 content: "Take some water", triggerAfter: TimeInterval(25 * 60),
                                                                 repeat: true,

@@ -7,18 +7,27 @@
 //
 
 import UIKit
+import SpriteKit
 
 class TicTacToeViewController: UIViewController {
-
-    @IBOutlet var viewModel: TicTacToeViewModel!
+    
+    @IBOutlet weak var sceneView: SKView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.newGame()
+        sceneView.layer.borderColor = UIColor.lightText.cgColor
+        sceneView.layer.borderWidth = 1.0
+                
+      //  sceneView.showsFPS = true
+        sceneView.ignoresSiblingOrder = false
+      //  sceneView.showsNodeCount = true
     }
     
-
+    @IBAction func dismissButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -28,5 +37,23 @@ class TicTacToeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension TicTacToeViewController {
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }

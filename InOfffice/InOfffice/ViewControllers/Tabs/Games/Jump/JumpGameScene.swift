@@ -30,8 +30,7 @@ class JumpGameScene: SKScene {
     // Time of last frame
     var lastFrameTime : TimeInterval = 0
     
-    // Is user tapped on screen. Taking photo actionw is processing
-    var isTakingPhoto: Bool = false
+    var bgSpeed: Float = 100.0
     
     var walkTextureAtlas : SKTextureAtlas = SKTextureAtlas(named: "WalkSprites")
     var takePhotoTextureAtlas : SKTextureAtlas = SKTextureAtlas(named: "TapPhotoSprites")
@@ -117,36 +116,34 @@ class JumpGameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        if !isTakingPhoto {
-            // First, update the delta time values:
-            
-            // If we don't have a last frame time value, this is the first frame,
-            // so delta time will be zero.
-            if lastFrameTime <= 0 {
-                lastFrameTime = currentTime
-            }
-            
-            // Update delta time
-            deltaTime = currentTime - lastFrameTime
-            
-            // Set last frame time to current time
+        // First, update the delta time values:
+        
+        // If we don't have a last frame time value, this is the first frame,
+        // so delta time will be zero.
+        if lastFrameTime <= 0 {
             lastFrameTime = currentTime
-            
-            if let bgNode = bgSpriteNode, let bgNextNode = bgSpriteNodeNext {
-                // Next, move each of the four pairs of sprites.
-                // Objects that should appear move slower than foreground objects.
-                moveSprite(sprite: bgNode, nextSprite: bgNextNode, speed: 100.0)
-            }
+        }
+        
+        // Update delta time
+        deltaTime = currentTime - lastFrameTime
+        
+        // Set last frame time to current time
+        lastFrameTime = currentTime
+        
+        if let bgNode = bgSpriteNode, let bgNextNode = bgSpriteNodeNext {
+            // Next, move each of the four pairs of sprites.
+            // Objects that should appear move slower than foreground objects.
+            moveSprite(sprite: bgNode, nextSprite: bgNextNode, speed: bgSpeed)
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if !walkingSpriteNode.hasActions() {
-            isTakingPhoto = false
+            bgSpeed = 0.0
             walkAniamtion()
         } else {
-            isTakingPhoto = true
+            bgSpeed = 100.0
             walkingSpriteNode.removeAllActions()
             takePhotoAnimation()
         }

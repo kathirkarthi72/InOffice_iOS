@@ -21,7 +21,7 @@ class InOffficeTests: XCTestCase {
     
     func testExample() {
 
-        XCTAssertTrue( [0,1,2].isValid())
+       
         
     }
     

@@ -27,7 +27,6 @@ enum Turn {
     case player
 }
 
-
 class TicTacToeViewModel: NSObject {
     
     /// Game state
@@ -46,6 +45,8 @@ class TicTacToeViewModel: NSObject {
     var source: [Placed] = Array(repeatElement(Placed.none, count: 9))
     
     var turn: Turn = .player
+    
+    var lastWon: Turn = .player
     
     func newGame() {
         source = Array(repeatElement(Placed.none, count: 9))
@@ -73,18 +74,13 @@ class TicTacToeViewModel: NSObject {
         }
     }
     
-    
     /// Insert new index
     ///
     /// - Parameter at: position
-    func insert(at: Int) {
+    func insert(at: Int, doneBy: Placed) {
         
         if source[at] == .none {
-            if turn == .computer {
-                source[at] = .computer
-            } else {
-                source[at] = .player                
-            }
+           source[at] = doneBy
         }
     }
     
@@ -102,7 +98,7 @@ class TicTacToeViewModel: NSObject {
             if let first = indexes.player.first {
                 switch first {
                 case 0:
-                    return [1,2,3,4,6].randomElement() ?? 1
+                    return [1,2,3,4,6,8].randomElement() ?? 1
                 case 1:
                     return [0,2,4,7].randomElement() ?? 0
                 case 2:
@@ -114,11 +110,11 @@ class TicTacToeViewModel: NSObject {
                 case 5:
                     return [2,3,4,8].randomElement() ?? 2
                 case 6:
-                    return [0,3,4,2,7,8].randomElement() ?? 0
+                    return [0,2,3,4,7,8].randomElement() ?? 0
                 case 7:
                     return [1,4,6,8].randomElement() ?? 1
                 default:  // 8
-                    return [0,2,4,5,6,7].randomElement() ?? 1
+                    return [0,2,4,5,6,7].randomElement() ?? 8
                 }
             }
             return indexes.empty.randomElement() ?? 0
@@ -140,7 +136,8 @@ class TicTacToeViewModel: NSObject {
     // variadic function
     func isPosibleIndex(_ index: Int, places: [Int]..., empties: [Int], placedIndex: [Int]) -> Bool {
         
-        var posibile = false
+        var posibile: Bool = false
+        
         if empties.contains(index) {
             
             for item in 0..<places.count {
@@ -183,8 +180,10 @@ class TicTacToeViewModel: NSObject {
             return 6
         } else if isPosibleIndex(7, places: [1,4],[6,8], empties: emptyIndexies, placedIndex: playiedIndexies) {
             return 7
-        }  else {
+        } else if isPosibleIndex(8, places: [0,4],[2,5],[6,7], empties: emptyIndexies, placedIndex: playiedIndexies) {
             return 8
+        } else {
+            return emptyIndexies.randomElement() ?? 8
         }
     }
 }

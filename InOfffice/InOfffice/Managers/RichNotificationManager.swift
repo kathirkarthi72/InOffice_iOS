@@ -31,6 +31,7 @@ class RichNotificationManager: NSObject {
     /// Fire local Notification with message string
     func request(categoryID cateID: String,
                                  requestID reqID: String,
+                                 threadID thrID: String,
                                  header title: String,
                                  content message: String,
                                  triggerAfter fireAt: TimeInterval,
@@ -48,7 +49,7 @@ class RichNotificationManager: NSObject {
                 notificationContent.subtitle = title
                 notificationContent.body = message
                 notificationContent.sound = UNNotificationSound.default()
-                
+                notificationContent.threadIdentifier = thrID
                 let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: isRepeat)  // Add Trigger schudled notification
                 
                 // Create Notification Request
