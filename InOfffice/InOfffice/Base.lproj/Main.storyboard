@@ -753,7 +753,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dd8-ab-JrX">
                                 <rect key="frame" x="0.0" y="140" width="375" height="589"/>
                                 <subviews>
-                                    <button opaque="NO" tag="200" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDn-Zk-D5f">
+                                    <button opaque="NO" tag="200" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDn-Zk-D5f" customClass="RoundedBall" customModule="InOfffice" customModuleProvider="target">
                                         <rect key="frame" x="136" y="9" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="0.58628531679999996" colorSpace="custom" customColorSpace="sRGB"/>
@@ -768,7 +768,7 @@
                                             <action selector="inTakeWaterButtonClicked:" destination="nbB-0f-E47" eventType="touchUpInside" id="ht7-Sr-X4Q"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="300" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjY-xu-MoP">
+                                    <button opaque="NO" tag="300" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjY-xu-MoP" customClass="RoundedBall" customModule="InOfffice" customModuleProvider="target">
                                         <rect key="frame" x="227" y="154" width="140" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="0.58628531679999996" colorSpace="custom" customColorSpace="sRGB"/>
@@ -783,7 +783,7 @@
                                             <action selector="inTakeWaterButtonClicked:" destination="nbB-0f-E47" eventType="touchUpInside" id="Gzb-pa-yPj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="400" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Ot-cxR">
+                                    <button opaque="NO" tag="400" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-Ot-cxR" customClass="RoundedBall" customModule="InOfffice" customModuleProvider="target">
                                         <rect key="frame" x="168" y="302" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="0.58628531679999996" colorSpace="custom" customColorSpace="sRGB"/>
@@ -798,7 +798,7 @@
                                             <action selector="inTakeWaterButtonClicked:" destination="nbB-0f-E47" eventType="touchUpInside" id="CbT-b3-jgf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abI-3W-Wf9">
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abI-3W-Wf9" customClass="RoundedBall" customModule="InOfffice" customModuleProvider="target">
                                         <rect key="frame" x="8" y="14" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="0.58628531678082196" colorSpace="custom" customColorSpace="sRGB"/>
@@ -813,7 +813,7 @@
                                             <action selector="inTakeWaterButtonClicked:" destination="nbB-0f-E47" eventType="touchUpInside" id="W8J-a3-sS9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="500" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwd-Vk-3o2">
+                                    <button opaque="NO" tag="500" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwd-Vk-3o2" customClass="RoundedBall" customModule="InOfffice" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="319" width="160" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="0.58628531679999996" colorSpace="custom" customColorSpace="sRGB"/>
@@ -900,28 +900,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqJ-kX-QxV">
-                                <rect key="frame" x="16" y="160" width="343" height="48"/>
-                                <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="0.52335723458904104" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="bz0-HP-KmK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="22"/>
-                                <state key="normal" title="Order Numbers">
-                                    <color key="titleColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ddb-7o-wjt" kind="show" id="sXO-tk-QGt"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTb-jH-245">
-                                <rect key="frame" x="16" y="228" width="343" height="48"/>
+                                <rect key="frame" x="238.66666666666663" y="168" width="85" height="85"/>
                                 <color key="backgroundColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="7CE-3b-4oa"/>
+                                    <constraint firstAttribute="height" constant="85" id="gPl-8B-vLl"/>
+                                    <constraint firstAttribute="width" constant="85" id="jKd-Yb-yie"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="23"/>
-                                <state key="normal" title="Tic Tac Toe">
+                                <state key="normal" backgroundImage="tictactoeIcon">
                                     <color key="titleColor" red="0.0094097694379999992" green="0.1041661426" blue="0.61028069259999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -929,10 +916,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbv-0L-6Iy">
-                                <rect key="frame" x="16" y="298" width="343" height="48"/>
+                                <rect key="frame" x="16" y="281" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="0.41352739726027399" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="NLn-g2-HZF"/>
+                                    <constraint firstAttribute="height" constant="48" id="Qqg-YK-lTf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="23"/>
                                 <state key="normal" title="Jump">
@@ -942,18 +929,31 @@
                                     <segue destination="Eji-V5-EVd" kind="presentation" id="TAj-WW-Vjl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqJ-kX-QxV">
+                                <rect key="frame" x="51.333333333333343" y="168" width="85" height="85"/>
+                                <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="0.52335723458904104" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="KnH-7i-6cQ"/>
+                                    <constraint firstAttribute="height" constant="85" id="PtC-gJ-ie8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="22"/>
+                                <state key="normal" backgroundImage="numderOrderIcon">
+                                    <color key="titleColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ddb-7o-wjt" kind="show" id="sXO-tk-QGt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="leading" secondItem="Few-jN-cpA" secondAttribute="leading" constant="16" id="1ba-us-xPh"/>
-                            <constraint firstItem="Few-jN-cpA" firstAttribute="trailing" secondItem="Fbv-0L-6Iy" secondAttribute="trailing" constant="16" id="GeY-5g-1sq"/>
-                            <constraint firstItem="Few-jN-cpA" firstAttribute="trailing" secondItem="wqJ-kX-QxV" secondAttribute="trailing" constant="16" id="PkL-aK-Mgr"/>
-                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="leading" secondItem="Few-jN-cpA" secondAttribute="leading" constant="16" id="bcb-Bj-ZKP"/>
-                            <constraint firstItem="aTb-jH-245" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="20" id="cv2-cz-zTJ"/>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="aTb-jH-245" secondAttribute="bottom" constant="22" id="g60-0d-Akg"/>
-                            <constraint firstItem="aTb-jH-245" firstAttribute="leading" secondItem="Few-jN-cpA" secondAttribute="leading" constant="16" id="l5Z-Cn-Zwb"/>
-                            <constraint firstItem="Few-jN-cpA" firstAttribute="trailing" secondItem="aTb-jH-245" secondAttribute="trailing" constant="16" id="nXB-GO-0GY"/>
-                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="20" id="yAh-Pr-gVM"/>
+                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="Bol-tj-sCb"/>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="leading" secondItem="Few-jN-cpA" secondAttribute="leading" constant="16" id="Nje-lp-vPY"/>
+                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="Nqd-LX-JIp"/>
+                            <constraint firstItem="Few-jN-cpA" firstAttribute="trailing" secondItem="Fbv-0L-6Iy" secondAttribute="trailing" constant="16" id="bJW-7q-YZy"/>
+                            <constraint firstItem="aTb-jH-245" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="cLd-8J-Acq"/>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="28" id="eeL-iE-i53"/>
+                            <constraint firstItem="aTb-jH-245" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="zrQ-Wp-b3M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Few-jN-cpA"/>
                     </view>
@@ -964,7 +964,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jna-5U-QdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="nWD-Wx-QPx" customClass="GamesViewModel" customModule="InOfffice" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1840.5" y="1512.5"/>
+            <point key="canvasLocation" x="1839.2" y="1511.8226600985222"/>
         </scene>
         <!--Tic Tac Toe-->
         <scene sceneID="sH1-xG-ANe">
@@ -1341,7 +1341,9 @@
         <image name="Health" width="25" height="25"/>
         <image name="dashboard" width="25" height="25"/>
         <image name="in" width="16" height="16"/>
+        <image name="numderOrderIcon" width="85" height="85"/>
         <image name="remindHours" width="20" height="20"/>
+        <image name="tictactoeIcon" width="85" height="85"/>
         <image name="waterBottle" width="30" height="30"/>
         <image name="workedHours" width="20" height="20"/>
     </resources>

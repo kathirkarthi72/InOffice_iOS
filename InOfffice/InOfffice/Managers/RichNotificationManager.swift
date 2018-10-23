@@ -36,6 +36,7 @@ class RichNotificationManager: NSObject {
                                  content message: String,
                                  triggerAfter fireAt: TimeInterval,
                                  repeat isRepeat: Bool = false,
+                                 soundName soundTitle: String? = nil,
                                  userInfo: [String: Any]?) {
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
@@ -43,7 +44,6 @@ class RichNotificationManager: NSObject {
             if settings.authorizationStatus == .authorized {
                 
                 let notificationContent = UNMutableNotificationContent() // Create Notification Content
-                
                 // Configure Notification Content
                 notificationContent.categoryIdentifier = cateID
                 notificationContent.subtitle = title
@@ -51,6 +51,10 @@ class RichNotificationManager: NSObject {
                 notificationContent.sound = UNNotificationSound.default()
                 notificationContent.threadIdentifier = thrID
                 let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: isRepeat)  // Add Trigger schudled notification
+              
+                if let sound = soundTitle {
+                    notificationContent.sound = UNNotificationSound(named: sound) // "water.mp3"
+                }
                 
                 // Create Notification Request
                 let request = UNNotificationRequest(identifier: reqID,

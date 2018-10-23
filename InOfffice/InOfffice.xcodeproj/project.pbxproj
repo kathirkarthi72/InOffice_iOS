@@ -74,6 +74,27 @@
 		9F112922212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
 		9F112923212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
 		9F112924212EDFA700A599E8 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112921212EDFA700A599E8 /* GamesManager.swift */; };
+		9F1256A7217EE8B4000B3FAE /* computerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A1217EE8B3000B3FAE /* computerMoved.wav */; };
+		9F1256A8217EE8B4000B3FAE /* computerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A1217EE8B3000B3FAE /* computerMoved.wav */; };
+		9F1256A9217EE8B4000B3FAE /* computerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A1217EE8B3000B3FAE /* computerMoved.wav */; };
+		9F1256AA217EE8B4000B3FAE /* ThroatMale.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A2217EE8B3000B3FAE /* ThroatMale.wav */; };
+		9F1256AB217EE8B4000B3FAE /* ThroatMale.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A2217EE8B3000B3FAE /* ThroatMale.wav */; };
+		9F1256AC217EE8B4000B3FAE /* ThroatMale.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A2217EE8B3000B3FAE /* ThroatMale.wav */; };
+		9F1256AD217EE8B4000B3FAE /* computerWon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A3217EE8B3000B3FAE /* computerWon.wav */; };
+		9F1256AE217EE8B4000B3FAE /* computerWon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A3217EE8B3000B3FAE /* computerWon.wav */; };
+		9F1256AF217EE8B4000B3FAE /* computerWon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A3217EE8B3000B3FAE /* computerWon.wav */; };
+		9F1256B0217EE8B4000B3FAE /* reset.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A4217EE8B3000B3FAE /* reset.wav */; };
+		9F1256B1217EE8B4000B3FAE /* reset.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A4217EE8B3000B3FAE /* reset.wav */; };
+		9F1256B2217EE8B4000B3FAE /* reset.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A4217EE8B3000B3FAE /* reset.wav */; };
+		9F1256B3217EE8B4000B3FAE /* playerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A5217EE8B3000B3FAE /* playerMoved.wav */; };
+		9F1256B4217EE8B4000B3FAE /* playerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A5217EE8B3000B3FAE /* playerMoved.wav */; };
+		9F1256B5217EE8B4000B3FAE /* playerMoved.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A5217EE8B3000B3FAE /* playerMoved.wav */; };
+		9F1256B6217EE8B4000B3FAE /* scored.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A6217EE8B4000B3FAE /* scored.wav */; };
+		9F1256B7217EE8B4000B3FAE /* scored.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A6217EE8B4000B3FAE /* scored.wav */; };
+		9F1256B8217EE8B4000B3FAE /* scored.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256A6217EE8B4000B3FAE /* scored.wav */; };
+		9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256BA217EFFEF000B3FAE /* water.mp3 */; };
+		9F1256BC217EFFEF000B3FAE /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256BA217EFFEF000B3FAE /* water.mp3 */; };
+		9F1256BD217EFFEF000B3FAE /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9F1256BA217EFFEF000B3FAE /* water.mp3 */; };
 		9F13184E216CE7F80013E215 /* InOfffice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F11287C212E7B3400A599E8 /* InOfffice.xcdatamodeld */; };
 		9F13184F216CE7F90013E215 /* InOfffice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F11287C212E7B3400A599E8 /* InOfffice.xcdatamodeld */; };
 		9F16F29F216F5CFA00019F4E /* JumpGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16F29E216F5CF900019F4E /* JumpGameViewController.swift */; };
@@ -194,6 +215,13 @@
 		9F112917212EDDEB00A599E8 /* OrderNumberGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNumberGameViewController.swift; sourceTree = "<group>"; };
 		9F11291C212EDDFF00A599E8 /* OrderNumberGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNumberGameViewModel.swift; sourceTree = "<group>"; };
 		9F112921212EDFA700A599E8 /* GamesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesManager.swift; sourceTree = "<group>"; };
+		9F1256A1217EE8B3000B3FAE /* computerMoved.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = computerMoved.wav; sourceTree = "<group>"; };
+		9F1256A2217EE8B3000B3FAE /* ThroatMale.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThroatMale.wav; sourceTree = "<group>"; };
+		9F1256A3217EE8B3000B3FAE /* computerWon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = computerWon.wav; sourceTree = "<group>"; };
+		9F1256A4217EE8B3000B3FAE /* reset.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = reset.wav; sourceTree = "<group>"; };
+		9F1256A5217EE8B3000B3FAE /* playerMoved.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerMoved.wav; sourceTree = "<group>"; };
+		9F1256A6217EE8B4000B3FAE /* scored.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = scored.wav; sourceTree = "<group>"; };
+		9F1256BA217EFFEF000B3FAE /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
 		9F16F29E216F5CF900019F4E /* JumpGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpGameViewController.swift; sourceTree = "<group>"; };
 		9F16F2A2216F5D2300019F4E /* JumpGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpGameViewModel.swift; sourceTree = "<group>"; };
 		9F16F2A6216F5D4E00019F4E /* JumpGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JumpGameScene.sks; sourceTree = "<group>"; };
@@ -346,6 +374,7 @@
 		9F1128C5212E835600A599E8 /* Health */ = {
 			isa = PBXGroup;
 			children = (
+				9F1256B9217EFFDE000B3FAE /* Sounds */,
 				9F1128D0212E843400A599E8 /* HealthViewController.swift */,
 				9F1128D4212E844B00A599E8 /* HealthViewModel.swift */,
 			);
@@ -416,6 +445,27 @@
 			path = OrderNumbers;
 			sourceTree = "<group>";
 		};
+		9F1256A0217EE89E000B3FAE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9F1256A3217EE8B3000B3FAE /* computerWon.wav */,
+				9F1256A1217EE8B3000B3FAE /* computerMoved.wav */,
+				9F1256A5217EE8B3000B3FAE /* playerMoved.wav */,
+				9F1256A4217EE8B3000B3FAE /* reset.wav */,
+				9F1256A6217EE8B4000B3FAE /* scored.wav */,
+				9F1256A2217EE8B3000B3FAE /* ThroatMale.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		9F1256B9217EFFDE000B3FAE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9F1256BA217EFFEF000B3FAE /* water.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		9F16F29D216F5C8700019F4E /* Jump */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +507,7 @@
 		9FF77BDD2164911700E56837 /* Tic tac toe */ = {
 			isa = PBXGroup;
 			children = (
+				9F1256A0217EE89E000B3FAE /* Sounds */,
 				9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */,
 				9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */,
 				9F2E70122164DE44009723D4 /* TicTacToeScene.swift */,
@@ -575,11 +626,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1256AD217EE8B4000B3FAE /* computerWon.wav in Resources */,
+				9F1256B0217EE8B4000B3FAE /* reset.wav in Resources */,
+				9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A7216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
+				9F1256B3217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F112883212E7B3D00A599E8 /* LaunchScreen.storyboard in Resources */,
+				9F1256AA217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
 				9F112880212E7B3D00A599E8 /* Assets.xcassets in Resources */,
 				9F11287B212E7B3400A599E8 /* Main.storyboard in Resources */,
+				9F1256B6217EE8B4000B3FAE /* scored.wav in Resources */,
 				9F2E700F2164DD55009723D4 /* TicTacToeScene.sks in Resources */,
+				9F1256A7217EE8B4000B3FAE /* computerMoved.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,8 +645,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1256AE217EE8B4000B3FAE /* computerWon.wav in Resources */,
+				9F1256B4217EE8B4000B3FAE /* playerMoved.wav in Resources */,
+				9F1256BC217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A8216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */,
+				9F1256A8217EE8B4000B3FAE /* computerMoved.wav in Resources */,
+				9F1256B1217EE8B4000B3FAE /* reset.wav in Resources */,
+				9F1256B7217EE8B4000B3FAE /* scored.wav in Resources */,
+				9F1256AB217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,8 +661,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1256AF217EE8B4000B3FAE /* computerWon.wav in Resources */,
+				9F1256B5217EE8B4000B3FAE /* playerMoved.wav in Resources */,
+				9F1256BD217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A9216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70112164DD55009723D4 /* TicTacToeScene.sks in Resources */,
+				9F1256A9217EE8B4000B3FAE /* computerMoved.wav in Resources */,
+				9F1256B2217EE8B4000B3FAE /* reset.wav in Resources */,
+				9F1256B8217EE8B4000B3FAE /* scored.wav in Resources */,
+				9F1256AC217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

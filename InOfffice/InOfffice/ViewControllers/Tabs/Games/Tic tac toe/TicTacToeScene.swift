@@ -106,10 +106,10 @@ class TicTacToeScene: SKScene {
             
             if let playNodes = self.playTilesNodes {
                 playNodes[index].addChild(label)
+                
+                self.run(SKAction.playSoundFileNamed("computerMoved.wav", waitForCompletion: false))
             }
             self.showGameResult(or: .player)
-            self.printValue(title:"ComputerMoved")
-            
             self.isUserInteractionEnabled = true
         }       
     }
@@ -138,8 +138,8 @@ class TicTacToeScene: SKScene {
                 label.fontColor = UIColor.black
                 spriteNode.addChild(label)
                 
-                printValue(title: "User moved")
-                
+                self.run(SKAction.playSoundFileNamed("playerMoved.wav", waitForCompletion: false))
+
                 showGameResult(or: .computer)
             }
         }
@@ -161,6 +161,7 @@ class TicTacToeScene: SKScene {
             run(SKAction.wait(forDuration: 0.5)) {
                 self.showResult(title: "O Won")
                 self.viewModel.lastWon = .computer
+                self.run(SKAction.playSoundFileNamed("computerWon.wav", waitForCompletion: false))
             }
             
         case .wonByPlayer:
@@ -169,10 +170,12 @@ class TicTacToeScene: SKScene {
             run(SKAction.wait(forDuration: 0.5)) {
                 self.showResult(title: "X Won")
                 self.viewModel.lastWon = .player
+                self.run(SKAction.playSoundFileNamed("scored.wav", waitForCompletion: false))
             }
         case .draw:
             run(SKAction.wait(forDuration: 0.5)) {
                 self.showResult(title: "Draw")
+                self.run(SKAction.playSoundFileNamed("ThroatMale.wav", waitForCompletion: false))
             }
         }
         
@@ -188,21 +191,14 @@ class TicTacToeScene: SKScene {
         self.isUserInteractionEnabled = true
         viewModel.newGame()
         
-        printValue(title: "Reset")
-        
+        self.run(SKAction.playSoundFileNamed("reset.wav", waitForCompletion: false))
+
         hideResult()
         
         if viewModel.lastWon == .computer {
             computerMove()
         }
     }
-    
-    func printValue(title: String) {
-        
-//        print(title)
-//        viewModel.source.enumerated().forEach { (offset, element) in
-//            print("\(offset) - \(element)")
-//        }
-    }
+
     
 }

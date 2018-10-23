@@ -27,11 +27,11 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var gravityBehaviour: UIGravityBehavior!
     
-    var watterButton: [UIButton] {
-        var watterButton: [UIButton] = []
+    var watterButton: [RoundedBall] {
+        var watterButton: [RoundedBall] = []
         
         boundaryView.subviews.forEach({
-            watterButton.append($0 as! UIButton) })
+            watterButton.append($0 as! RoundedBall) })
         
         return watterButton
     }
@@ -49,16 +49,16 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         let collusionBehaviour = UICollisionBehavior(items: watterButton)
         collusionBehaviour.collisionDelegate = self
         
-   /*     collusionBehaviour.addBoundary(withIdentifier: "navigationbar" as NSCopying,
-                                       from: CGPoint(x: 0, y: 0),
-                                       to: CGPoint(x: ((self.navigationController?.navigationBar.frame.origin.x)! + (self.navigationController?.navigationBar.frame.size.width)!),
-                                                   y: (self.navigationController?.navigationBar.frame.size.height)!))
-        
-        collusionBehaviour.addBoundary(withIdentifier: "tabbar" as NSCopying,
-                                       from: (self.tabBarController?.tabBar.frame.origin)!,
-                                       to: CGPoint(x: ((self.tabBarController?.tabBar.frame.origin.x)! + (self.tabBarController?.tabBar.frame.size.width)!),
-                                                   y: (self.tabBarController?.tabBar.frame.origin.y)!))
-        */
+        /*     collusionBehaviour.addBoundary(withIdentifier: "navigationbar" as NSCopying,
+         from: CGPoint(x: 0, y: 0),
+         to: CGPoint(x: ((self.navigationController?.navigationBar.frame.origin.x)! + (self.navigationController?.navigationBar.frame.size.width)!),
+         y: (self.navigationController?.navigationBar.frame.size.height)!))
+         
+         collusionBehaviour.addBoundary(withIdentifier: "tabbar" as NSCopying,
+         from: (self.tabBarController?.tabBar.frame.origin)!,
+         to: CGPoint(x: ((self.tabBarController?.tabBar.frame.origin.x)! + (self.tabBarController?.tabBar.frame.size.width)!),
+         y: (self.tabBarController?.tabBar.frame.origin.y)!))
+         */
         
         collusionBehaviour.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collusionBehaviour)
@@ -114,7 +114,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     // MARK: Button action
     @IBAction func inTakeWaterButtonClicked(_ sender: Any) {
         
-        if let button = sender as? UIButton {
+        if let button = sender as? RoundedBall {
             
             switch button.tag {
             case 100:
@@ -136,7 +136,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
                 button.isSelected = false
             }
         }
-
+        
     }
     /*
      // MARK: - Navigation
@@ -149,42 +149,51 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
      */
     
     /*
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
-            if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
-                label.center = touch.location(in: self.view)
-            }
-        }
-        super.touchesBegan(touches, with: event)
+     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+     if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
+     if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
+     label.center = touch.location(in: self.view)
+     }
+     }
+     super.touchesBegan(touches, with: event)
+     }
+     
+     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+     if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
+     if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
+     label.center = touch.location(in: self.view)
+     }
+     }
+     super.touchesMoved(touches, with: event)
+     }
+     
+     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+     if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
+     if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
+     label.center = touch.location(in: self.view)
+     }
+     }
+     
+     super.touchesEnded(touches, with: event)
+     }
+     
+     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+     if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
+     if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
+     label.center = touch.location(in: self.view)
+     }
+     
+     }
+     super.touchesCancelled(touches, with: event)
+     }
+     */
+}
+
+
+class RoundedBall: UIButton {
+    
+    override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
+        return .ellipse
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
-            if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
-                label.center = touch.location(in: self.view)
-            }
-        }
-        super.touchesMoved(touches, with: event)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
-            if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
-                label.center = touch.location(in: self.view)
-            }
-        }
-        
-        super.touchesEnded(touches, with: event)
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let touchedView = touch.view, self.view.subviews.contains(touchedView) {
-            if let label = watterButton.filter({ $0.tag == touchedView.tag }).first {
-                label.center = touch.location(in: self.view)
-            }
-            
-        }
-        super.touchesCancelled(touches, with: event)
-    }
-    */
 }

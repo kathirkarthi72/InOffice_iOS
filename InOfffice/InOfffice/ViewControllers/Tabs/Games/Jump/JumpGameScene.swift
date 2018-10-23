@@ -6,7 +6,6 @@
 //  Copyright © 2018 ktrkathir. All rights reserved.
 //
 
-import Foundation
 import SpriteKit
 
 class JumpGameScene: SKScene {
@@ -30,58 +29,29 @@ class JumpGameScene: SKScene {
     // Time of last frame
     var lastFrameTime : TimeInterval = 0
     
-    var bgSpeed: Float = 100.0
+    var bgSpeed: Float = 50.0
     
-    var walkTextureAtlas : SKTextureAtlas = SKTextureAtlas(named: "WalkSprites")
-    var takePhotoTextureAtlas : SKTextureAtlas = SKTextureAtlas(named: "TapPhotoSprites")
+    /// Allow to jump
+    var allowJump: Bool = true
     
-    var walkTextures : [SKTexture] {
+    var ballNode : SKSpriteNode? {
         
-        var textures : [SKTexture] = []
-        
-        for item in 0..<walkTextureAtlas.textureNames.count {
-            textures.append(walkTextureAtlas.textureNamed(walkTextureAtlas.textureNames[item]))
+        if let ball = self.childNode(withName: "ballNode") as? SKSpriteNode {
+            return ball
         }
-        
-        return textures
-    }
-    
-    var takePhotoTextures : [SKTexture] {
-        
-        var textures : [SKTexture] = []
-        
-        for item in 0..<takePhotoTextureAtlas.textureNames.count {
-            textures.append(takePhotoTextureAtlas.textureNamed(takePhotoTextureAtlas.textureNames[item]))
-        }
-        return textures
-    }
-    
-    var walkingSpriteNode: SKSpriteNode!
-    
-    fileprivate func walkAniamtion() {
-        let myAnimation = SKAction.animate(with: walkTextures, timePerFrame: 1.0)
-        walkingSpriteNode.run(SKAction.repeatForever(myAnimation))
-    }
-    
-    fileprivate func takePhotoAnimation() {
-        let takephoto = SKAction.animate(with: takePhotoTextures, timePerFrame: 1.0)
-        walkingSpriteNode.run(takephoto)
+        return nil
     }
     
     override func didMove(to view: SKView) {
-        
-        walkingSpriteNode = SKSpriteNode(texture: walkTextureAtlas.textureNamed("tile013"))
-        walkingSpriteNode.zPosition = 1
-        walkingSpriteNode.position = CGPoint(x: -120, y: -180)
-        addChild(walkingSpriteNode)
-        
-        walkAniamtion()
         
         if let bgSprite = bgSpriteNode {
             bgSpriteNodeNext = bgSprite.copy() as? SKSpriteNode
             bgSpriteNodeNext?.position = CGPoint(x: bgSprite.position.x + bgSprite.size.width, y: bgSprite.position.y)
             self.addChild(bgSpriteNodeNext!)
         }
+        
+        fall()
+        rotate()
     }
     
     // when either of the sprites goes off-screen, move it to the
@@ -110,7 +80,6 @@ class JumpGameScene: SKScene {
                         spriteToMove.size.width * 2,
                             y: spriteToMove.position.y)
             }
-            
         }
     }
     
@@ -138,15 +107,41 @@ class JumpGameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        jump()
+    }
+
+    fileprivate func rotate() {
+        guard let ballNode = ballNode else { return }
         
-        if !walkingSpriteNode.hasActions() {
-            bgSpeed = 0.0
-            walkAniamtion()
-        } else {
-            bgSpeed = 100.0
-            walkingSpriteNode.removeAllActions()
-            takePhotoAnimation()
+        let rotate = SKAction.rotate(byAngle: -CGFloat.pi/4, duration: 1.5)
+        let moveToX = SKAction.moveTo(x: -100, duration: 1.5)
+        
+        let sequence = SKAction.group([rotate, moveToX])
+        ballNode.run(SKAction.repeatForever(sequence))
+    }
+    
+    
+    
+    fileprivate func fall() {
+        guard let ballNode = ballNode else { return }
+        
+        let moveToY = SKAction.moveTo(y: -200, duration: 1.5)
+        ballNode.run(moveToY)
+    }
+    
+    /// Jump action
+    fileprivate func jump() {
+        
+        if allowJump {
+            allowJump = false
+            guard let ballNode = ballNode else { return }
+            let moveUp = SKAction.moveTo(y: 0, duration: 0.5)
+            let moveDown = SKAction.moveTo(y: -200, duration: 0.5)
+            
+            let sequence = SKAction.sequence([moveUp, moveDown])
+            ballNode.run(sequence) {
+                self.allowJump = true
+            }
         }
-        
     }
 }

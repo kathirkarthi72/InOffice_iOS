@@ -94,12 +94,12 @@ class DashboardViewModel: NSObject {
     private func breakNotification() {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                requestID: Constants.Notification.RequestID.takeBreak,
-                                                                threadID: "Take a break",
-                                                                header: "Take a break",
-                                                                content: "You are worked more that 1 hour 30 mins. please take a break",
-                                                                triggerAfter: TimeInterval(90 * 60),
-                                                                userInfo: nil)
+                                                requestID: Constants.Notification.RequestID.takeBreak,
+                                                threadID: "Take a break",
+                                                header: "Take a break",
+                                                content: "You are worked more that 1 hour 30 mins. please take a break",
+                                                triggerAfter: TimeInterval(90 * 60),
+                                                userInfo: nil)
     }
     
     private  func logoutNotification() {
@@ -121,24 +121,25 @@ class DashboardViewModel: NSObject {
     private func backToWorkNotification() {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
-                                                                requestID: Constants.Notification.RequestID.comeBackAfterBreak,
-                                                                threadID: "Get back to work",
-                                                                header: "Get back to work",
-                                                                content: "Your break was already crossed 10 Mins. Please go back to work.",
-                                                                triggerAfter: TimeInterval(10 * 60),
-                                                                userInfo: nil)
+                                                requestID: Constants.Notification.RequestID.comeBackAfterBreak,
+                                                threadID: "Get back to work",
+                                                header: "Get back to work",
+                                                content: "Your break was already crossed 10 Mins. Please go back to work.",
+                                                triggerAfter: TimeInterval(10 * 60),
+                                                userInfo: nil)
     }
     
     // MARK: - Health module notifications
     private func takeWaterNotification() {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.health,
-                                                                requestID: Constants.Notification.RequestID.takeWater,
-                                                                threadID: "Take some water",
-                                                                header: "Health notification",
-                                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
-                                                                repeat: true,
-                                                                userInfo: nil)
+                                                requestID: Constants.Notification.RequestID.takeWater,
+                                                threadID: "Take some water",
+                                                header: "Health notification",
+                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
+                                                repeat: true,
+                                                soundName: "water.mp3",
+                                                userInfo: nil)
     }
     
 }
