@@ -113,9 +113,9 @@ class DashboardViewModel: NSObject {
                                                     header: "Shift time was completed",
                                                     content: "Your today production hours is almost done. This is right time to logout",
                                                     triggerAfter: TimeInterval(logoutAfter),
+                                                    soundName: "todayTimeout.wav",
                                                     userInfo: nil)
         }
-        
     }
     
     private func backToWorkNotification() {
@@ -129,6 +129,10 @@ class DashboardViewModel: NSObject {
                                                 userInfo: nil)
     }
     
+     func whatAboutTomorrowNotification() {
+    
+    }
+    
     // MARK: - Health module notifications
     private func takeWaterNotification() {
         
@@ -136,7 +140,7 @@ class DashboardViewModel: NSObject {
                                                 requestID: Constants.Notification.RequestID.takeWater,
                                                 threadID: "Take some water",
                                                 header: "Health notification",
-                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
+                                                content: "Take some water", triggerAfter: TimeInterval(1 * 60),
                                                 repeat: true,
                                                 soundName: "water.mp3",
                                                 userInfo: nil)

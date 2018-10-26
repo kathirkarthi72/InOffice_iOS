@@ -102,6 +102,8 @@ class TicTacToeScene: SKScene {
         
         run(SKAction.wait(forDuration: 0.5)) {
             let label = SKLabelNode(text: "O")
+            label.fontName = "Helvetica-Bold"
+            label.fontSize = 40
             label.fontColor = UIColor.black
             
             if let playNodes = self.playTilesNodes {
@@ -135,6 +137,8 @@ class TicTacToeScene: SKScene {
                 viewModel.insert(at: index, doneBy: .player)
                 
                 let label = SKLabelNode(text: "X")
+                label.fontName = "Helvetica-Bold"
+                label.fontSize = 40
                 label.fontColor = UIColor.black
                 spriteNode.addChild(label)
                 

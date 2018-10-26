@@ -138,9 +138,15 @@
 		9FDC42B82174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
 		9FDC42B92174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
 		9FE4E2C821536D0200EA2E15 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE4E2C721536D0200EA2E15 /* HealthKit.framework */; };
+		9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9FEBE8F5218202D800B8EADF /* todayTimeout.wav */; };
+		9FEBE8F7218202D800B8EADF /* todayTimeout.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9FEBE8F5218202D800B8EADF /* todayTimeout.wav */; };
+		9FEBE8F8218202D800B8EADF /* todayTimeout.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9FEBE8F5218202D800B8EADF /* todayTimeout.wav */; };
 		9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
 		9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A97C21416DA200D3A653 /* DownloadManager.swift */; };
+		9FF58899218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF58898218078D800AA9C32 /* TimesheetNotesViewController.swift */; };
+		9FF5889A218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF58898218078D800AA9C32 /* TimesheetNotesViewController.swift */; };
+		9FF5889B218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF58898218078D800AA9C32 /* TimesheetNotesViewController.swift */; };
 		9FF77BDF2164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
 		9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
 		9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */; };
@@ -238,7 +244,9 @@
 		9FD91C9D216DF88400B1377C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InOfffice.entitlements; sourceTree = "<group>"; };
+		9FEBE8F5218202D800B8EADF /* todayTimeout.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = todayTimeout.wav; sourceTree = "<group>"; };
 		9FF3A97C21416DA200D3A653 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		9FF58898218078D800AA9C32 /* TimesheetNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetNotesViewController.swift; sourceTree = "<group>"; };
 		9FF77BDE2164915F00E56837 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
 		9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewModel.swift; sourceTree = "<group>"; };
 		9FF7A5FD2148043200A84D89 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -364,6 +372,8 @@
 		9F1128C3212E833A00A599E8 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				9FEBE8F4218202C100B8EADF /* Sound */,
+				9FF588972180788D00AA9C32 /* TimeSheetNotes */,
 				9F8281F3213D2AD800BEEF45 /* TimeSheetDetails */,
 				9F2070C6213527CA00033B78 /* TimeSheet History */,
 				9F1128C7212E83DF00A599E8 /* Dashboard ViewController */,
@@ -504,6 +514,22 @@
 			path = TimeSheetDetails;
 			sourceTree = "<group>";
 		};
+		9FEBE8F4218202C100B8EADF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				9FEBE8F5218202D800B8EADF /* todayTimeout.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		9FF588972180788D00AA9C32 /* TimeSheetNotes */ = {
+			isa = PBXGroup;
+			children = (
+				9FF58898218078D800AA9C32 /* TimesheetNotesViewController.swift */,
+			);
+			path = TimeSheetNotes;
+			sourceTree = "<group>";
+		};
 		9FF77BDD2164911700E56837 /* Tic tac toe */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +655,7 @@
 				9F1256AD217EE8B4000B3FAE /* computerWon.wav in Resources */,
 				9F1256B0217EE8B4000B3FAE /* reset.wav in Resources */,
 				9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */,
+				9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F16F2A7216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F1256B3217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F112883212E7B3D00A599E8 /* LaunchScreen.storyboard in Resources */,
@@ -651,6 +678,7 @@
 				9F16F2A8216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */,
 				9F1256A8217EE8B4000B3FAE /* computerMoved.wav in Resources */,
+				9FEBE8F7218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F1256B1217EE8B4000B3FAE /* reset.wav in Resources */,
 				9F1256B7217EE8B4000B3FAE /* scored.wav in Resources */,
 				9F1256AB217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
@@ -667,6 +695,7 @@
 				9F16F2A9216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70112164DD55009723D4 /* TicTacToeScene.sks in Resources */,
 				9F1256A9217EE8B4000B3FAE /* computerMoved.wav in Resources */,
+				9FEBE8F8218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F1256B2217EE8B4000B3FAE /* reset.wav in Resources */,
 				9F1256B8217EE8B4000B3FAE /* scored.wav in Resources */,
 				9F1256AC217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
@@ -689,6 +718,7 @@
 				9F112908212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F112912212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9F112876212E7B3400A599E8 /* AppDelegate.swift in Sources */,
+				9FF58899218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */,
 				9F8281F9213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128C9212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E2212E858E00A599E8 /* InitialViewController.swift in Sources */,
@@ -736,6 +766,7 @@
 				9F112913212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9FDC42B82174C76B006AA2FE /* AppDelegate.swift in Sources */,
 				9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9FF5889A218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */,
 				9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128EC212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
@@ -779,6 +810,7 @@
 				9F112914212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9FDC42B92174C76B006AA2FE /* AppDelegate.swift in Sources */,
 				9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
+				9FF5889B218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */,
 				9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128ED212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,

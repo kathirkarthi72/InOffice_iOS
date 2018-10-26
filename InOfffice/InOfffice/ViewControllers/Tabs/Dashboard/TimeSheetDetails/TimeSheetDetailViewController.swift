@@ -34,16 +34,19 @@ class TimeSheetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "goToNotesScene" {
+            let notesVC = segue.destination as! TimesheetNotesViewController
+            notesVC.editSheet = sender as? TimeSheetDetails
+        }
     }
-    */
-    
 }
 
 extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -103,6 +106,8 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         /// Notes button tapped.
-        _ = detailViewModel.notesFor(indexPath: indexPath)
+        let detail = detailViewModel.sheetDetail(indexPath: indexPath)
+        
+        self.performSegue(withIdentifier: "goToNotesScene", sender: detail)
     }
 }

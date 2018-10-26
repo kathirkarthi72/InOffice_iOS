@@ -35,5 +35,19 @@ struct Constants {
             
             static let takeWater = "take_some_water"
         }
+        
+        struct DrinkWaterActions {
+            
+            static let first = "100 ML"
+            
+            static let second = "200 ML"
+
+            static let third = "300 ML"
+            
+            static let fourth = "400 ML"
+            
+            static let fivth = "500 ML"
+
+        }
     }
 }

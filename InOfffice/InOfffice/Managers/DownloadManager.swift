@@ -21,7 +21,7 @@ class DownloadManager: NSObject {
     }
     
     func crateFile(timeSheets: [TimeSheetDetails]) -> String {
-        var inputs = "Date,In Time,Out Time,Production hours\n"
+        var inputs = "Date,In Time,Out Time,Production hours,Notes\n"
         
         if timeSheets.count > 0 {
             
@@ -50,11 +50,11 @@ class DownloadManager: NSObject {
                     }
                 }
                 
-                if let startTime = sheet.getIn?.convert(), let endTime = sheet.getOut?.convert() {
+                if let startTime = sheet.getIn?.convert(), let endTime = sheet.getOut?.convert(), let notes = sheet.notes {
                     
                     totalTime += sheet.productionHours
                     
-                    let combined = "\n" + "," + startTime + "," + endTime + "," + sheet.productionHours.secondsToHoursMinutesSeconds()
+                    let combined = "\n" + "," + startTime + "," + endTime + "," + sheet.productionHours.secondsToHoursMinutesSeconds() + "," + notes
                     inputs.append(combined)
                 }
             }

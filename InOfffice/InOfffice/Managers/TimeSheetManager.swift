@@ -48,6 +48,11 @@ class TimeSheetManager: NSObject {
             }
         }
     }
+    
+    
+    /// Get Today inTime
+    var todayInTime: Date?
+
 }
 
 // MARK: - CoreData Manager
@@ -95,7 +100,7 @@ extension TimeSheetManager {
             // newRecord.date = Date()
             newRecord.getIn = Date()
             newRecord.sheetID = today
-            newRecord.notes = "New Day"
+            newRecord.notes = ""
            
             do {
                 try context.save()
@@ -232,6 +237,46 @@ extension TimeSheetManager {
         }
         return nil
     }
+    
+    /*
+    /// findSheet from Time sheet detail
+    ///
+    /// - Parameters:
+    ///   - sheedID: sheed id
+    ///   - inTime: in time
+    ///   - outTime: out time
+    /// - Returns: fetched Sheets
+    func findSheet(sheedID: String, inTime: Date, outTime: Date) -> [TimeSheetDetails]? {
+        
+        let getInSort = NSSortDescriptor(key: "getIn", ascending: true)
+        
+        let fetchRequest : NSFetchRequest = TimeSheetDetails.fetchRequest()
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.sortDescriptors = [getInSort]
+        fetchRequest.predicate = NSPredicate(format: "(sheetID == %@) AND (getIn == %@) AND (getOut == %@)", sheedID as CVarArg, inTime as CVarArg, outTime as CVarArg)
+        
+        if let context = objectContext {
+            do {
+                let timeSheets = try context.fetch(fetchRequest)
+                return timeSheets
+            } catch let error {
+                debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
+            }
+        }
+        return nil
+    }
+    */
+    
+    /// UpdateSheet details
+    func updateSheetDetails() {
+        if let context = objectContext {
+            do {
+                try context.save()
+            } catch let error {
+                debugPrint("Unable to save ShiftIn Data: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 // MARK: - TimeSheet summary
@@ -321,6 +366,8 @@ extension TimeSheetManager {
             
             guard let fetchedSummaries = summaries, fetchedSummaries.count > 0, let firstObject = fetchedSummaries.first else { return }
             
+            self.todayInTime = firstObject.inTime
+            
             firstObject.outTime = outTime
             firstObject.hours += lastWorkedHours
             
@@ -357,6 +404,7 @@ extension TimeSheetManager {
             debugPrint(error.localizedDescription)
         }
     }
+  
 }
 
 /// Additional informations of timesheet day details

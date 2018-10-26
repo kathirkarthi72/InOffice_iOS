@@ -37,7 +37,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     }
     
     /// Add Gravity aniamtion
-    func addGravityAnimator()  {
+  fileprivate  func addGravityAnimator()  {
         
         self.animator = UIDynamicAnimator(referenceView: self.boundaryView)
         let direction = CGVector(dx: 0.0, dy: 0.2)
@@ -64,15 +64,15 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         animator.addBehavior(collusionBehaviour)
         
         let buttonBehaviour = UIDynamicItemBehavior(items: watterButton)
-        buttonBehaviour.elasticity = 0.5
-        buttonBehaviour.resistance = 0.5
+        buttonBehaviour.elasticity = 1.0
+        buttonBehaviour.resistance = 0.3
         buttonBehaviour.friction = 0.5
         buttonBehaviour.allowsRotation = false
-        buttonBehaviour.density = 50.0;
+        buttonBehaviour.density = 10.0
         self.animator.addBehavior(buttonBehaviour)
         
         let pushBehaviour = UIPushBehavior.init(items: watterButton, mode: UIPushBehaviorMode.instantaneous)
-        pushBehaviour.magnitude = 1.0
+        pushBehaviour.magnitude = 0.1
         animator.addBehavior(pushBehaviour)
     }
     
@@ -136,8 +136,8 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
                 button.isSelected = false
             }
         }
-        
     }
+    
     /*
      // MARK: - Navigation
      
@@ -191,9 +191,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
 class RoundedBall: UIButton {
-    
     override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
         return .ellipse
     }
-    
 }

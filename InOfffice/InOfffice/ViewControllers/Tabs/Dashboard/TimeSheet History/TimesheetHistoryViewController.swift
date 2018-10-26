@@ -63,7 +63,7 @@ class TimesheetHistoryViewController: UIViewController {
             
         } else if segue.identifier == "showIntevalPicker" {
             let intervalPicker = segue.destination as! IntervalPickerViewController
-            if let old = timesheetHistoryViewModel.olders, let toDate = old.first?.inTime, let fromDate = old.last?.inTime {
+            if let old = timesheetHistoryViewModel.olders, let toDate = old.first?.inTime, let fromDate = old.last?.outTime {
                 
                 intervalPicker.minmumDate = fromDate
                 intervalPicker.maximumDate = toDate

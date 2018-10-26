@@ -10,4 +10,6 @@ import UIKit
 
 class JumpGameViewModel: NSObject {
 
+    var score: Int64 = 0
+    
 }

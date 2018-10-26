@@ -46,12 +46,11 @@ class TimeSheetDetailViewModel: NSObject {
     }
     
     /// Notes for Indexpath
-    func notesFor(indexPath: IndexPath) -> String? {
+    func sheetDetail(indexPath: IndexPath) -> TimeSheetDetails? {
         
          if let detail = details {
-            return detail[indexPath.row].notes
+            return detail[indexPath.row]
         }
-        
         return nil
     }
 }

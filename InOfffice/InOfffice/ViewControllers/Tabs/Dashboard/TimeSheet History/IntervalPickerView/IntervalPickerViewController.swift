@@ -14,6 +14,7 @@ class IntervalPickerViewController: UIViewController {
     @IBOutlet weak var toDate: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var submitButton: UIButton!
     private var completionHandler: ( (_ from: Date, _ to: Date) -> Void )?
     
     var minmumDate: Date?
@@ -32,6 +33,14 @@ class IntervalPickerViewController: UIViewController {
         datePicker.minimumDate = minmumDate
         datePicker.maximumDate = maximumDate
         
+        if let min = minmumDate, let max = maximumDate {
+            from = min
+            fromDate.text = min.convert()
+            
+            to = max
+            toDate.text = max.convert()
+        }
+        
         fromDate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleGestureRegonizer(_:))))
         toDate.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleGestureRegonizer(_:))))
     }
@@ -41,12 +50,16 @@ class IntervalPickerViewController: UIViewController {
         switch regonizer.view {
         case fromDate:
             selectedLabel = fromDate
+            fromDate.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            toDate.backgroundColor = UIColor.white
+            
         case toDate:
             selectedLabel = toDate
+            fromDate.backgroundColor = UIColor.white
+            toDate.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         default:
             break
         }
-        
     }
     
     func picked(completed: @escaping ( (_ from: Date, _ to: Date) -> Void )) {
@@ -54,7 +67,6 @@ class IntervalPickerViewController: UIViewController {
     }
     
     @IBAction func datePickerValueChanged(_ sender: Any) {
-        
         switch selectedLabel {
         case fromDate:
             from = datePicker.date

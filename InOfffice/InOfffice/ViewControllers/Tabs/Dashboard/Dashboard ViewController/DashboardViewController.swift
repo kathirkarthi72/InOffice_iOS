@@ -60,7 +60,7 @@ class DashboardViewController: UIViewController {
     /// Dashboard is become active
     func applicationBecomeActive() {
         
-        RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
+     //   RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
 
         checkIfLoggedIn()
         
@@ -287,7 +287,7 @@ extension DashboardViewController {
         
         if TimeSheetManager.current.isGetIn {
             
-            let sheet = UIAlertController(title: "You are still in office",
+            let sheet = UIAlertController(title: "You are in office still now.",
                                           message: "Make as to shift out?",
                                           preferredStyle: .actionSheet)
             
@@ -320,6 +320,7 @@ extension DashboardViewController {
                 DispatchQueue.main.async {
                     self.dashboardCollectionView.reloadData()
                 }
+                
             }
             sheet.addAction(saveCreateAction)
             

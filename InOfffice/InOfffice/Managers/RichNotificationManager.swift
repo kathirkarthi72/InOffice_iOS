@@ -23,12 +23,44 @@ class RichNotificationManager: NSObject {
                 debugPrint("User notification allow status:\(String(describing: error?.localizedDescription))")
             }
             debugPrint("User notification allow status:\(permitted)")
+            UNUserNotificationCenter.current().delegate = self
         }
+        
+        actionableNotification()
     }
+    
+    // MARK: - Drink Rich notifications
+
+    func actionableNotification() {
+        
+        var actions: [UNNotificationAction] = []
+        
+        ["100 ML", "200 ML", "300 ML", "400 ML", "500 ML"].forEach { (title) in
+            actions.append(UNNotificationAction(identifier: title, title: title, options: UNNotificationActionOptions(rawValue: 0)))
+        }
+        
+        // Define the notification type
+        let drinkWaterCategory = UNNotificationCategory(identifier: Constants.Notification.CategoryID.health,
+                                                        actions: actions, intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: UNNotificationCategoryOptions.customDismissAction)
+        // Register the notification type.
+        UNUserNotificationCenter.current().setNotificationCategories([drinkWaterCategory])
+    }
+    
     
     // MARK: - Timesheet Rich notifications
     
-    /// Fire local Notification with message string
+    /// Request user notification
+    ///
+    /// - Parameters:
+    ///   - cateID: Notification category id
+    ///   - reqID: Notification request id
+    ///   - thrID: Notification thread id
+    ///   - title: Notification title
+    ///   - message: Notification message content
+    ///   - fireAt: fire after timeinterval
+    ///   - isRepeat: optional is repeatable. default false
+    ///   - soundTitle: optional custom sound detault nil
+    ///   - userInfo: optional user infos default nil
     func request(categoryID cateID: String,
                                  requestID reqID: String,
                                  threadID thrID: String,
@@ -37,7 +69,7 @@ class RichNotificationManager: NSObject {
                                  triggerAfter fireAt: TimeInterval,
                                  repeat isRepeat: Bool = false,
                                  soundName soundTitle: String? = nil,
-                                 userInfo: [String: Any]?) {
+                                 userInfo: [String: Any]? = nil) {
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             
@@ -51,11 +83,11 @@ class RichNotificationManager: NSObject {
                 notificationContent.sound = UNNotificationSound.default()
                 notificationContent.threadIdentifier = thrID
                 let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: isRepeat)  // Add Trigger schudled notification
-              
+                
                 if let sound = soundTitle {
                     notificationContent.sound = UNNotificationSound(named: sound) // "water.mp3"
                 }
-                
+
                 // Create Notification Request
                 let request = UNNotificationRequest(identifier: reqID,
                                                     content: notificationContent,
@@ -76,6 +108,7 @@ class RichNotificationManager: NSObject {
         }
     }
     
+   
     //MARK: -  Clear Notifications
     
     /**
@@ -92,9 +125,10 @@ class RichNotificationManager: NSObject {
     }
     
     /// Clear all delivered notifications
-    func clearAllDeliveredNotifications() {
+  /*  func clearAllDeliveredNotifications() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
+    */
 }
 
 extension RichNotificationManager: UNUserNotificationCenterDelegate {
@@ -108,11 +142,33 @@ extension RichNotificationManager: UNUserNotificationCenterDelegate {
             UIApplication.shared.visibleViewController?.tabBarController?.selectedIndex = 0
             
         case Constants.Notification.CategoryID.health:
-            // Open Health tap
-            UIApplication.shared.visibleViewController?.tabBarController?.selectedIndex = 1
+            
+            switch response.actionIdentifier {
+
+            case Constants.Notification.DrinkWaterActions.first:
+                HealthViewModel().addWaterInTake(onces: 0.100) // 100 ml drunk
+
+            case Constants.Notification.DrinkWaterActions.second:
+                HealthViewModel().addWaterInTake(onces: 0.200) // 100 ml drunk
+
+            case Constants.Notification.DrinkWaterActions.third:
+                HealthViewModel().addWaterInTake(onces: 0.300) // 100 ml drunk
+
+            case Constants.Notification.DrinkWaterActions.fourth:
+                HealthViewModel().addWaterInTake(onces: 0.400) // 100 ml drunk
+
+            case Constants.Notification.DrinkWaterActions.fivth:
+                HealthViewModel().addWaterInTake(onces: 0.500) // 100 ml drunk
+
+            default:
+                // Open Health tap
+                UIApplication.shared.visibleViewController?.tabBarController?.selectedIndex = 1
+            }
+            
         default:
             break
         }
         
+        completionHandler()
     }
 }
