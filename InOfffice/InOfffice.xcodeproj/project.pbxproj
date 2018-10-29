@@ -134,6 +134,9 @@
 		9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
+		9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
+		9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
 		9FD91C9E216DF88500B1377C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD91C9D216DF88400B1377C /* CoreMotion.framework */; };
 		9FDC42B82174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
 		9FDC42B92174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
@@ -241,6 +244,7 @@
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		9FD8647821872FD3002EA1F1 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
 		9FD91C9D216DF88400B1377C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InOfffice.entitlements; sourceTree = "<group>"; };
@@ -479,6 +483,7 @@
 		9F16F29D216F5C8700019F4E /* Jump */ = {
 			isa = PBXGroup;
 			children = (
+				9FD8647821872FD3002EA1F1 /* Jump.atlas */,
 				9F16F29E216F5CF900019F4E /* JumpGameViewController.swift */,
 				9F16F2A2216F5D2300019F4E /* JumpGameViewModel.swift */,
 				9F16F2A6216F5D4E00019F4E /* JumpGameScene.sks */,
@@ -655,6 +660,7 @@
 				9F1256AD217EE8B4000B3FAE /* computerWon.wav in Resources */,
 				9F1256B0217EE8B4000B3FAE /* reset.wav in Resources */,
 				9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */,
+				9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F16F2A7216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F1256B3217EE8B4000B3FAE /* playerMoved.wav in Resources */,
@@ -673,6 +679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F1256AE217EE8B4000B3FAE /* computerWon.wav in Resources */,
+				9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9F1256B4217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F1256BC217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A8216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
@@ -690,6 +697,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F1256AF217EE8B4000B3FAE /* computerWon.wav in Resources */,
+				9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9F1256B5217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F1256BD217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A9216F5D4E00019F4E /* JumpGameScene.sks in Resources */,

@@ -72,6 +72,11 @@ class DashboardViewModel: NSObject {
      - Parameters:
      - isUserLoggedIn: user was logged In or not.
      */
+    
+    
+    /// schedule notification
+    ///
+    /// - Parameter isUserLoggedIn: Bool
     func scheduleNotifications(isUserLoggedIn: Bool) {
         
         if isUserLoggedIn {
@@ -91,6 +96,7 @@ class DashboardViewModel: NSObject {
         }
     }
     
+    /// Break notification
     private func breakNotification() {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.timeSheet,
@@ -102,6 +108,7 @@ class DashboardViewModel: NSObject {
                                                 userInfo: nil)
     }
     
+    /// Logout notification
     private  func logoutNotification() {
         // Logout notification
         let logoutAfter = totalProductionHoursInSec - workedHoursInSec
@@ -129,18 +136,16 @@ class DashboardViewModel: NSObject {
                                                 userInfo: nil)
     }
     
-     func whatAboutTomorrowNotification() {
-    
-    }
-    
     // MARK: - Health module notifications
+    
+    /// Take some water notification
     private func takeWaterNotification() {
         
         RichNotificationManager.current.request(categoryID: Constants.Notification.CategoryID.health,
                                                 requestID: Constants.Notification.RequestID.takeWater,
                                                 threadID: "Take some water",
                                                 header: "Health notification",
-                                                content: "Take some water", triggerAfter: TimeInterval(1 * 60),
+                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
                                                 repeat: true,
                                                 soundName: "water.mp3",
                                                 userInfo: nil)

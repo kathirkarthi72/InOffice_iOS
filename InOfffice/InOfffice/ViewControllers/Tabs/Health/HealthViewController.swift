@@ -14,6 +14,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     @IBOutlet var healthViewModel: HealthViewModel!
     
     @IBOutlet weak var boundaryView: UIView!
+    
     let manager = CMMotionManager()
     
     var isAccelerometerAvailable: Bool {
@@ -67,7 +68,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         buttonBehaviour.elasticity = 1.0
         buttonBehaviour.resistance = 0.3
         buttonBehaviour.friction = 0.5
-        buttonBehaviour.allowsRotation = false
+        buttonBehaviour.allowsRotation = true
         buttonBehaviour.density = 10.0
         self.animator.addBehavior(buttonBehaviour)
         

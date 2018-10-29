@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 struct PhysicsCategory {
     static let none      : UInt32 = 0
@@ -18,6 +19,8 @@ struct PhysicsCategory {
 class JumpGameScene: SKScene {
     
     var viewModel = JumpGameViewModel()
+    
+    let  motionManager: CMMotionManager = CMMotionManager()
     
     //    Background sprite node
     var bgSpriteNode: SKSpriteNode? {
@@ -38,22 +41,6 @@ class JumpGameScene: SKScene {
     
     var bgSpeed: Float = 50.0
     
-    enum BallImageTypes: String {
-        case ball = "Soccer-Ball"
-        case tire = "tire"
-        
-        mutating func next() {
-            switch self {
-            case .ball:
-                self = .tire
-            default:
-                self = .ball
-            }
-        }
-    }
-    
-    var ballType: BallImageTypes = .ball
-    
     /// Allow to jump
     var allowJump: Bool = true
     
@@ -65,7 +52,23 @@ class JumpGameScene: SKScene {
         return nil
     }
     
+    var jumpFrames: [SKTexture] = []
+    
+    func buildAvator() {
+        let bearAnimatedAtlas = SKTextureAtlas(named: "Jump")
+        var walkFrames: [SKTexture] = []
+        
+        let numImages = bearAnimatedAtlas.textureNames.count
+        for i in 1...numImages {
+            let bearTextureName = "tile00\(i)"
+            walkFrames.append(bearAnimatedAtlas.textureNamed(bearTextureName))
+        }
+        jumpFrames = walkFrames
+    }
+    
     override func didMove(to view: SKView) {
+        buildAvator()
+        detectJump()
         
         if let bgSprite = bgSpriteNode {
             bgSpriteNodeNext = bgSprite.copy() as? SKSpriteNode
@@ -76,65 +79,41 @@ class JumpGameScene: SKScene {
         physicsWorld.contactDelegate = self
         
         initialFall()
-        createWood()
         createScoreNode()
+        
+        self.perform(#selector(createWood), with: nil, afterDelay: 1.0)
+
     }
- 
+    
     var woodSprite: SKSpriteNode = SKSpriteNode()
     
-    func createWood() {
+    let cars: [String] = ["Car1", "Car2", "Car3"]
+    
+   @objc func createWood() {
         
-        if let ball = ballNode {
-            if ball.position.y == 0 {
-                woodSprite = SKSpriteNode(imageNamed: "wood")
-                woodSprite.name = "wood"
-                woodSprite.zPosition = 2
-                woodSprite.position = CGPoint(x: self.frame.maxX , y: 0)
-                woodSprite.size = CGSize(width: 50, height: 50)
-                woodSprite.physicsBody = SKPhysicsBody(rectangleOf: woodSprite.size)
-                woodSprite.physicsBody?.isDynamic = true
-                woodSprite.physicsBody?.allowsRotation = true
-                woodSprite.physicsBody?.affectedByGravity = false
-                woodSprite.physicsBody?.categoryBitMask = PhysicsCategory.wood // 3
-                woodSprite.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
-                woodSprite.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
-                addChild(woodSprite)
-                
-                let slide = SKAction.moveTo(x: self.frame.minX, duration: 2.0)
-                woodSprite.run(slide) {
-                    self.woodSprite.removeFromParent()
-                    self.createWood()
-                    self.viewModel.score += 1
-                    self.updateScore()
-                }
-                
-            } else {
-                woodSprite = SKSpriteNode(imageNamed: "wood")
-                woodSprite.name = "wood"
-                woodSprite.zPosition = 2
-                woodSprite.position = CGPoint(x: self.frame.maxX , y: self.frame.midY)
-                woodSprite.size = CGSize(width: 50, height: 50)
-                woodSprite.physicsBody = SKPhysicsBody(rectangleOf: woodSprite.size)
-                woodSprite.physicsBody?.isDynamic = true
-                woodSprite.physicsBody?.allowsRotation = true
-                woodSprite.physicsBody?.affectedByGravity = false
-                woodSprite.physicsBody?.categoryBitMask = PhysicsCategory.wood // 3
-                woodSprite.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
-                woodSprite.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
-                addChild(woodSprite)
-                
-                let move = SKAction.moveTo(y: -210, duration: 1.0)
-                let slide = SKAction.moveTo(x: self.frame.minX, duration: 2.0)
-                
-                woodSprite.run(SKAction.sequence([move, slide])) {
-                    self.woodSprite.removeFromParent()
-                    self.createWood()
-                    self.viewModel.score += 1
-                    self.updateScore()
-                }
-            }
+        woodSprite = SKSpriteNode(imageNamed: cars.randomElement()!)
+        woodSprite.name = "Car"
+        woodSprite.zPosition = 2
+        woodSprite.position = CGPoint(x: self.frame.maxX , y: -225)
+        woodSprite.size = CGSize(width: 50, height: 50)
+        woodSprite.physicsBody = SKPhysicsBody(rectangleOf: woodSprite.size)
+        woodSprite.physicsBody?.isDynamic = true
+        woodSprite.physicsBody?.allowsRotation = true
+        woodSprite.physicsBody?.affectedByGravity = false
+        woodSprite.physicsBody?.categoryBitMask = PhysicsCategory.wood // 3
+        woodSprite.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
+        woodSprite.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
+        addChild(woodSprite)
+        
+        let slide = SKAction.moveTo(x: self.frame.minX, duration: 2.5)
+        
+        woodSprite.run(SKAction.sequence([slide])) {
+            self.woodSprite.removeFromParent()
+            self.viewModel.score += 1
+            self.updateScore()
+            
+            self.perform(#selector(self.createWood), with: nil, afterDelay: 1.0)
         }
-        
     }
     
     /// Create score node
@@ -154,7 +133,7 @@ class JumpGameScene: SKScene {
     
     /// Score node
     var scoreNode: SKLabelNode?
-  
+    
     /// Update node
     func updateScore() {
         
@@ -219,82 +198,43 @@ class JumpGameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if bgSpeed == 0 {
-            woodSprite.removeFromParent()
-            bgSpeed = 50.0
-            createWood()
-            viewModel.score += 1
-
-            updateScore()
-            
-            rotate()
-            jump()
-        }
-        
-        guard let touch = touches.first else { return }
-        
-        let location = touch.location(in: self)
-        
-        guard let touchedNode = nodes(at: location).first else { return }
-        
-        touchOn(node: touchedNode)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        
-        let location = touch.location(in: self)
-        
-        guard let touchedNode = nodes(at: location).first else { return }
-        
-        touchOff(node: touchedNode)
+        touchOn()
     }
     
     /// node Touched
     ///
     /// - Parameter node: node
-    func touchOn(node: SKNode) {
-        if node.name == "bgImage" {
-            jump()
-        } else if node.name == "ballNode" {
-            if let ball = node as? SKSpriteNode {
-                ballType.next()
-                ball.texture = SKTexture(imageNamed: ballType.rawValue)
-            }
-        }
-    }
-    
-    func touchOff(node: SKNode) {
-        if node.name == "bgImage" {
-            drop()
-        }
-    }
-    
-    fileprivate func rotate() {
-        guard let ballNode = ballNode else { return }
+    func touchOn() {
         
-        let rotate = SKAction.rotate(byAngle: -CGFloat.pi/4, duration: 1.5)
-        let moveToX = SKAction.moveTo(x: -100, duration: 1.5)
+        if bgSpeed == 0 {
+            woodSprite.removeFromParent()
+            bgSpeed = 50.0
+            viewModel.score = 0
+            
+            updateScore()
+            
+            guard let ballNode = ballNode else { return }
+            ballNode.texture = jumpFrames[4]
+            ballNode.position = CGPoint(x: -100, y: -200)
+            
+            self.perform(#selector(createWood), with: nil, afterDelay: 1.0)
+        }
         
-        let sequence = SKAction.group([rotate, moveToX])
-        ballNode.run(SKAction.repeatForever(sequence))
+        jump()
     }
     
     /// Initial fall
     fileprivate func initialFall() {
+        
         guard let ballNode = ballNode else { return }
         
-        let moveToY = SKAction.moveTo(y: -200, duration: 1.0)
-
-        let smallJump = SKAction.moveTo(y: -150, duration: 0.2)
-        let smallDown = SKAction.moveTo(y: -195, duration: 0.3)
+        let atlas = [jumpFrames[2], jumpFrames[3], jumpFrames[4]]
         
-        let sequence = SKAction.sequence([moveToY, smallJump, smallDown])
-
-        ballNode.run(sequence) {
-            self.rotate()
-        }
+        let fall = SKAction.animate(with: atlas, timePerFrame: 0.25)
+        let moveToY = SKAction.moveTo(y: -200, duration: 1.0)
+        let moveToX = SKAction.moveTo(x: -100, duration: 1.0)
+        let sequence = SKAction.group([moveToX, moveToY, fall])
+        ballNode.run(sequence)
     }
     
     /// Jump action
@@ -303,24 +243,41 @@ class JumpGameScene: SKScene {
         if allowJump {
             allowJump = false
             guard let ballNode = ballNode else { return }
-            let highUp = SKAction.moveTo(y: 0, duration: 0.5)
-          
-            let sequence = SKAction.sequence([highUp])
-            ballNode.run(sequence)
+            let highUp = SKAction.moveTo(y: -100, duration: 0.5)
+            let down = SKAction.moveTo(y: -200, duration: 0.5)
+            // let smallJump = SKAction.moveTo(y: -150, duration: 0.2)
+            // let smallDown = SKAction.moveTo(y: -195, duration: 0.3)
+            
+            let jump = SKAction.animate(with: jumpFrames, timePerFrame: 0.2, resize: false, restore: true)
+            
+            let sequence = SKAction.sequence([highUp, down])
+            let grouped = SKAction.group([sequence, jump])
+            
+            ballNode.run(grouped) {
+                self.allowJump = true
+            }
         }
     }
     
-    /// Fall down
-    fileprivate func drop() {
-        
-        guard let ballNode = ballNode else { return }
-        let down = SKAction.moveTo(y: -200, duration: 0.5)
-        let smallJump = SKAction.moveTo(y: -150, duration: 0.2)
-        let smallDown = SKAction.moveTo(y: -195, duration: 0.3)
-        
-        let sequence = SKAction.sequence([down, smallJump, smallDown])
-        ballNode.run(sequence) {
-            self.allowJump = true
+}
+
+extension JumpGameScene {
+    
+    func detectJump() {
+        motionManager.deviceMotionUpdateInterval = 0.05
+        if motionManager.isDeviceMotionAvailable {
+            motionManager.startDeviceMotionUpdates(to: .main) { (deviceMotion, error) in
+                
+                let userAcceleration = deviceMotion!.userAcceleration
+                let gravity = userAcceleration.y + 1.0 * 9.81
+                
+                let requiredAcceleration = 10 + self.viewModel.selectedHeight / self.viewModel.requiredAccelerationScaleFactor
+                
+                if gravity > requiredAcceleration {
+                    print("Jumped")
+                    self.jump()
+                }
+            }
         }
     }
 }
@@ -332,9 +289,9 @@ extension JumpGameScene: SKPhysicsContactDelegate {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         
-        if nodeA.name == "wood" {
+        if nodeA.name == "Car" {
             collisionBetween(ball: nodeB, wood: nodeA)
-        } else if nodeB.name == "wood" {
+        } else if nodeB.name == "Car" {
             collisionBetween(ball: nodeA, wood: nodeB)
         }
     }
