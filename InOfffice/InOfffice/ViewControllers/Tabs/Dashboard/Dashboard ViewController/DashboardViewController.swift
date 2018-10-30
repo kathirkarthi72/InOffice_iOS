@@ -313,7 +313,7 @@ extension DashboardViewController {
             let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
                 TimeSheetManager.current.createNewRecord(withSave: true)
                 
-                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeBreak, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
 
                 self.updateValues()
 
@@ -327,8 +327,8 @@ extension DashboardViewController {
             let createAction = UIAlertAction(title: "Create only", style: .default) { (okAction) in
                 TimeSheetManager.current.createNewRecord(withSave: false)
                 
-                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
-                
+                RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeBreak, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+
                 self.updateValues()
 
                 DispatchQueue.main.async {

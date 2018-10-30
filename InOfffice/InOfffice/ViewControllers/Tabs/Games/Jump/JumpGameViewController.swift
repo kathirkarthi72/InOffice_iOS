@@ -16,12 +16,11 @@ class JumpGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spriteView.showsFPS = true
-        spriteView.ignoresSiblingOrder = false
-        spriteView.showsNodeCount = true
+//        spriteView.showsFPS = true
+//        spriteView.ignoresSiblingOrder = false
+//        spriteView.showsNodeCount = true
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -33,6 +32,9 @@ class JumpGameViewController: UIViewController {
     */
 
     @IBAction func dismissButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        
+        spriteView.removeFromSuperview()
+        
+       self.dismiss(animated: true, completion: nil)
     }
 }

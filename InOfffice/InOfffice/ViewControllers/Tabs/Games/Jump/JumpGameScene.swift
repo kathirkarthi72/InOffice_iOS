@@ -44,7 +44,7 @@ class JumpGameScene: SKScene {
     /// Allow to jump
     var allowJump: Bool = true
     
-    var ballNode : SKSpriteNode? {
+    var avatorNode : SKSpriteNode? {
         
         if let ball = self.childNode(withName: "ballNode") as? SKSpriteNode {
             return ball
@@ -66,9 +66,12 @@ class JumpGameScene: SKScene {
         jumpFrames = walkFrames
     }
     
+    
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
         buildAvator()
-        detectJump()
+        monitorUserActivity()
         
         if let bgSprite = bgSpriteNode {
             bgSpriteNodeNext = bgSprite.copy() as? SKSpriteNode
@@ -82,14 +85,14 @@ class JumpGameScene: SKScene {
         createScoreNode()
         
         self.perform(#selector(createWood), with: nil, afterDelay: 1.0)
-
+        
     }
     
     var woodSprite: SKSpriteNode = SKSpriteNode()
     
     let cars: [String] = ["Car1", "Car2", "Car3"]
     
-   @objc func createWood() {
+    @objc func createWood() {
         
         woodSprite = SKSpriteNode(imageNamed: cars.randomElement()!)
         woodSprite.name = "Car"
@@ -213,7 +216,7 @@ class JumpGameScene: SKScene {
             
             updateScore()
             
-            guard let ballNode = ballNode else { return }
+            guard let ballNode = avatorNode else { return }
             ballNode.texture = jumpFrames[4]
             ballNode.position = CGPoint(x: -100, y: -200)
             
@@ -223,10 +226,48 @@ class JumpGameScene: SKScene {
         jump()
     }
     
+    
+}
+
+extension JumpGameScene {
+    
+    func monitorUserActivity() {
+        motionManager.deviceMotionUpdateInterval = 0.05
+        
+        if motionManager.isDeviceMotionAvailable {
+            
+            motionManager.startDeviceMotionUpdates(to: .main) { (deviceMotion, error) in
+                
+                let userAcceleration = deviceMotion!.userAcceleration
+                let gravity = userAcceleration.y + 1.0 * 9.81
+                
+                
+                let requiredAcceleration = 10 + self.viewModel.selectedHeight / self.viewModel.requiredJumpAccelerationScaleFactor
+                
+                print("Y: = \(userAcceleration.y), Gravity: \(gravity)")
+                
+                if gravity > requiredAcceleration {
+                    print("Jumped")
+                    self.jump()
+                }
+                /*else {
+                 
+                 let sitRequiredAcceleration = 1 + self.viewModel.selectedSitHeight / self.viewModel.requiredSitAccelerationScaleFactor
+                 print("Sit = \(sitRequiredAcceleration)")
+                 }
+                 */
+            }
+            
+        }
+    }
+}
+
+// MARK: Avator animations
+extension JumpGameScene {
     /// Initial fall
     fileprivate func initialFall() {
         
-        guard let ballNode = ballNode else { return }
+        guard let ballNode = avatorNode else { return }
         
         let atlas = [jumpFrames[2], jumpFrames[3], jumpFrames[4]]
         
@@ -242,16 +283,20 @@ class JumpGameScene: SKScene {
         
         if allowJump {
             allowJump = false
-            guard let ballNode = ballNode else { return }
+            
+            guard let ballNode = avatorNode else { return }
             let highUp = SKAction.moveTo(y: -100, duration: 0.5)
             let down = SKAction.moveTo(y: -200, duration: 0.5)
+            let moveToX = SKAction.moveTo(x: -100, duration: 1.0)
+            
             // let smallJump = SKAction.moveTo(y: -150, duration: 0.2)
             // let smallDown = SKAction.moveTo(y: -195, duration: 0.3)
             
             let jump = SKAction.animate(with: jumpFrames, timePerFrame: 0.2, resize: false, restore: true)
+            let stand = SKAction.rotate(toAngle: 0.0, duration: 1.0)
             
             let sequence = SKAction.sequence([highUp, down])
-            let grouped = SKAction.group([sequence, jump])
+            let grouped = SKAction.group([sequence, moveToX, jump, stand])
             
             ballNode.run(grouped) {
                 self.allowJump = true
@@ -259,27 +304,40 @@ class JumpGameScene: SKScene {
         }
     }
     
-}
-
-extension JumpGameScene {
-    
-    func detectJump() {
-        motionManager.deviceMotionUpdateInterval = 0.05
-        if motionManager.isDeviceMotionAvailable {
-            motionManager.startDeviceMotionUpdates(to: .main) { (deviceMotion, error) in
-                
-                let userAcceleration = deviceMotion!.userAcceleration
-                let gravity = userAcceleration.y + 1.0 * 9.81
-                
-                let requiredAcceleration = 10 + self.viewModel.selectedHeight / self.viewModel.requiredAccelerationScaleFactor
-                
-                if gravity > requiredAcceleration {
-                    print("Jumped")
-                    self.jump()
-                }
-            }
-        }
+    fileprivate func die(with car: SKNode) {
+        
+        guard let avator = avatorNode else { return }
+        let rotate = SKAction.rotate(toAngle: 1.6, duration: 0.1)
+        let moveToX = SKAction.moveTo(x: -140, duration: 0.5)
+        let flat = SKAction.moveTo(y: -230, duration: 0.5)
+        
+        avator.run(SKAction.group([rotate, moveToX, flat]))
     }
+    
+    /// Sit action
+    /*   fileprivate func sit() {
+     
+     if allowJump {
+     allowJump = false
+     
+     guard let ballNode = ballNode else { return }
+     
+     let sit = SKAction.moveTo(y: -250, duration: 0.5)
+     let down = SKAction.moveTo(y: -200, duration: 0.5)
+     
+     let sitFrames = [jumpFrames[3],jumpFrames[4]]
+     
+     let jump = SKAction.animate(with: sitFrames, timePerFrame: 0.2, resize: false, restore: true)
+     
+     let sequence = SKAction.sequence([sit, down])
+     let grouped = SKAction.group([sequence, jump])
+     
+     ballNode.run(grouped) {
+     self.allowJump = true
+     }
+     }
+     }
+     */
 }
 
 extension JumpGameScene: SKPhysicsContactDelegate {
@@ -290,15 +348,16 @@ extension JumpGameScene: SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
         
         if nodeA.name == "Car" {
-            collisionBetween(ball: nodeB, wood: nodeA)
+            collisionBetween(ball: nodeB, car: nodeA)
         } else if nodeB.name == "Car" {
-            collisionBetween(ball: nodeA, wood: nodeB)
+            collisionBetween(ball: nodeA, car: nodeB)
         }
     }
     
-    func collisionBetween(ball: SKNode, wood: SKNode) {
-        wood.removeAllActions()
+    func collisionBetween(ball: SKNode, car: SKNode) {
+        car.removeAllActions()
         viewModel.score = 0
         bgSpeed = 0
+        die(with: car)
     }
 }

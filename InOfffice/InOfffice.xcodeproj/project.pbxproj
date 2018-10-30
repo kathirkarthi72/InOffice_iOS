@@ -134,6 +134,15 @@
 		9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9FD1692A2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
+		9FD1692B2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
+		9FD1692C2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
+		9FD1692E2188858D00369606 /* CollectGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FD1692D2188858D00369606 /* CollectGame.sks */; };
+		9FD1692F2188858D00369606 /* CollectGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FD1692D2188858D00369606 /* CollectGame.sks */; };
+		9FD169302188858D00369606 /* CollectGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FD1692D2188858D00369606 /* CollectGame.sks */; };
+		9FD16932218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
+		9FD16933218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
+		9FD16934218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
 		9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
 		9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
 		9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
@@ -244,6 +253,9 @@
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		9FD169292188856200369606 /* CollectGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectGameViewController.swift; sourceTree = "<group>"; };
+		9FD1692D2188858D00369606 /* CollectGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CollectGame.sks; sourceTree = "<group>"; };
+		9FD16931218885BF00369606 /* CollectGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectGame.swift; sourceTree = "<group>"; };
 		9FD8647821872FD3002EA1F1 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
 		9FD91C9D216DF88400B1377C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -398,6 +410,7 @@
 		9F1128C6212E835C00A599E8 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				9FD169282188853D00369606 /* Collect */,
 				9F16F29D216F5C8700019F4E /* Jump */,
 				9FF77BDD2164911700E56837 /* Tic tac toe */,
 				9F1128D8212E845900A599E8 /* GamesViewModel.swift */,
@@ -517,6 +530,16 @@
 				9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */,
 			);
 			path = TimeSheetDetails;
+			sourceTree = "<group>";
+		};
+		9FD169282188853D00369606 /* Collect */ = {
+			isa = PBXGroup;
+			children = (
+				9FD169292188856200369606 /* CollectGameViewController.swift */,
+				9FD1692D2188858D00369606 /* CollectGame.sks */,
+				9FD16931218885BF00369606 /* CollectGame.swift */,
+			);
+			path = Collect;
 			sourceTree = "<group>";
 		};
 		9FEBE8F4218202C100B8EADF /* Sound */ = {
@@ -659,6 +682,7 @@
 			files = (
 				9F1256AD217EE8B4000B3FAE /* computerWon.wav in Resources */,
 				9F1256B0217EE8B4000B3FAE /* reset.wav in Resources */,
+				9FD1692E2188858D00369606 /* CollectGame.sks in Resources */,
 				9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */,
@@ -680,6 +704,7 @@
 			files = (
 				9F1256AE217EE8B4000B3FAE /* computerWon.wav in Resources */,
 				9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */,
+				9FD1692F2188858D00369606 /* CollectGame.sks in Resources */,
 				9F1256B4217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F1256BC217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A8216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
@@ -698,6 +723,7 @@
 			files = (
 				9F1256AF217EE8B4000B3FAE /* computerWon.wav in Resources */,
 				9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */,
+				9FD169302188858D00369606 /* CollectGame.sks in Resources */,
 				9F1256B5217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F1256BD217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A9216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
@@ -723,6 +749,7 @@
 				9F1128F0212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E6212E859D00A599E8 /* InitialViewModel.swift in Sources */,
 				9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
+				9FD1692A2188856200369606 /* CollectGameViewController.swift in Sources */,
 				9F112908212E9D3E00A599E8 /* Constancts.swift in Sources */,
 				9F112912212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
 				9F112876212E7B3400A599E8 /* AppDelegate.swift in Sources */,
@@ -736,6 +763,7 @@
 				9F1128D9212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F16F2A3216F5D2300019F4E /* JumpGameViewModel.swift in Sources */,
 				9F11290D212EA2BF00A599E8 /* TextFieldExtension.swift in Sources */,
+				9FD16932218885BF00369606 /* CollectGame.swift in Sources */,
 				9F2E70132164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F1128EB212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
 				9F1128CD212E840E00A599E8 /* DashboardViewModel.swift in Sources */,
@@ -772,7 +800,9 @@
 				9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DA212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112913212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
+				9FD16933218885BF00369606 /* CollectGame.swift in Sources */,
 				9FDC42B82174C76B006AA2FE /* AppDelegate.swift in Sources */,
+				9FD1692B2188856200369606 /* CollectGameViewController.swift in Sources */,
 				9F8281F6213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
 				9FF5889A218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */,
 				9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */,
@@ -816,7 +846,9 @@
 				9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */,
 				9F1128DB212E845900A599E8 /* GamesViewModel.swift in Sources */,
 				9F112914212EA4DC00A599E8 /* UIColorExtension.swift in Sources */,
+				9FD16934218885BF00369606 /* CollectGame.swift in Sources */,
 				9FDC42B92174C76B006AA2FE /* AppDelegate.swift in Sources */,
+				9FD1692C2188856200369606 /* CollectGameViewController.swift in Sources */,
 				9F8281F7213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
 				9FF5889B218078D800AA9C32 /* TimesheetNotesViewController.swift in Sources */,
 				9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */,

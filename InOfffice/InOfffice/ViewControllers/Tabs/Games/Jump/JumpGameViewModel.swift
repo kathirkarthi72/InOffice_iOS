@@ -12,11 +12,14 @@ class JumpGameViewModel: NSObject {
 
     var score: Int64 = 0
     
-    let maxJumpHeight: Int = 300 // ft
+   // let maxJumpHeight: Int = 300 // ft
+   // let minimumJumpAccelerationHeight = 10.0
+
+    let requiredJumpAccelerationScaleFactor = 85.0
     
-    let requiredAccelerationScaleFactor = 85.0 // Heiger means your need less force to reach a height
+   // let requiredSitAccelerationScaleFactor = 85.0 // Heiger means your need less force to reach a height
     
-    let minimumJumAccelerationHeight = 10.0
-    
-    var selectedHeight = 140.0 // ft
+    var selectedHeight = 100.0 // ft
+   // var selectedSitHeight = 60.0 // ft
+
 }

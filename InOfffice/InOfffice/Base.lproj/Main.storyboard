@@ -1051,10 +1051,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbv-0L-6Iy">
-                                <rect key="frame" x="16" y="281" width="343" height="48"/>
+                                <rect key="frame" x="43.666666666666657" y="279" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="0.41352739726027399" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Qqg-YK-lTf"/>
+                                    <constraint firstAttribute="height" constant="100" id="02p-HT-80s"/>
+                                    <constraint firstAttribute="width" constant="100" id="7Z9-fA-j2d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="23"/>
                                 <state key="normal" title="Jump">
@@ -1079,15 +1080,29 @@
                                     <segue destination="ddb-7o-wjt" kind="show" id="sXO-tk-QGt"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-Ne-2Hh">
+                                <rect key="frame" x="218.66666666666663" y="279" width="125" height="73"/>
+                                <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="Owd-vq-QV6"/>
+                                    <constraint firstAttribute="width" constant="125" id="Rbv-ey-d6J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ZapfDingbatsITC" family="Zapf Dingbats" pointSize="24"/>
+                                <state key="normal" title="Catch"/>
+                                <connections>
+                                    <segue destination="6Qw-tt-CwU" kind="presentation" id="aqW-mG-Kfp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="26" id="5fM-qx-V57"/>
                             <constraint firstItem="wqJ-kX-QxV" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="Bol-tj-sCb"/>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="leading" secondItem="Few-jN-cpA" secondAttribute="leading" constant="16" id="Nje-lp-vPY"/>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="I4I-Kg-0XQ"/>
                             <constraint firstItem="wqJ-kX-QxV" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="Nqd-LX-JIp"/>
-                            <constraint firstItem="Few-jN-cpA" firstAttribute="trailing" secondItem="Fbv-0L-6Iy" secondAttribute="trailing" constant="16" id="bJW-7q-YZy"/>
                             <constraint firstItem="aTb-jH-245" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="cLd-8J-Acq"/>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="28" id="eeL-iE-i53"/>
+                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="cho-Dv-AAL"/>
+                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="top" secondItem="aTb-jH-245" secondAttribute="bottom" constant="26" id="usi-fM-ZHs"/>
                             <constraint firstItem="aTb-jH-245" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="zrQ-Wp-b3M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Few-jN-cpA"/>
@@ -1186,6 +1201,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgX-uu-0mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2630" y="2243"/>
+        </scene>
+        <!--Collect Game View Controller-->
+        <scene sceneID="Zqn-vk-Xz0">
+            <objects>
+                <viewController id="6Qw-tt-CwU" customClass="CollectGameViewController" customModule="InOfffice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dzy-4B-TGf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <skView contentMode="scaleToFill" sceneName="CollectGame.sks" translatesAutoresizingMaskIntoConstraints="NO" id="q8a-pL-PY0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </skView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiV-T8-Z6p">
+                                <rect key="frame" x="309" y="55" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="TZK-GW-tKp"/>
+                                    <constraint firstAttribute="height" constant="50" id="meh-0K-04z"/>
+                                </constraints>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <action selector="dismissButtonAction:" destination="6Qw-tt-CwU" eventType="touchUpInside" id="8g5-ct-5gH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="q8a-pL-PY0" secondAttribute="bottom" id="92N-hy-mqt"/>
+                            <constraint firstItem="q8a-pL-PY0" firstAttribute="top" secondItem="Dzy-4B-TGf" secondAttribute="top" id="9jJ-3v-lzI"/>
+                            <constraint firstItem="5un-rw-R73" firstAttribute="trailing" secondItem="wiV-T8-Z6p" secondAttribute="trailing" constant="16" id="Vec-iQ-LDV"/>
+                            <constraint firstItem="wiV-T8-Z6p" firstAttribute="top" secondItem="5un-rw-R73" secondAttribute="top" constant="11" id="n8p-Es-bzJ"/>
+                            <constraint firstItem="q8a-pL-PY0" firstAttribute="leading" secondItem="5un-rw-R73" secondAttribute="leading" id="nuj-Mz-Xby"/>
+                            <constraint firstItem="5un-rw-R73" firstAttribute="trailing" secondItem="q8a-pL-PY0" secondAttribute="trailing" id="sbA-0T-PeA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5un-rw-R73"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameView" destination="q8a-pL-PY0" id="bm2-Wf-Vww"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gz8-BP-c4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3417" y="2243"/>
         </scene>
         <!--OrderNumbers-->
         <scene sceneID="lHn-IT-Nea">

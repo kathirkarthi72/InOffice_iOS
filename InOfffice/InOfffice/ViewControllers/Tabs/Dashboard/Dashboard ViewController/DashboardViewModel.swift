@@ -79,19 +79,21 @@ class DashboardViewModel: NSObject {
     /// - Parameter isUserLoggedIn: Bool
     func scheduleNotifications(isUserLoggedIn: Bool) {
         
+        RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.takeBreak,
+                                                                              Constants.Notification.RequestID.logOut,
+                                                                              Constants.Notification.RequestID.takeWater,
+                                                                              Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
+        
         if isUserLoggedIn {
             
-            // Break notification
-            RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.comeBackAfterBreak]) // Break notification removed.
-            breakNotification()
-            logoutNotification()
+            
+            breakNotification() // Break notification
+            logoutNotification() // set logout notification
             
             /// Health notificaiton
-            takeWaterNotification()
+            takeWaterNotification() // set take water notification
             
         } else { // Logged out
-            RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeWater]) // Log out notification removed.
-            
             backToWorkNotification()
         }
     }
