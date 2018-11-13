@@ -86,7 +86,6 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
             let presentationView = firstCell.contentView.subviews[0]
             presentationView.layer.cornerRadius = 5.0
             presentationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-           
             return detailViewModel.updateHistoryDetail(cell: firstCell, indexPath: indexPath)
             
         case ((detailViewModel.details?.count)! - 1): // last cell

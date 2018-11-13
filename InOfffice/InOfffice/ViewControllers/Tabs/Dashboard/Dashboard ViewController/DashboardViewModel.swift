@@ -105,7 +105,7 @@ class DashboardViewModel: NSObject {
                                                 requestID: Constants.Notification.RequestID.takeBreak,
                                                 threadID: "Take a break",
                                                 header: "Take a break",
-                                                content: "You are worked more that 1 hour 30 mins. please take a break",
+                                                content: "You are worked more that 1 hour 30 mins. 🕜 Please take a break. 🍮",
                                                 triggerAfter: TimeInterval(90 * 60),
                                                 userInfo: nil)
     }
@@ -120,7 +120,7 @@ class DashboardViewModel: NSObject {
                                                     requestID: Constants.Notification.RequestID.logOut,
                                                     threadID: "Shift time was completed",
                                                     header: "Shift time was completed",
-                                                    content: "Your today production hours is almost done. This is right time to logout",
+                                                    content: "Your today production hours is almost done. 🤝👋 This is right time to logout. 🏍",
                                                     triggerAfter: TimeInterval(logoutAfter),
                                                     soundName: "todayTimeout.wav",
                                                     userInfo: nil)
@@ -133,7 +133,7 @@ class DashboardViewModel: NSObject {
                                                 requestID: Constants.Notification.RequestID.comeBackAfterBreak,
                                                 threadID: "Get back to work",
                                                 header: "Get back to work",
-                                                content: "Your break was already crossed 10 Mins. Please go back to work.",
+                                                content: "Your break was already crossed 10 Mins. 🤷‍♂️ Please go back to work. 👨🏻‍💻",
                                                 triggerAfter: TimeInterval(10 * 60),
                                                 userInfo: nil)
     }
@@ -147,7 +147,7 @@ class DashboardViewModel: NSObject {
                                                 requestID: Constants.Notification.RequestID.takeWater,
                                                 threadID: "Take some water",
                                                 header: "Health notification",
-                                                content: "Take some water", triggerAfter: TimeInterval(25 * 60),
+                                                content: "If you feel hungry, drink some water to fill your stomach. 💧", triggerAfter: TimeInterval(25 * 60),
                                                 repeat: true,
                                                 soundName: "water.mp3",
                                                 userInfo: nil)

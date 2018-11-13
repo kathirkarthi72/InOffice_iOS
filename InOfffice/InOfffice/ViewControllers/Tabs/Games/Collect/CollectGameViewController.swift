@@ -11,6 +11,7 @@ import SpriteKit
 
 class CollectGameViewController: UIViewController {
 
+    /// Gameview
     @IBOutlet weak var gameView: SKView!
     
     override func viewDidLoad() {
@@ -19,11 +20,8 @@ class CollectGameViewController: UIViewController {
         gameView.showsFPS = true
         gameView.ignoresSiblingOrder = false
         gameView.showsNodeCount = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         AppDelegate.GameUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,7 +39,10 @@ class CollectGameViewController: UIViewController {
     }
     */
     @IBAction func dismissButtonAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+       
+        self.dismiss(animated: true) {
+            AppDelegate.GameUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        }
     }
     
 }

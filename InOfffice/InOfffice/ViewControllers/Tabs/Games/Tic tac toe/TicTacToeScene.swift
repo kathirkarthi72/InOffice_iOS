@@ -22,6 +22,13 @@ class TicTacToeScene: SKScene {
         return nil
     }
     
+    var tileMap: SKTileMapNode? {
+        if let tileNode = childNode(withName: "TileMaop") as? SKTileMapNode {
+            return tileNode
+        }
+        return nil
+    }
+    
     /// Play tiles nodes
     var playTilesNodes: [SKSpriteNode]? {
         

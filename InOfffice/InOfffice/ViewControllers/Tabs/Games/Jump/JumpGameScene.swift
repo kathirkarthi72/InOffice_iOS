@@ -67,9 +67,7 @@ class JumpGameScene: SKScene {
     }
     
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        
+    fileprivate func initialSetup() {
         buildAvator()
         monitorUserActivity()
         
@@ -84,38 +82,44 @@ class JumpGameScene: SKScene {
         initialFall()
         createScoreNode()
         
-        self.perform(#selector(createWood), with: nil, afterDelay: 1.0)
-        
+        self.perform(#selector(carSprite), with: nil, afterDelay: 1.0)
     }
     
-    var woodSprite: SKSpriteNode = SKSpriteNode()
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
+        initialSetup()
+    }
+    
+    
+    var carSpriteNode: SKSpriteNode = SKSpriteNode()
     
     let cars: [String] = ["Car1", "Car2", "Car3"]
     
-    @objc func createWood() {
+    @objc func carSprite() {
         
-        woodSprite = SKSpriteNode(imageNamed: cars.randomElement()!)
-        woodSprite.name = "Car"
-        woodSprite.zPosition = 2
-        woodSprite.position = CGPoint(x: self.frame.maxX , y: -225)
-        woodSprite.size = CGSize(width: 50, height: 50)
-        woodSprite.physicsBody = SKPhysicsBody(rectangleOf: woodSprite.size)
-        woodSprite.physicsBody?.isDynamic = true
-        woodSprite.physicsBody?.allowsRotation = true
-        woodSprite.physicsBody?.affectedByGravity = false
-        woodSprite.physicsBody?.categoryBitMask = PhysicsCategory.wood // 3
-        woodSprite.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
-        woodSprite.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
-        addChild(woodSprite)
+        carSpriteNode = SKSpriteNode(imageNamed: cars.randomElement()!)
+        carSpriteNode.name = "Car"
+        carSpriteNode.zPosition = 2
+        carSpriteNode.position = CGPoint(x: self.frame.maxX , y: -225)
+        carSpriteNode.size = CGSize(width: 50, height: 50)
+        carSpriteNode.physicsBody = SKPhysicsBody(rectangleOf: carSpriteNode.size)
+        carSpriteNode.physicsBody?.isDynamic = true
+        carSpriteNode.physicsBody?.allowsRotation = true
+        carSpriteNode.physicsBody?.affectedByGravity = false
+        carSpriteNode.physicsBody?.categoryBitMask = PhysicsCategory.wood // 3
+        carSpriteNode.physicsBody?.contactTestBitMask = PhysicsCategory.projectile // 4
+        carSpriteNode.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
+        addChild(carSpriteNode)
         
         let slide = SKAction.moveTo(x: self.frame.minX, duration: 2.5)
         
-        woodSprite.run(SKAction.sequence([slide])) {
-            self.woodSprite.removeFromParent()
+        carSpriteNode.run(SKAction.sequence([slide])) {
+            self.carSpriteNode.removeFromParent()
             self.viewModel.score += 1
             self.updateScore()
             
-            self.perform(#selector(self.createWood), with: nil, afterDelay: 1.0)
+            self.perform(#selector(self.carSprite), with: nil, afterDelay: 1.0)
         }
     }
     
@@ -201,7 +205,10 @@ class JumpGameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchOn()
+        if !motionManager.isDeviceMotionActive {
+            monitorUserActivity()
+            touchOn()
+        }
     }
     
     /// node Touched
@@ -210,7 +217,7 @@ class JumpGameScene: SKScene {
     func touchOn() {
         
         if bgSpeed == 0 {
-            woodSprite.removeFromParent()
+            carSpriteNode.removeFromParent()
             bgSpeed = 50.0
             viewModel.score = 0
             
@@ -220,7 +227,7 @@ class JumpGameScene: SKScene {
             ballNode.texture = jumpFrames[4]
             ballNode.position = CGPoint(x: -100, y: -200)
             
-            self.perform(#selector(createWood), with: nil, afterDelay: 1.0)
+            self.perform(#selector(carSprite), with: nil, afterDelay: 1.0)
         }
         
         jump()
@@ -241,13 +248,11 @@ extension JumpGameScene {
                 let userAcceleration = deviceMotion!.userAcceleration
                 let gravity = userAcceleration.y + 1.0 * 9.81
                 
-                
                 let requiredAcceleration = 10 + self.viewModel.selectedHeight / self.viewModel.requiredJumpAccelerationScaleFactor
                 
                 print("Y: = \(userAcceleration.y), Gravity: \(gravity)")
-                
                 if gravity > requiredAcceleration {
-                    print("Jumped")
+                    //  print("Jumped")
                     self.jump()
                 }
                 /*else {
@@ -312,6 +317,8 @@ extension JumpGameScene {
         let flat = SKAction.moveTo(y: -230, duration: 0.5)
         
         avator.run(SKAction.group([rotate, moveToX, flat]))
+        
+        motionManager.stopDeviceMotionUpdates()
     }
     
     /// Sit action

@@ -149,6 +149,12 @@
 		9FD91C9E216DF88500B1377C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD91C9D216DF88400B1377C /* CoreMotion.framework */; };
 		9FDC42B82174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
 		9FDC42B92174C76B006AA2FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F112875212E7B3400A599E8 /* AppDelegate.swift */; };
+		9FE2853C21998F9A00644EB2 /* grassTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853A21998F9A00644EB2 /* grassTile.sks */; };
+		9FE2853D21998F9A00644EB2 /* grassTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853A21998F9A00644EB2 /* grassTile.sks */; };
+		9FE2853E21998F9A00644EB2 /* grassTile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853A21998F9A00644EB2 /* grassTile.sks */; };
+		9FE2853F21998F9A00644EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853B21998F9A00644EB2 /* Assets.xcassets */; };
+		9FE2854021998F9A00644EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853B21998F9A00644EB2 /* Assets.xcassets */; };
+		9FE2854121998F9A00644EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FE2853B21998F9A00644EB2 /* Assets.xcassets */; };
 		9FE4E2C821536D0200EA2E15 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE4E2C721536D0200EA2E15 /* HealthKit.framework */; };
 		9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9FEBE8F5218202D800B8EADF /* todayTimeout.wav */; };
 		9FEBE8F7218202D800B8EADF /* todayTimeout.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9FEBE8F5218202D800B8EADF /* todayTimeout.wav */; };
@@ -258,6 +264,9 @@
 		9FD16931218885BF00369606 /* CollectGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectGame.swift; sourceTree = "<group>"; };
 		9FD8647821872FD3002EA1F1 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
 		9FD91C9D216DF88400B1377C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		9FE2852B21998D4900644EB2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		9FE2853A21998F9A00644EB2 /* grassTile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = grassTile.sks; sourceTree = "<group>"; };
+		9FE2853B21998F9A00644EB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FE4E2C721536D0200EA2E15 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FE4E2C921536D0300EA2E15 /* InOfffice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InOfffice.entitlements; sourceTree = "<group>"; };
 		9FEBE8F5218202D800B8EADF /* todayTimeout.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = todayTimeout.wav; sourceTree = "<group>"; };
@@ -362,6 +371,7 @@
 				9FE4E2C721536D0200EA2E15 /* HealthKit.framework */,
 				9FF7A5FD2148043200A84D89 /* UserNotifications.framework */,
 				9F1128AC212E7B9600A599E8 /* NotificationCenter.framework */,
+				9FE2852B21998D4900644EB2 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -566,6 +576,8 @@
 				9FF77BE22164918100E56837 /* TicTacToeViewModel.swift */,
 				9F2E70122164DE44009723D4 /* TicTacToeScene.swift */,
 				9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */,
+				9FE2853A21998F9A00644EB2 /* grassTile.sks */,
+				9FE2853B21998F9A00644EB2 /* Assets.xcassets */,
 			);
 			path = "Tic tac toe";
 			sourceTree = "<group>";
@@ -633,7 +645,7 @@
 		9F11286A212E7B3400A599E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = ktrkathir;
 				TargetAttributes = {
@@ -686,10 +698,12 @@
 				9F1256BB217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9FEBE8F6218202D800B8EADF /* todayTimeout.wav in Resources */,
+				9FE2853F21998F9A00644EB2 /* Assets.xcassets in Resources */,
 				9F16F2A7216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F1256B3217EE8B4000B3FAE /* playerMoved.wav in Resources */,
 				9F112883212E7B3D00A599E8 /* LaunchScreen.storyboard in Resources */,
 				9F1256AA217EE8B4000B3FAE /* ThroatMale.wav in Resources */,
+				9FE2853C21998F9A00644EB2 /* grassTile.sks in Resources */,
 				9F112880212E7B3D00A599E8 /* Assets.xcassets in Resources */,
 				9F11287B212E7B3400A599E8 /* Main.storyboard in Resources */,
 				9F1256B6217EE8B4000B3FAE /* scored.wav in Resources */,
@@ -706,9 +720,11 @@
 				9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9FD1692F2188858D00369606 /* CollectGame.sks in Resources */,
 				9F1256B4217EE8B4000B3FAE /* playerMoved.wav in Resources */,
+				9FE2854021998F9A00644EB2 /* Assets.xcassets in Resources */,
 				9F1256BC217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A8216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */,
+				9FE2853D21998F9A00644EB2 /* grassTile.sks in Resources */,
 				9F1256A8217EE8B4000B3FAE /* computerMoved.wav in Resources */,
 				9FEBE8F7218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F1256B1217EE8B4000B3FAE /* reset.wav in Resources */,
@@ -725,9 +741,11 @@
 				9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */,
 				9FD169302188858D00369606 /* CollectGame.sks in Resources */,
 				9F1256B5217EE8B4000B3FAE /* playerMoved.wav in Resources */,
+				9FE2854121998F9A00644EB2 /* Assets.xcassets in Resources */,
 				9F1256BD217EFFEF000B3FAE /* water.mp3 in Resources */,
 				9F16F2A9216F5D4E00019F4E /* JumpGameScene.sks in Resources */,
 				9F2E70112164DD55009723D4 /* TicTacToeScene.sks in Resources */,
+				9FE2853E21998F9A00644EB2 /* grassTile.sks in Resources */,
 				9F1256A9217EE8B4000B3FAE /* computerMoved.wav in Resources */,
 				9FEBE8F8218202D800B8EADF /* todayTimeout.wav in Resources */,
 				9F1256B2217EE8B4000B3FAE /* reset.wav in Resources */,
@@ -1028,7 +1046,6 @@
 		9F11289E212E7B3E00A599E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1048,7 +1065,6 @@
 		9F11289F212E7B3E00A599E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
