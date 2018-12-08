@@ -43,9 +43,9 @@ class OrderNumberGameViewController: UIViewController {
         
         createNewLevel()
         
-        [Notification.Name.UIApplicationDidEnterBackground,
-         Notification.Name.UIApplicationWillEnterForeground,
-         Notification.Name.UIApplicationWillTerminate].forEach { (notificationName) in
+        [UIApplication.didEnterBackgroundNotification,
+         UIApplication.willEnterForegroundNotification,
+         UIApplication.willTerminateNotification].forEach { (notificationName) in
             
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(notificationCenterObservered(notification:)),
@@ -93,9 +93,9 @@ class OrderNumberGameViewController: UIViewController {
         
         if self.tabBarController?.selectedIndex == 2 {
             switch notification.name {
-            case Notification.Name.UIApplicationDidEnterBackground, Notification.Name.UIApplicationWillTerminate:
+            case UIApplication.didEnterBackgroundNotification, UIApplication.willTerminateNotification:
                 gamePaused()
-            case Notification.Name.UIApplicationWillEnterForeground:
+            case UIApplication.willEnterForegroundNotification:
                 gameResumed()
             default:
                 break

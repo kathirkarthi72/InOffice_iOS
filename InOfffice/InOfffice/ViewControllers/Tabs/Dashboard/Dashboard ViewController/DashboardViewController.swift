@@ -23,7 +23,7 @@ class DashboardViewController: UIViewController {
     /// Logout Bar Button
     var logoutBarButton: UIBarButtonItem {
         
-        let barButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(logoutBarButtonClickedAction))
+        let barButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.done, target: self, action: #selector(logoutBarButtonClickedAction))
         barButton.tintColor = UIColor.theme
         
         return barButton
@@ -33,7 +33,7 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         
         [NSNotification.Name.NSManagedObjectContextDidSave,
-         NSNotification.Name.UIApplicationWillEnterForeground].forEach { (notificationName) in
+         UIApplication.willEnterForegroundNotification].forEach { (notificationName) in
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(notificationObserved(_:)),
                                                    name: notificationName,
@@ -94,7 +94,7 @@ class DashboardViewController: UIViewController {
         switch notified.name {
         case NSNotification.Name.NSManagedObjectContextDidSave:
             debugPrint("Context Saved")
-        case NSNotification.Name.UIApplicationWillEnterForeground: // Application entered forground.
+        case UIApplication.willEnterForegroundNotification: // Application entered forground.
             // Get current date and calculate balance working time.
             applicationBecomeActive()
         default:
@@ -166,7 +166,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
             
@@ -229,21 +229,23 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             }
             
             if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
-                
-                if TimeSheetManager.current.isGetIn {
-                    shiftInOutButton.isSelected = true
-                } else {
-                    shiftInOutButton.isSelected = false
-                }
+                shiftInOutButton.isSelected = TimeSheetManager.current.isGetIn ? true: false
                 
                 shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
             }
             
             if let detailButton = timeSheetOverView.subviews[5] as? UIButton {
-                
                   detailButton.addTarget(self, action: #selector(showTodaySheet(_:)), for: .touchUpInside)
             }
         }
+        
+        let shadowPath = UIBezierPath(rect: overView.bounds)
+        overView.layer.masksToBounds = true
+        overView.layer.shadowColor = UIColor.black.cgColor
+        overView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        overView.layer.shadowOpacity = 0.5
+        overView.layer.cornerRadius = 10
+        overView.layer.shadowPath = shadowPath.cgPath
         
         return timeSheetCell
     }
@@ -369,8 +371,8 @@ extension DashboardViewController {
     }
     
     // MARK: - Shaked
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        if event?.type == UIEventType.motion {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if event?.type == UIEvent.EventType.motion {
             // iPhone shaked
             showLogoutBarButton()
         }

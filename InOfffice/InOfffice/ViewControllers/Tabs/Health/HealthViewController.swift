@@ -72,7 +72,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         buttonBehaviour.density = 10.0
         self.animator.addBehavior(buttonBehaviour)
         
-        let pushBehaviour = UIPushBehavior.init(items: watterButton, mode: UIPushBehaviorMode.instantaneous)
+        let pushBehaviour = UIPushBehavior.init(items: watterButton, mode: UIPushBehavior.Mode.instantaneous)
         pushBehaviour.magnitude = 0.1
         animator.addBehavior(pushBehaviour)
     }

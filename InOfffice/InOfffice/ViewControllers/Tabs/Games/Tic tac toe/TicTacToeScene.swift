@@ -140,7 +140,7 @@ class TicTacToeScene: SKScene {
             if let spriteNode = first as? SKSpriteNode, let playNodes = self.playTilesNodes, playNodes.contains(spriteNode), spriteNode.children.count == 0, let index = playNodes.indexes(of: spriteNode).first {
                 
                 self.isUserInteractionEnabled = false
-
+                
                 viewModel.insert(at: index, doneBy: .player)
                 
                 let label = SKLabelNode(text: "X")
@@ -150,7 +150,7 @@ class TicTacToeScene: SKScene {
                 spriteNode.addChild(label)
                 
                 self.run(SKAction.playSoundFileNamed("playerMoved.wav", waitForCompletion: false))
-
+                
                 showGameResult(or: .computer)
             }
         }
@@ -203,13 +203,11 @@ class TicTacToeScene: SKScene {
         viewModel.newGame()
         
         self.run(SKAction.playSoundFileNamed("reset.wav", waitForCompletion: false))
-
+        
         hideResult()
         
         if viewModel.lastWon == .computer {
             computerMove()
         }
     }
-
-    
 }

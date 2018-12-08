@@ -26,7 +26,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         loginButton.titleLabel?.textColor = UIColor.theme
         
         signupTableView.tableFooterView = UIView()
@@ -103,7 +103,7 @@ extension InitialViewController: UITableViewDataSource, UITableViewDelegate {
             nameTextField = cell.contentView.viewWithTag(100) as? UITextField
             nameTextField.delegate = self
             nameTextField.text = viewModel.userEnteredDetails.name
-
+            
             return cell
             
         case 1:

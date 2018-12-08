@@ -52,7 +52,7 @@ class CollectGame: SKScene {
         
         gameOverBGSprite?.isHidden = true
         physicsWorld.contactDelegate = self
-        
+            
         self.perform(#selector(newGame), with: nil, afterDelay: 1.0)
     }
     
@@ -177,7 +177,6 @@ class CollectGame: SKScene {
         
         if gameOverBGSprite!.isHidden {
             travelledDistance += 1
-            print(String(travelledDistance))
         }
         
         // Update delta time
@@ -256,9 +255,9 @@ class CollectGame: SKScene {
         
         if withRotate {
             let slide = SKAction.moveTo(x: self.frame.minX, duration: 4.0)
-            let rotate = SKAction.rotate(byAngle: CGFloat.pi, duration: 2.0)
+            node.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat.pi, duration: 2.0)))
             
-            node.run(SKAction.group([slide, SKAction.repeatForever(rotate)])) {
+            node.run(slide) {
                 node.removeFromParent()
             }
         } else {

@@ -22,15 +22,15 @@ class TimesheetNotesViewController: UIViewController {
     
     fileprivate func initalSetup() {
         if let inTime = editSheet?.getIn {
-            let attributedTitle = NSMutableAttributedString(string: "InTime :", attributes: [NSAttributedStringKey.foregroundColor: UIColor.black])
-            let attributedValue1 = NSAttributedString(string: inTime.convert(), attributes: [NSAttributedStringKey.foregroundColor: UIColor.darkGray])
-            let attributedTitle2 = NSAttributedString(string: "\nOutTime :", attributes: [NSAttributedStringKey.foregroundColor: UIColor.black])
+            let attributedTitle = NSMutableAttributedString(string: "InTime :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedValue1 = NSAttributedString(string: inTime.convert(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+            let attributedTitle2 = NSAttributedString(string: "\nOutTime :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
             
             attributedTitle.append(attributedValue1)
             attributedTitle.append(attributedTitle2)
             
             if let outTime = editSheet?.getOut {
-                let attributedValue2 = NSAttributedString(string: outTime.convert(), attributes: [NSAttributedStringKey.foregroundColor: UIColor.darkGray])
+                let attributedValue2 = NSAttributedString(string: outTime.convert(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
                 
                 attributedTitle.append(attributedValue2)
             }
@@ -40,8 +40,8 @@ class TimesheetNotesViewController: UIViewController {
         }
         
         if let worked = editSheet?.productionHours {
-            let attributedTime = NSMutableAttributedString(string: "Worked :", attributes: [NSAttributedStringKey.foregroundColor: UIColor.black])
-            let attributedTime1 = NSAttributedString(string: worked.secondsToHoursMinutesSeconds(), attributes: [NSAttributedStringKey.foregroundColor: UIColor.darkGray])
+            let attributedTime = NSMutableAttributedString(string: "Worked :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedTime1 = NSAttributedString(string: worked.secondsToHoursMinutesSeconds(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
             
             attributedTime.append(attributedTime1)
             

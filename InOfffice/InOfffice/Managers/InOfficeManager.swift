@@ -118,7 +118,6 @@ class InOfficeManager: NSObject {
         return false
     }
     
-    
     /// User logged out actions
     func userLoggedOut() -> Bool {
         

@@ -125,8 +125,8 @@ class JumpGameScene: SKScene {
     
     /// Create score node
     func createScoreNode() {
-        let attributed = NSMutableAttributedString(string: "Score :", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25)])
-        let value = NSAttributedString(string: "0", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
+        let attributed = NSMutableAttributedString(string: "Score :", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25)])
+        let value = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
         
         attributed.append(value)
         
@@ -145,8 +145,8 @@ class JumpGameScene: SKScene {
     func updateScore() {
         
         if let node = scoreNode {
-            let attributed = NSMutableAttributedString(string: "Score :", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25)])
-            let value = NSAttributedString(string: String(viewModel.score), attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)])
+            let attributed = NSMutableAttributedString(string: "Score :", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25)])
+            let value = NSAttributedString(string: String(viewModel.score), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
             
             attributed.append(value)
             
@@ -157,7 +157,7 @@ class JumpGameScene: SKScene {
     
     // when either of the sprites goes off-screen, move it to the
     // right so that it appears to be seamless movement
-    func moveSprite(sprite : SKSpriteNode, nextSprite : SKSpriteNode, speed : Float) {
+  /*  func moveSprite(sprite : SKSpriteNode, nextSprite : SKSpriteNode, speed : Float) {
         
         var newPosition = CGPoint.zero
         // For both the sprite and its duplicate:
@@ -180,8 +180,8 @@ class JumpGameScene: SKScene {
             }
         }
     }
-    
-    override func update(_ currentTime: TimeInterval) {
+    */
+  /*  override func update(_ currentTime: TimeInterval) {
         
         // First, update the delta time values:
         
@@ -204,6 +204,7 @@ class JumpGameScene: SKScene {
         }
     }
     
+    */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !motionManager.isDeviceMotionActive {
             monitorUserActivity()
@@ -232,8 +233,6 @@ class JumpGameScene: SKScene {
         
         jump()
     }
-    
-    
 }
 
 extension JumpGameScene {

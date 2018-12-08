@@ -29,7 +29,7 @@ extension UIViewController {
         let getNotificationPermission = UIAlertController(title: "Allow notification to notify your logout time", message: "Go to settings and change permission", preferredStyle: .alert)
         
         let settings = UIAlertAction(title: "Settings", style: .default, handler: { (action) in
-            UIApplication.shared.open(NSURL(string: UIApplicationOpenSettingsURLString + Bundle.main.bundleIdentifier!)! as URL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!)! as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
@@ -53,4 +53,9 @@ extension UIApplication {
         }
         return nil
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

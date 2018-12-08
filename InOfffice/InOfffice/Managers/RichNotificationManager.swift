@@ -80,12 +80,12 @@ class RichNotificationManager: NSObject {
                 notificationContent.categoryIdentifier = cateID
                 notificationContent.subtitle = title
                 notificationContent.body = message
-                notificationContent.sound = UNNotificationSound.default()
+                notificationContent.sound = UNNotificationSound.default
                 notificationContent.threadIdentifier = thrID
                 let triggerAfter = UNTimeIntervalNotificationTrigger(timeInterval: fireAt, repeats: isRepeat)  // Add Trigger schudled notification
                 
                 if let sound = soundTitle {
-                    notificationContent.sound = UNNotificationSound(named: sound) // "water.mp3"
+                    notificationContent.sound = UNNotificationSound(named: convertToUNNotificationSoundName(sound)) // "water.mp3"
                 }
 
                 // Create Notification Request
@@ -171,4 +171,9 @@ extension RichNotificationManager: UNUserNotificationCenterDelegate {
         
         completionHandler()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUNNotificationSoundName(_ input: String) -> UNNotificationSoundName {
+	return UNNotificationSoundName(rawValue: input)
 }
