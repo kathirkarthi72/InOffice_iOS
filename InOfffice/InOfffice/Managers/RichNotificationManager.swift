@@ -107,7 +107,6 @@ class RichNotificationManager: NSObject {
             }
         }
     }
-    
    
     //MARK: -  Clear Notifications
     

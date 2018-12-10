@@ -134,11 +134,15 @@ class DashboardViewController: UIViewController {
             dashBoardViewModel.stopTimer()
             
             dashBoardViewModel.scheduleNotifications(isUserLoggedIn: false) // Logged out
+            
+            UIImpactFeedbackGenerator().impactOccurred() // haptic impact
 
         } else { // Logging In
             TimeSheetManager.current.insertShiftInData()
             startTimer()
             dashBoardViewModel.scheduleNotifications(isUserLoggedIn: true)  // Logged in
+            
+            UIImpactFeedbackGenerator().impactOccurred() // haptic impact
         }
         
         DispatchQueue.main.async {
@@ -253,6 +257,8 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.item == 0 { // TimeSheet Cell
+            UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+
             self.performSegue(withIdentifier: Constants.Segues.Dashboard.toTimesheetHistory, sender: nil)
         }
     }
@@ -287,6 +293,8 @@ extension DashboardViewController {
     /// Add new timesheet button tapped.
     @objc func addNewTimeSheetbuttonTapped() {
         
+        UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+
         if TimeSheetManager.current.isGetIn {
             
             let sheet = UIAlertController(title: "You are in office still now.",
@@ -368,6 +376,7 @@ extension DashboardViewController {
     // MARK: - BarButton Action
     func showLogoutBarButton() {
         self.navigationItem.leftBarButtonItem = logoutBarButton
+
     }
     
     // MARK: - Shaked
@@ -381,9 +390,10 @@ extension DashboardViewController {
     
     // MARK: - Button Action
     @objc func logoutBarButtonClickedAction() {
-        
+        UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+
         if TimeSheetManager.current.isGetIn {
-            
+
             let sheet = UIAlertController(title: "You are still in office",
                                           message: "Make as to shift out?",
                                           preferredStyle: .actionSheet)
@@ -426,3 +436,5 @@ extension DashboardViewController {
         }
     }
 }
+
+

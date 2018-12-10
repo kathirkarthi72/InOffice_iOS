@@ -86,11 +86,11 @@ class TimesheetHistoryViewController: UIViewController {
                 */
             }
         }
-        
     }
     
     func downloadRecord(from: Date, to: Date) {
-        
+        UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+
         if let timesheetRecord = TimeSheetManager.current.fetchDate(from: from, to: to) {
             let formattedString = DownloadManager.current.crateFile(timeSheets: timesheetRecord)
             
@@ -122,7 +122,8 @@ class TimesheetHistoryViewController: UIViewController {
     //MARK: - Bar button aciton
     
     @IBAction func deleteBarButtonClickedAction(_ sender: Any) {
-        
+        UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+
         let sheet = UIAlertController(title: "Delete all records", message: nil, preferredStyle: .actionSheet)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { (okAction) in
@@ -226,7 +227,7 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false //indexPath.section == 1 ? true : false // Today : // Older
+        return indexPath.section == 1 ? true : false // 0 today. 1 older
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

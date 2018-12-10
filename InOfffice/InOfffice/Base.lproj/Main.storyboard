@@ -222,10 +222,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arq-Mj-hoV">
-                                                    <rect key="frame" x="11" y="11" width="353" height="67.666666666666671"/>
+                                                    <rect key="frame" x="11" y="11" width="353" height="68"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ktR-LS-UFG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="67.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="68"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="in" translatesAutoresizingMaskIntoConstraints="NO" id="Kzi-kK-IHY">
                                                             <rect key="frame" x="10" y="8" width="20" height="20"/>
@@ -260,7 +260,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJY-11-Bsx">
-                                                            <rect key="frame" x="255" y="7.9999999999999964" width="90" height="51.666666666666657"/>
+                                                            <rect key="frame" x="255" y="8" width="90" height="52"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="90" id="Vpc-Ca-clg"/>
                                                             </constraints>
@@ -355,6 +355,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MVZ-FY-agh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="xs4-6A-I4N">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -400,25 +401,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVS-HM-FpW">
-                                                    <rect key="frame" x="15" y="14.999999999999996" width="298" height="34.666666666666657"/>
+                                                    <rect key="frame" x="15" y="15" width="298" height="35"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="las-mT-0PI">
-                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="34.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="35"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dU-Qs-AHR">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mg-a0-vxG">
-                                                                    <rect key="frame" x="99.333333333333343" y="0.0" width="99.333333333333343" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="99.333333333333343" y="0.0" width="99.333333333333343" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbD-hw-kdt">
-                                                                    <rect key="frame" x="198.66666666666666" y="0.0" width="99.333333333333343" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="198.66666666666666" y="0.0" width="99.333333333333343" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN-Bold" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -454,25 +455,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5Q-zs-Fxx">
-                                                    <rect key="frame" x="15" y="0.0" width="298" height="39.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="298" height="40"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gTG-XB-TWO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="39.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5d-UM-ps1">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="39.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="98" height="40"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7Q-As-OAv">
-                                                                    <rect key="frame" x="100" y="0.0" width="98" height="39.666666666666664"/>
+                                                                    <rect key="frame" x="100" y="0.0" width="98" height="40"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5A-Ip-Wr1">
-                                                                    <rect key="frame" x="200" y="0.0" width="98" height="39.666666666666664"/>
+                                                                    <rect key="frame" x="200" y="0.0" width="98" height="40"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN-Bold" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -508,25 +509,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mf-Pz-eh2">
-                                                    <rect key="frame" x="15" y="0.0" width="298" height="34.666666666666664"/>
+                                                    <rect key="frame" x="15" y="0.0" width="298" height="35"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="brC-43-5WV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="34.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="35"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5co-FE-1gf">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="99.333333333333329" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9y-dd-9wM">
-                                                                    <rect key="frame" x="99.333333333333343" y="0.0" width="99.333333333333343" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="99.333333333333343" y="0.0" width="99.333333333333343" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmV-d5-HKc">
-                                                                    <rect key="frame" x="198.66666666666666" y="0.0" width="99.333333333333343" height="34.666666666666664"/>
+                                                                    <rect key="frame" x="198.66666666666666" y="0.0" width="99.333333333333343" height="35"/>
                                                                     <fontDescription key="fontDescription" name="TamilSangamMN-Bold" family="Tamil Sangam MN" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -653,7 +654,7 @@
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Y7q-SU-LPI"/>
                                             <barButtonItem title="Submit" id="7FD-8H-ySF">
-                                                <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="submitBarButtonAction:" destination="mlS-1n-ODw" id="LIW-oV-YRv"/>
                                                 </connections>
@@ -1003,7 +1004,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="TJH-cl-vDC" kind="relationship" relationship="viewControllers" id="x0V-cO-8ke"/>
@@ -1021,9 +1022,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TJH-cl-vDC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Timesheet" image="dashboard" id="GXa-lM-uST"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sRQ-kM-MTo">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sRQ-kM-MTo" customClass="CustomNavigationBar" customModule="InOfffice" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1046,8 +1048,8 @@
                                 <rect key="frame" x="238.66666666666663" y="168" width="85" height="85"/>
                                 <color key="backgroundColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="gPl-8B-vLl"/>
-                                    <constraint firstAttribute="width" constant="85" id="jKd-Yb-yie"/>
+                                    <constraint firstAttribute="width" constant="85" id="67v-hb-kvw"/>
+                                    <constraint firstAttribute="height" constant="85" id="fbZ-94-Ev1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="23"/>
                                 <state key="normal" backgroundImage="tictactoeIcon">
@@ -1058,14 +1060,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbv-0L-6Iy">
-                                <rect key="frame" x="43.666666666666657" y="279" width="100" height="100"/>
+                                <rect key="frame" x="51.333333333333343" y="279" width="85" height="85"/>
                                 <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="0.41352739726027399" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="02p-HT-80s"/>
-                                    <constraint firstAttribute="width" constant="100" id="7Z9-fA-j2d"/>
+                                    <constraint firstAttribute="width" constant="85" id="lQt-Go-kY0"/>
+                                    <constraint firstAttribute="height" constant="85" id="rhv-iI-DDQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="23"/>
-                                <state key="normal" title="Jump">
+                                <state key="normal" image="Jump">
                                     <color key="titleColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -1076,8 +1078,8 @@
                                 <rect key="frame" x="51.333333333333343" y="168" width="85" height="85"/>
                                 <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="0.52335723458904104" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="KnH-7i-6cQ"/>
-                                    <constraint firstAttribute="height" constant="85" id="PtC-gJ-ie8"/>
+                                    <constraint firstAttribute="height" constant="85" id="AEt-2o-FgS"/>
+                                    <constraint firstAttribute="width" constant="85" id="ihc-xm-f1V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="22"/>
                                 <state key="normal" backgroundImage="numderOrderIcon">
@@ -1088,11 +1090,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-Ne-2Hh">
-                                <rect key="frame" x="218.66666666666663" y="279" width="125" height="73"/>
+                                <rect key="frame" x="238.66666666666663" y="279" width="85" height="85"/>
                                 <color key="backgroundColor" name="systemPurpleColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="73" id="Owd-vq-QV6"/>
-                                    <constraint firstAttribute="width" constant="125" id="Rbv-ey-d6J"/>
+                                    <constraint firstAttribute="width" constant="85" id="qWw-rg-9mU"/>
+                                    <constraint firstAttribute="height" constant="85" id="qbQ-6T-322"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ZapfDingbatsITC" family="Zapf Dingbats" pointSize="24"/>
                                 <state key="normal" title="Catch"/>
@@ -1103,14 +1105,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="26" id="5fM-qx-V57"/>
-                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="Bol-tj-sCb"/>
-                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="I4I-Kg-0XQ"/>
-                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="Nqd-LX-JIp"/>
-                            <constraint firstItem="aTb-jH-245" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="cLd-8J-Acq"/>
-                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="cho-Dv-AAL"/>
-                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="top" secondItem="aTb-jH-245" secondAttribute="bottom" constant="26" id="usi-fM-ZHs"/>
-                            <constraint firstItem="aTb-jH-245" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="zrQ-Wp-b3M"/>
+                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="2AV-fS-MOe"/>
+                            <constraint firstItem="aTb-jH-245" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="3An-IK-ani"/>
+                            <constraint firstItem="wqJ-kX-QxV" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="AtB-Hm-XpM"/>
+                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="1.5" id="LVv-GZ-LKB"/>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="top" secondItem="wqJ-kX-QxV" secondAttribute="bottom" constant="26" id="aPC-DP-EJY"/>
+                            <constraint firstItem="aTb-jH-245" firstAttribute="top" secondItem="Few-jN-cpA" secondAttribute="top" constant="28" id="hKK-QP-oYs"/>
+                            <constraint firstItem="Fbv-0L-6Iy" firstAttribute="centerX" secondItem="uLU-v1-puz" secondAttribute="centerX" multiplier="0.5" id="uSs-5v-gam"/>
+                            <constraint firstItem="TO0-Ne-2Hh" firstAttribute="top" secondItem="aTb-jH-245" secondAttribute="bottom" constant="26" id="y3j-eu-mAw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Few-jN-cpA"/>
                     </view>
@@ -1342,6 +1344,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0d3-5c-tzT">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1361,6 +1364,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4Ao-E7-Jx4">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1384,7 +1388,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oco-O9-lzS">
                                         <rect key="frame" x="16" y="16" width="323" height="50"/>
-                                        <color key="backgroundColor" red="0.18980117091989765" green="0.42842217164433782" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="K6p-rm-0bK"/>
                                         </constraints>
@@ -1417,7 +1421,7 @@
                                                                     <constraint firstAttribute="height" constant="21" id="7LW-Cs-IBQ"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXK-m0-yij">
@@ -1447,7 +1451,7 @@
                                                                     <constraint firstAttribute="height" constant="21" id="lav-BS-JSO"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRx-cS-ZVQ">
@@ -1539,11 +1543,12 @@
         <image name="GettingIn" width="80" height="80"/>
         <image name="GettingOut" width="80" height="80"/>
         <image name="Health" width="25" height="25"/>
+        <image name="Jump" width="85" height="85"/>
         <image name="dashboard" width="25" height="25"/>
         <image name="in" width="16" height="16"/>
-        <image name="numderOrderIcon" width="85" height="85"/>
+        <image name="numderOrderIcon" width="64" height="64"/>
         <image name="remindHours" width="20" height="20"/>
-        <image name="tictactoeIcon" width="85" height="85"/>
+        <image name="tictactoeIcon" width="100" height="100"/>
         <image name="waterBottle" width="30" height="30"/>
         <image name="workedHours" width="20" height="20"/>
     </resources>

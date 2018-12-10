@@ -105,6 +105,9 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         /// Notes button tapped.
+        
+        UIImpactFeedbackGenerator().impactOccurred()
+        
         let detail = detailViewModel.sheetDetail(indexPath: indexPath)
         
         self.performSegue(withIdentifier: "goToNotesScene", sender: detail)

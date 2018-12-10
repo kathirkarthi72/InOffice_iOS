@@ -62,13 +62,15 @@ class TimesheetNotesViewController: UIViewController {
     }
     
     @IBAction func cancelBarButtonAction(_ sender: Any) {
+        UIImpactFeedbackGenerator().impactOccurred()
+
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func submitBarButtonAction(_ sender: Any) {
-        
+        UIImpactFeedbackGenerator().impactOccurred()
+
         editSheet?.notes = notesTextView.text
-        
         TimeSheetManager.current.updateSheetDetails()
         
         self.dismiss(animated: true, completion: nil)

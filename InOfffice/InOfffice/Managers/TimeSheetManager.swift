@@ -196,6 +196,30 @@ extension TimeSheetManager {
         }
     }
     
+    
+    /// Fetch all record details. for testing purpose.
+    func fetchAllRecord() {
+        
+        if let context = objectContext {
+            do {
+                let showSheets = try context.fetch(TimeSheetDetails.fetchRequest())
+                print("Sheets: \(showSheets.count)")
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        if let context = objectContext {
+            do {
+                let showSummaries = try context.fetch(TimeSheetSummary.fetchRequest())
+                print("Summary: \(showSummaries.count)")
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
     /// Fetch all Data from Timesheet
     func fetchAllData() -> [TimeSheetDetails]? {
         
