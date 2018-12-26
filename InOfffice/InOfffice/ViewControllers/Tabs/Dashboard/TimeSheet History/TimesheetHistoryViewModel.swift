@@ -28,11 +28,7 @@ class TimesheetHistoryViewModel: NSObject {
         outTime.text = detail.outTime?.convert()
         totalTime.text = detail.hours.secondsToHoursMinutesSeconds()
         
-     //   let percentage = CGFloat(detail.hours) / CGFloat(totalProductionHoursInSec) * 100.0
-        cell.contentView.subviews[0].backgroundColor = UIColor.theme.withAlphaComponent(0.4)
-     //   cell.contentView.subviews[0].gradientColor(from: UIColor.worked, to: UIColor.orange.withAlphaComponent(0.5), percentage: percentage)
-      //  cell.contentView.subviews[0].layer.addSublayer(gradient) //.insertSublayer(gradient, at: 0)
-        
+        cell.contentView.subviews[0].backgroundColor = UIColor.dynamicColor(secs: detail.hours)        
         return cell
     }
     
@@ -48,32 +44,32 @@ class TimesheetHistoryViewModel: NSObject {
 }
 
 /*
-extension UIView {
-    
-    /// Setting gradienet color to Book button
-    fileprivate func gradientColor(from: UIColor, to: UIColor, percentage: CGFloat) {
-        
-        let reminding = 100 - percentage
-        
-        let done = percentage / 100.0
-        let on = reminding / 100.0
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = frame
-        gradientLayer.colors = [from.cgColor, to.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: done)
-        gradientLayer.endPoint = CGPoint(x: done, y: on)
-       // gradientLayer.cornerRadius = 22
-        
-        // Render the gradient to UIImage
-        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        (subviews[0] as! UIImageView).image = image
-    }
-    
-}
-
-*/
+ extension UIView {
+ 
+ /// Setting gradienet color to Book button
+ fileprivate func gradientColor(from: UIColor, to: UIColor, percentage: CGFloat) {
+ 
+ let reminding = 100 - percentage
+ 
+ let done = percentage / 100.0
+ let on = reminding / 100.0
+ 
+ let gradientLayer = CAGradientLayer()
+ gradientLayer.frame = frame
+ gradientLayer.colors = [from.cgColor, to.cgColor]
+ gradientLayer.startPoint = CGPoint(x: 0.0, y: done)
+ gradientLayer.endPoint = CGPoint(x: done, y: on)
+ // gradientLayer.cornerRadius = 22
+ 
+ // Render the gradient to UIImage
+ UIGraphicsBeginImageContext(gradientLayer.bounds.size)
+ gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+ let image = UIGraphicsGetImageFromCurrentImageContext()
+ UIGraphicsEndImageContext()
+ 
+ (subviews[0] as! UIImageView).image = image
+ }
+ 
+ }
+ 
+ */

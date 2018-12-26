@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     var toDate: Date {
-        let dateFormatter = DateFormatter()
+        let dateFormatter = CustomDateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm:ss aa" // Your date format
         //dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") // Current time zone
         
@@ -21,7 +21,7 @@ extension String {
     
     var toDateOnly: String {
         
-        let dateFormatter = DateFormatter()
+        let dateFormatter = CustomDateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm:ss aa" // Your date format
         //dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") // Current time zone
         let serverDate: Date = dateFormatter.date(from: self)! // according to date format your date string
@@ -34,7 +34,7 @@ extension String {
     
     var toTimeOnly: String {
         
-        let dateFormatter = DateFormatter()
+        let dateFormatter = CustomDateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm:ss aa" // Your date format
         //dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") // Current time zone
         let serverDate: Date = dateFormatter.date(from: self)! // according to date format your date string

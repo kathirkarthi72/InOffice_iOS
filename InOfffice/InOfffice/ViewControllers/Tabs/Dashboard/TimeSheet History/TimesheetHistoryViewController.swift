@@ -56,9 +56,11 @@ class TimesheetHistoryViewController: UIViewController {
             let detailVC = segue.destination as! TimeSheetDetailViewController
             
             if sender != nil {
-                let sents: [String: String?] = sender as! [String : String?]
-                detailVC.sheedID = sents["sheetID"] ?? ""
-                    detailVC.title = sents["show"] ?? "Details"
+                let sents = sender as! [String : Any]
+                
+                detailVC.sheedID = sents["sheetID"] as? String ?? ""
+                detailVC.title = sents["show"] as? String ?? "Details"
+                detailVC.fillColor = sents["fillColor"] as? UIColor ?? .theme
             }
             
         } else if segue.identifier == "showIntevalPicker" {
@@ -70,27 +72,27 @@ class TimesheetHistoryViewController: UIViewController {
                 intervalPicker.picked(completed: { (from, to) in
                     self.downloadRecord(from: from, to: to)
                 })
-/*
-                let gregorian: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-                let components: DateComponents = DateComponents()
-                
-                if let min = gregorian.date(byAdding: components, to: fromDate, wrappingComponents: false),
-                    let max = gregorian.date(byAdding: components, to: toDate, wrappingComponents: false) {
-                    
-                    intervalPicker.modalPresentationStyle = .overFullScreen
-                    intervalPicker.datePicker.minimumDate = min
-                    intervalPicker.datePicker.maximumDate = max
-                    
-                    
-                }
-                */
+                /*
+                 let gregorian: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                 let components: DateComponents = DateComponents()
+                 
+                 if let min = gregorian.date(byAdding: components, to: fromDate, wrappingComponents: false),
+                 let max = gregorian.date(byAdding: components, to: toDate, wrappingComponents: false) {
+                 
+                 intervalPicker.modalPresentationStyle = .overFullScreen
+                 intervalPicker.datePicker.minimumDate = min
+                 intervalPicker.datePicker.maximumDate = max
+                 
+                 
+                 }
+                 */
             }
         }
     }
     
     func downloadRecord(from: Date, to: Date) {
         UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+        
         if let timesheetRecord = TimeSheetManager.current.fetchDate(from: from, to: to) {
             let formattedString = DownloadManager.current.crateFile(timeSheets: timesheetRecord)
             
@@ -113,7 +115,7 @@ class TimesheetHistoryViewController: UIViewController {
             } catch  {
                 print("Error while creating file")
             }
-
+            
         }
         
         
@@ -123,7 +125,7 @@ class TimesheetHistoryViewController: UIViewController {
     
     @IBAction func deleteBarButtonClickedAction(_ sender: Any) {
         UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+        
         let sheet = UIAlertController(title: "Delete all records", message: nil, preferredStyle: .actionSheet)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { (okAction) in
@@ -209,18 +211,24 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let cell = tableView.cellForRow(at: indexPath)!
+        
+        let fillColor = cell.contentView.subviews[0].backgroundColor
+        
         switch indexPath.section {
         case 0:
             if let today = self.timesheetHistoryViewModel.today {
-                let sending: [String: String?] = ["sheetID": today.sheetID,
-                                                 "show": "\(today.sheetID ?? "")-\(today.hours.secondsToHoursMinutesSeconds())"]
+                
+                let sending: [String: Any] = ["sheetID": today.sheetID ?? "",
+                                              "show": "\(today.sheetID ?? "")-\(today.hours.secondsToHoursMinutesSeconds())",
+                    "fillColor": fillColor ?? .theme]
                 self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender: sending)
             }
         default: // Older
             if let olders = self.timesheetHistoryViewModel.olders {
-                let sending: [String: String?] = ["sheetID": olders[indexPath.row].sheetID,
-                                                  "show": "\(olders[indexPath.row].sheetID ?? "")-\(olders[indexPath.row].hours.secondsToHoursMinutesSeconds())"]
-                
+                let sending: [String: Any] = ["sheetID": olders[indexPath.row].sheetID ?? "",
+                                              "show": "\(olders[indexPath.row].sheetID ?? "")-\(olders[indexPath.row].hours.secondsToHoursMinutesSeconds())",
+                    "fillColor": fillColor ?? .theme]
                 self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender:sending)
             }
         }

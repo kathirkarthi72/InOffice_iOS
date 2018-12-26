@@ -39,12 +39,12 @@
                                                     <rect key="frame" x="15" y="10" width="345" height="205"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timesheet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q59-aZ-4ZF">
-                                                            <rect key="frame" x="20.000000000000007" y="10" width="99.666666666666686" height="25"/>
+                                                            <rect key="frame" x="20.000000000000007" y="10" width="91.666666666666686" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="6VL-xp-5ev"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="lpR-2t-6m6"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -158,7 +158,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Howdy," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-5s-0ji">
                                             <rect key="frame" x="15" y="2" width="345" height="46"/>
-                                            <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1026,6 +1026,9 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1553,6 +1556,6 @@
         <image name="workedHours" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CZi-Mv-HtX"/>
+        <segue reference="4lZ-eX-xIC"/>
     </inferredMetricsTieBreakers>
 </document>

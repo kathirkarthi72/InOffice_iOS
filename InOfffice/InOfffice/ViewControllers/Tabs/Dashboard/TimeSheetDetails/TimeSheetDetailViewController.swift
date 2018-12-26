@@ -14,6 +14,8 @@ class TimeSheetDetailViewController: UIViewController {
     
     @IBOutlet var detailViewModel: TimeSheetDetailViewModel!
     
+    var fillColor: UIColor = UIColor.theme
+    
     /// Sheet ID
     var sheedID : String?
     
@@ -28,15 +30,14 @@ class TimeSheetDetailViewController: UIViewController {
             self.detailTableView.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -82,23 +83,33 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
         switch indexPath.row {
         case 0: // first cell
             let firstCell = tableView.dequeueReusableCell(withIdentifier: "first", for: indexPath)
-            
+            firstCell.tintColor = fillColor.withAlphaComponent(1.0)
+
             let presentationView = firstCell.contentView.subviews[0]
             presentationView.layer.cornerRadius = 5.0
             presentationView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            
+            presentationView.backgroundColor = fillColor
+            
             return detailViewModel.updateHistoryDetail(cell: firstCell, indexPath: indexPath)
             
         case ((detailViewModel.details?.count)! - 1): // last cell
             let lastCell = tableView.dequeueReusableCell(withIdentifier: "last", for: indexPath)
-            
+            lastCell.tintColor = fillColor.withAlphaComponent(1.0)
+
             let presentationView = lastCell.contentView.subviews[0]
             presentationView.layer.cornerRadius = 5.0
             presentationView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-
+            
+            presentationView.backgroundColor = fillColor
+            
             return detailViewModel.updateHistoryDetail(cell: lastCell, indexPath: indexPath)
             
         default: // middle cell
             let middleCell = tableView.dequeueReusableCell(withIdentifier: "center", for: indexPath)
+            middleCell.tintColor = fillColor.withAlphaComponent(1.0)
+
+            middleCell.contentView.subviews[0].backgroundColor = fillColor
             return detailViewModel.updateHistoryDetail(cell: middleCell, indexPath: indexPath)
         }
     }

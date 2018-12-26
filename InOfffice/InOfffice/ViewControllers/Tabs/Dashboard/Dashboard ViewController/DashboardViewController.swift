@@ -115,6 +115,7 @@ class DashboardViewController: UIViewController {
             if TimeSheetManager.current.today != nil {
                 detailVC.sheedID = TimeSheetManager.current.today
                 detailVC.title = "Today"
+                detailVC.fillColor = UIColor.dynamicColor(secs: dashBoardViewModel.workedHoursInSec)
             }
         }
     }
@@ -250,7 +251,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
         overView.layer.shadowOpacity = 0.5
         overView.layer.cornerRadius = 10
         overView.layer.shadowPath = shadowPath.cgPath
-        
+    
         return timeSheetCell
     }
     
