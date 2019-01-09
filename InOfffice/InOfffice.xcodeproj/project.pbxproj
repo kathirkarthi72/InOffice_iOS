@@ -110,12 +110,24 @@
 		9F16F2AC216F5D7600019F4E /* JumpGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16F2AA216F5D7600019F4E /* JumpGameScene.swift */; };
 		9F16F2AD216F5D7600019F4E /* JumpGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16F2AA216F5D7600019F4E /* JumpGameScene.swift */; };
 		9F16F33721AFF8F7002BB4A4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F16F33621AFF8F7002BB4A4 /* HealthKit.framework */; };
+		9F1C0E2021DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E1F21DF456500D1CE70 /* AddVehicleViewModel.swift */; };
+		9F1C0E2121DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E1F21DF456500D1CE70 /* AddVehicleViewModel.swift */; };
+		9F1C0E2221DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E1F21DF456500D1CE70 /* AddVehicleViewModel.swift */; };
+		9F1C0E2421DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2321DF45AE00D1CE70 /* AddVehicleFormViewController.swift */; };
+		9F1C0E2521DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2321DF45AE00D1CE70 /* AddVehicleFormViewController.swift */; };
+		9F1C0E2621DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2321DF45AE00D1CE70 /* AddVehicleFormViewController.swift */; };
+		9F1C0E2821DF782C00D1CE70 /* VehicleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2721DF782C00D1CE70 /* VehicleManager.swift */; };
+		9F1C0E2921DF782C00D1CE70 /* VehicleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2721DF782C00D1CE70 /* VehicleManager.swift */; };
+		9F1C0E2A21DF782C00D1CE70 /* VehicleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C0E2721DF782C00D1CE70 /* VehicleManager.swift */; };
 		9F2070C82135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
 		9F2070C92135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
 		9F2070CA2135282400033B78 /* TimesheetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */; };
 		9F2070CC2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
 		9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
 		9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */; };
+		9F29367821E38ED20056E118 /* AddMileageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29367721E38ED20056E118 /* AddMileageTableViewController.swift */; };
+		9F29367921E38ED20056E118 /* AddMileageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29367721E38ED20056E118 /* AddMileageTableViewController.swift */; };
+		9F29367A21E38ED20056E118 /* AddMileageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29367721E38ED20056E118 /* AddMileageTableViewController.swift */; };
 		9F2E700D2164DCE5009723D4 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2E700C2164DCE4009723D4 /* SpriteKit.framework */; };
 		9F2E700F2164DD55009723D4 /* TicTacToeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */; };
 		9F2E70102164DD55009723D4 /* TicTacToeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */; };
@@ -135,6 +147,9 @@
 		9F8281FD213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FE213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
 		9F8281FF213D3A6B00BEEF45 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */; };
+		9FBF3F8721E483B1007F001B /* AddMileageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF3F8621E483B1007F001B /* AddMileageViewModel.swift */; };
+		9FBF3F8821E483B1007F001B /* AddMileageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF3F8621E483B1007F001B /* AddMileageViewModel.swift */; };
+		9FBF3F8921E483B1007F001B /* AddMileageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBF3F8621E483B1007F001B /* AddMileageViewModel.swift */; };
 		9FD1692A2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
 		9FD1692B2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
 		9FD1692C2188856200369606 /* CollectGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD169292188856200369606 /* CollectGameViewController.swift */; };
@@ -144,6 +159,9 @@
 		9FD16932218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
 		9FD16933218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
 		9FD16934218885BF00369606 /* CollectGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD16931218885BF00369606 /* CollectGame.swift */; };
+		9FD3A6E121DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3A6E021DE1C58004D85FA /* MileageHistoryViewController.swift */; };
+		9FD3A6E221DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3A6E021DE1C58004D85FA /* MileageHistoryViewController.swift */; };
+		9FD3A6E321DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3A6E021DE1C58004D85FA /* MileageHistoryViewController.swift */; };
 		9FD8647921872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
 		9FD8647A21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
 		9FD8647B21872FD3002EA1F1 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9FD8647821872FD3002EA1F1 /* Jump.atlas */; };
@@ -248,8 +266,12 @@
 		9F16F2A6216F5D4E00019F4E /* JumpGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JumpGameScene.sks; sourceTree = "<group>"; };
 		9F16F2AA216F5D7600019F4E /* JumpGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpGameScene.swift; sourceTree = "<group>"; };
 		9F16F33621AFF8F7002BB4A4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		9F1C0E1F21DF456500D1CE70 /* AddVehicleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleViewModel.swift; sourceTree = "<group>"; };
+		9F1C0E2321DF45AE00D1CE70 /* AddVehicleFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleFormViewController.swift; sourceTree = "<group>"; };
+		9F1C0E2721DF782C00D1CE70 /* VehicleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleManager.swift; sourceTree = "<group>"; };
 		9F2070C72135282400033B78 /* TimesheetHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewController.swift; sourceTree = "<group>"; };
 		9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetHistoryViewModel.swift; sourceTree = "<group>"; };
+		9F29367721E38ED20056E118 /* AddMileageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMileageTableViewController.swift; sourceTree = "<group>"; };
 		9F2E700C2164DCE4009723D4 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		9F2E700E2164DD55009723D4 /* TicTacToeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TicTacToeScene.sks; sourceTree = "<group>"; };
 		9F2E70122164DE44009723D4 /* TicTacToeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeScene.swift; sourceTree = "<group>"; };
@@ -257,9 +279,11 @@
 		9F8281F4213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewController.swift; sourceTree = "<group>"; };
 		9F8281F8213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSheetDetailViewModel.swift; sourceTree = "<group>"; };
 		9F8281FC213D3A6B00BEEF45 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		9FBF3F8621E483B1007F001B /* AddMileageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMileageViewModel.swift; sourceTree = "<group>"; };
 		9FD169292188856200369606 /* CollectGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectGameViewController.swift; sourceTree = "<group>"; };
 		9FD1692D2188858D00369606 /* CollectGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CollectGame.sks; sourceTree = "<group>"; };
 		9FD16931218885BF00369606 /* CollectGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectGame.swift; sourceTree = "<group>"; };
+		9FD3A6E021DE1C58004D85FA /* MileageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageHistoryViewController.swift; sourceTree = "<group>"; };
 		9FD8647821872FD3002EA1F1 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
 		9FD91C9D216DF88400B1377C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9FE2852B21998D4900644EB2 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -394,6 +418,7 @@
 		9F1128C3212E833A00A599E8 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				9F1C0E1921DF44FE00D1CE70 /* Vehicles */,
 				9FEBE8F4218202C100B8EADF /* Sound */,
 				9FF588972180788D00AA9C32 /* TimeSheetNotes */,
 				9F8281F3213D2AD800BEEF45 /* TimeSheetDetails */,
@@ -452,6 +477,7 @@
 				9F1128FF212E956400A599E8 /* InOfficeManager.swift */,
 				9F112921212EDFA700A599E8 /* GamesManager.swift */,
 				9FF3A97C21416DA200D3A653 /* DownloadManager.swift */,
+				9F1C0E2721DF782C00D1CE70 /* VehicleManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -511,6 +537,25 @@
 			path = Jump;
 			sourceTree = "<group>";
 		};
+		9F1C0E1921DF44FE00D1CE70 /* Vehicles */ = {
+			isa = PBXGroup;
+			children = (
+				9FD3A6DF21DE1C25004D85FA /* MileageHistory */,
+				9F29367621E38EA80056E118 /* Add Mileage */,
+				9F1C0E1E21DF453300D1CE70 /* Add Vehicle */,
+			);
+			path = Vehicles;
+			sourceTree = "<group>";
+		};
+		9F1C0E1E21DF453300D1CE70 /* Add Vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				9F1C0E1F21DF456500D1CE70 /* AddVehicleViewModel.swift */,
+				9F1C0E2321DF45AE00D1CE70 /* AddVehicleFormViewController.swift */,
+			);
+			path = "Add Vehicle";
+			sourceTree = "<group>";
+		};
 		9F2070C6213527CA00033B78 /* TimeSheet History */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +564,15 @@
 				9F2070CB2135286100033B78 /* TimesheetHistoryViewModel.swift */,
 			);
 			path = "TimeSheet History";
+			sourceTree = "<group>";
+		};
+		9F29367621E38EA80056E118 /* Add Mileage */ = {
+			isa = PBXGroup;
+			children = (
+				9F29367721E38ED20056E118 /* AddMileageTableViewController.swift */,
+				9FBF3F8621E483B1007F001B /* AddMileageViewModel.swift */,
+			);
+			path = "Add Mileage";
 			sourceTree = "<group>";
 		};
 		9F2F29F5216B9A0000CEC800 /* IntervalPickerView */ = {
@@ -546,6 +600,14 @@
 				9FD16931218885BF00369606 /* CollectGame.swift */,
 			);
 			path = Collect;
+			sourceTree = "<group>";
+		};
+		9FD3A6DF21DE1C25004D85FA /* MileageHistory */ = {
+			isa = PBXGroup;
+			children = (
+				9FD3A6E021DE1C58004D85FA /* MileageHistoryViewController.swift */,
+			);
+			path = MileageHistory;
 			sourceTree = "<group>";
 		};
 		9FEBE8F4218202C100B8EADF /* Sound */ = {
@@ -757,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F2070CC2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
+				9FD3A6E121DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */,
 				9F112918212EDDEB00A599E8 /* OrderNumberGameViewController.swift in Sources */,
 				9F1128DD212E846800A599E8 /* GamesViewController.swift in Sources */,
 				9F1128F0212E93D000A599E8 /* DateExtension.swift in Sources */,
@@ -770,6 +833,7 @@
 				9F8281F9213D2B2500BEEF45 /* TimeSheetDetailViewModel.swift in Sources */,
 				9F1128C9212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E2212E858E00A599E8 /* InitialViewController.swift in Sources */,
+				9F29367821E38ED20056E118 /* AddMileageTableViewController.swift in Sources */,
 				9F8281F5213D2B0A00BEEF45 /* TimeSheetDetailViewController.swift in Sources */,
 				9FF77BE32164918100E56837 /* TicTacToeViewModel.swift in Sources */,
 				9F11287E212E7B3400A599E8 /* InOfffice.xcdatamodeld in Sources */,
@@ -784,7 +848,10 @@
 				9F1128F8212E940100A599E8 /* ViewExtension.swift in Sources */,
 				9F1128D5212E844B00A599E8 /* HealthViewModel.swift in Sources */,
 				9F2070C82135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
+				9F1C0E2421DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */,
+				9F1C0E2021DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */,
 				9F1128F4212E93E500A599E8 /* StringExtension.swift in Sources */,
+				9F1C0E2821DF782C00D1CE70 /* VehicleManager.swift in Sources */,
 				9F1128D1212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F11291D212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
 				9F112900212E956400A599E8 /* InOfficeManager.swift in Sources */,
@@ -792,6 +859,7 @@
 				9F1128FC212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F16F2AB216F5D7600019F4E /* JumpGameScene.swift in Sources */,
 				9F112922212EDFA700A599E8 /* GamesManager.swift in Sources */,
+				9FBF3F8721E483B1007F001B /* AddMileageViewModel.swift in Sources */,
 				9FF3A97D21416DA200D3A653 /* DownloadManager.swift in Sources */,
 				9FF77BDF2164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 			);
@@ -821,12 +889,15 @@
 				9FF77BE02164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CD2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128EC212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
+				9FD3A6E221DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */,
 				9F16F2A4216F5D2300019F4E /* JumpGameViewModel.swift in Sources */,
 				9F1128D2212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F1212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E7212E859D00A599E8 /* InitialViewModel.swift in Sources */,
 				9FF3A97E21416DA200D3A653 /* DownloadManager.swift in Sources */,
+				9F1C0E2121DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */,
 				9F16F2A0216F5CFC00019F4E /* JumpGameViewController.swift in Sources */,
+				9FBF3F8821E483B1007F001B /* AddMileageViewModel.swift in Sources */,
 				9F1128F5212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291E212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
 				9F2070C92135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
@@ -834,11 +905,14 @@
 				9F1128D6212E844B00A599E8 /* HealthViewModel.swift in Sources */,
 				9F1128FD212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F112909212E9D3E00A599E8 /* Constancts.swift in Sources */,
+				9F1C0E2521DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */,
 				9F1128CA212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E3212E858E00A599E8 /* InitialViewController.swift in Sources */,
 				9F16F2AC216F5D7600019F4E /* JumpGameScene.swift in Sources */,
+				9F1C0E2921DF782C00D1CE70 /* VehicleManager.swift in Sources */,
 				9F2E70142164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F112901212E956400A599E8 /* InOfficeManager.swift in Sources */,
+				9F29367921E38ED20056E118 /* AddMileageTableViewController.swift in Sources */,
 				9F1128F9212E940100A599E8 /* ViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -867,12 +941,15 @@
 				9FF77BE12164915F00E56837 /* TicTacToeViewController.swift in Sources */,
 				9F2070CE2135286100033B78 /* TimesheetHistoryViewModel.swift in Sources */,
 				9F1128ED212E91BF00A599E8 /* TimeSheetManager.swift in Sources */,
+				9FD3A6E321DE1C58004D85FA /* MileageHistoryViewController.swift in Sources */,
 				9F16F2A5216F5D2300019F4E /* JumpGameViewModel.swift in Sources */,
 				9F1128D3212E843400A599E8 /* HealthViewController.swift in Sources */,
 				9F1128F2212E93D000A599E8 /* DateExtension.swift in Sources */,
 				9F1128E8212E859D00A599E8 /* InitialViewModel.swift in Sources */,
 				9FF3A97F21416DA200D3A653 /* DownloadManager.swift in Sources */,
+				9F1C0E2221DF456500D1CE70 /* AddVehicleViewModel.swift in Sources */,
 				9F16F2A1216F5CFC00019F4E /* JumpGameViewController.swift in Sources */,
+				9FBF3F8921E483B1007F001B /* AddMileageViewModel.swift in Sources */,
 				9F1128F6212E93E500A599E8 /* StringExtension.swift in Sources */,
 				9F11291F212EDDFF00A599E8 /* OrderNumberGameViewModel.swift in Sources */,
 				9F2070CA2135282400033B78 /* TimesheetHistoryViewController.swift in Sources */,
@@ -880,11 +957,14 @@
 				9F1128D7212E844B00A599E8 /* HealthViewModel.swift in Sources */,
 				9F1128FE212E944400A599E8 /* RichNotificationManager.swift in Sources */,
 				9F11290A212E9D3E00A599E8 /* Constancts.swift in Sources */,
+				9F1C0E2621DF45AE00D1CE70 /* AddVehicleFormViewController.swift in Sources */,
 				9F1128CB212E83F900A599E8 /* DashboardViewController.swift in Sources */,
 				9F1128E4212E858E00A599E8 /* InitialViewController.swift in Sources */,
 				9F16F2AD216F5D7600019F4E /* JumpGameScene.swift in Sources */,
+				9F1C0E2A21DF782C00D1CE70 /* VehicleManager.swift in Sources */,
 				9F2E70152164DE44009723D4 /* TicTacToeScene.swift in Sources */,
 				9F112902212E956400A599E8 /* InOfficeManager.swift in Sources */,
+				9F29367A21E38ED20056E118 /* AddMileageTableViewController.swift in Sources */,
 				9F1128FA212E940100A599E8 /* ViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

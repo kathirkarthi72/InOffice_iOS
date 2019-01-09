@@ -43,8 +43,9 @@ class DashboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dashBoardViewModel.vehicles = VehicleManager.current.fetchVehicles
         
-       applicationBecomeActive()
+        applicationBecomeActive()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,8 +61,8 @@ class DashboardViewController: UIViewController {
     /// Dashboard is become active
     func applicationBecomeActive() {
         
-     //   RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
-
+        //   RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
+        
         checkIfLoggedIn()
         
         updateValues()
@@ -94,6 +95,7 @@ class DashboardViewController: UIViewController {
         switch notified.name {
         case NSNotification.Name.NSManagedObjectContextDidSave:
             debugPrint("Context Saved")
+            
         case UIApplication.willEnterForegroundNotification: // Application entered forground.
             // Get current date and calculate balance working time.
             applicationBecomeActive()
@@ -117,6 +119,9 @@ class DashboardViewController: UIViewController {
                 detailVC.title = "Today"
                 detailVC.fillColor = UIColor.dynamicColor(secs: dashBoardViewModel.workedHoursInSec)
             }
+        } else if segue.identifier == Constants.Segues.Dashboard.toMileageHistory {
+            let fuelDetailVC = segue.destination as! MileageHistoryViewController
+            fuelDetailVC.plateNumber = sender as! String
         }
     }
     
@@ -137,7 +142,7 @@ class DashboardViewController: UIViewController {
             dashBoardViewModel.scheduleNotifications(isUserLoggedIn: false) // Logged out
             
             UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+            
         } else { // Logging In
             TimeSheetManager.current.insertShiftInData()
             startTimer()
@@ -153,7 +158,7 @@ class DashboardViewController: UIViewController {
     
     /// Show Today sheet.
     @objc func showTodaySheet(_ sender: Any) {
-            self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
+        self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
     }
 }
 
@@ -182,6 +187,15 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             //do other header related calls or settups
             return headerView
             
+        case UICollectionView.elementKindSectionFooter:
+            
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "VehicleInfoFooter", for: indexPath)
+            
+            //            let addVehicleButton = footerView.subviews[0] as! UIButton
+            //            addVehicleButton.addTarget(self, action: #selector(addVehicleButtonClickedAction), for: .touchUpInside)
+            //
+            //do other header related calls or settups
+            return footerView
         default:
             assert(false, "Unexpected element kind")
             return UICollectionReusableView()
@@ -189,78 +203,133 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 1 + ( dashBoardViewModel.vehicles ??  []).count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: self.view.frame.size.width, height: 230.0)
-
-       /* switch UIDevice.current.orientation {
-        case .landscapeLeft, .landscapeRight:
-            return CGSize(width: 230.0, height:  self.view.frame.size.width)
-        default:
+        if indexPath.row == 0 {
             return CGSize(width: self.view.frame.size.width, height: 230.0)
+            
+        } else {
+            return CGSize(width: self.view.frame.size.width, height: 165.0)
         }
-        */
+        
+        /* switch UIDevice.current.orientation {
+         case .landscapeLeft, .landscapeRight:
+         return CGSize(width: 230.0, height:  self.view.frame.size.width)
+         default:
+         return CGSize(width: self.view.frame.size.width, height: 230.0)
+         }
+         */
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let timeSheetCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeSheetCell", for: indexPath)
-        
-        let overView = timeSheetCell.contentView.subviews[0]
-        overView.layer.cornerRadius = 10
-        
-        if overView.subviews.count > 0 {
+        if indexPath.row == 0 {
+            let timeSheetCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeSheetCell", for: indexPath)
             
-            let timeSheetOverView = overView.subviews[1]
-            timeSheetOverView.layer.cornerRadius = 10
+            let overView = timeSheetCell.contentView.subviews[0]
+            overView.layer.cornerRadius = 10
             
-            timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? UILabel
-            timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? UILabel
-            
-            addNewSheet = overView.subviews[2] as? UIButton
-            
-            addNewSheet?.addTarget(self, action: #selector(addNewTimeSheetbuttonTapped), for: .touchUpInside) // Add new timesheet
-            
-            if let workedLabel = timeSheetWorkedLabel {
-                workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
-            }
-            
-            if let balanceLabel = timeSheetBalanceLabel {
-                let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
-                balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
-            }
-            
-            if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
-                shiftInOutButton.isSelected = TimeSheetManager.current.isGetIn ? true: false
+            if overView.subviews.count > 0 {
                 
-                shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
+                let timeSheetOverView = overView.subviews[1]
+                timeSheetOverView.layer.cornerRadius = 10
+                
+                timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? UILabel
+                timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? UILabel
+                
+                addNewSheet = overView.subviews[2] as? UIButton
+                
+                addNewSheet?.addTarget(self, action: #selector(addNewTimeSheetbuttonTapped), for: .touchUpInside) // Add new timesheet
+                
+                if let workedLabel = timeSheetWorkedLabel {
+                    workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
+                }
+                
+                if let balanceLabel = timeSheetBalanceLabel {
+                    let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
+                    balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
+                }
+                
+                if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
+                    shiftInOutButton.isSelected = TimeSheetManager.current.isGetIn ? true: false
+                    
+                    shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
+                }
+                
+                if let detailButton = timeSheetOverView.subviews[5] as? UIButton {
+                    detailButton.addTarget(self, action: #selector(showTodaySheet(_:)), for: .touchUpInside)
+                }
             }
             
-            if let detailButton = timeSheetOverView.subviews[5] as? UIButton {
-                  detailButton.addTarget(self, action: #selector(showTodaySheet(_:)), for: .touchUpInside)
+            let shadowPath = UIBezierPath(rect: overView.bounds)
+            overView.layer.masksToBounds = true
+            overView.layer.shadowColor = UIColor.black.cgColor
+            overView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            overView.layer.shadowOpacity = 0.5
+            overView.layer.cornerRadius = 10
+            overView.layer.shadowPath = shadowPath.cgPath
+            
+            return timeSheetCell
+        } else {
+            
+            let index = indexPath.row - 1
+            let vechile =  dashBoardViewModel.vehicles ?? []
+            
+            let vehicleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "vehicleInfoCell", for: indexPath)
+            
+            let overView = vehicleCell.contentView.subviews[0]
+            overView.layer.cornerRadius = 10
+            
+            if overView.subviews.count > 0 {
+                
+                let timeSheetOverView = overView.subviews[1]
+                timeSheetOverView.layer.cornerRadius = 10
+                
+                let deleteButton = overView.subviews[2] as? UIButton
+                deleteButton?.tag = indexPath.row
+                deleteButton?.addTarget(self, action: #selector(deleteVechile(_:)), for: .touchUpInside) // Add new timesheet
+                
+                if let title = overView.subviews[0] as? UILabel {
+                    title.text = vechile[index].type ?? ""
+                }
+                
+                if let plateNoLabel = timeSheetOverView.subviews[2] as? UILabel {
+                    plateNoLabel.text = "Plate No: \(vechile[index].plateNo ?? "")"
+                }
+                
+                if let totalMileageLabel = timeSheetOverView.subviews[3] as? UILabel {
+                    totalMileageLabel.text = "Total Mileage: \(String(vechile[index].totalKm))"
+                }
             }
+            
+            let shadowPath = UIBezierPath(rect: overView.bounds)
+            overView.layer.masksToBounds = true
+            overView.layer.shadowColor = UIColor.black.cgColor
+            overView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            overView.layer.shadowOpacity = 0.5
+            overView.layer.cornerRadius = 10
+            overView.layer.shadowPath = shadowPath.cgPath
+            
+            return vehicleCell
         }
-        
-        let shadowPath = UIBezierPath(rect: overView.bounds)
-        overView.layer.masksToBounds = true
-        overView.layer.shadowColor = UIColor.black.cgColor
-        overView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        overView.layer.shadowOpacity = 0.5
-        overView.layer.cornerRadius = 10
-        overView.layer.shadowPath = shadowPath.cgPath
-    
-        return timeSheetCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.item == 0 { // TimeSheet Cell
             UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+            
             self.performSegue(withIdentifier: Constants.Segues.Dashboard.toTimesheetHistory, sender: nil)
+        } else { // mileage information
+            UIImpactFeedbackGenerator().impactOccurred() // haptic impact
+            
+            let index = indexPath.row - 1
+            let vechile =  dashBoardViewModel.vehicles ?? []
+            
+            self.performSegue(withIdentifier: Constants.Segues.Dashboard.toMileageHistory, sender: vechile[index].plateNo ?? "")
         }
     }
 }
@@ -280,7 +349,7 @@ extension DashboardViewController {
     @objc func timeSheetLiveUpdater() {
         
         dashBoardViewModel.workedHoursInSec += 1
-                
+        
         if let workedLabel = timeSheetWorkedLabel {
             workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
         }
@@ -295,7 +364,7 @@ extension DashboardViewController {
     @objc func addNewTimeSheetbuttonTapped() {
         
         UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+        
         if TimeSheetManager.current.isGetIn {
             
             let sheet = UIAlertController(title: "You are in office still now.",
@@ -305,7 +374,7 @@ extension DashboardViewController {
             let logoutAction = UIAlertAction(title: "Shift Now", style: .default) { (okAction) in
                 
                 self.timeSheetShiftInOutButtonWasClicked(self)
-
+                
                 self.updateValues()
                 DispatchQueue.main.async {
                     self.dashboardCollectionView.reloadData()
@@ -325,9 +394,9 @@ extension DashboardViewController {
                 TimeSheetManager.current.createNewRecord(withSave: true)
                 
                 RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeBreak, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
-
+                
                 self.updateValues()
-
+                
                 DispatchQueue.main.async {
                     self.dashboardCollectionView.reloadData()
                 }
@@ -339,14 +408,46 @@ extension DashboardViewController {
                 TimeSheetManager.current.createNewRecord(withSave: false)
                 
                 RichNotificationManager.current.clearPendingNotification(requestIDs: [Constants.Notification.RequestID.logOut, Constants.Notification.RequestID.takeBreak, Constants.Notification.RequestID.comeBackAfterBreak]) // Log out notification removed.
-
+                
                 self.updateValues()
-
+                
                 DispatchQueue.main.async {
                     self.dashboardCollectionView.reloadData()
                 }
             }
             sheet.addAction(createAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            sheet.addAction(cancelAction)
+            
+            self.present(sheet, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func deleteVechile(_ sender: Any) {
+        
+        if let delete = sender as? UIButton {
+            let tag = delete.tag
+            
+            let index = tag - 1
+            
+            let sheet = UIAlertController(title: "Delete vehicle ?",
+                                          message: nil,
+                                          preferredStyle: .actionSheet)
+            
+            let shiftoutAction = UIAlertAction(title: "Delete now", style: .default) { (okAction) in
+                
+                if let vehicles =  self.dashBoardViewModel.vehicles, let plateNo = vehicles[index].plateNo {
+                    VehicleManager.current.delete(vehicle: plateNo, deleted: {
+                        // self.dashboardCollectionView.deleteItems(at: [IndexPath(item: tag, section: 0)])
+                        
+                        DispatchQueue.main.async {
+                            self.dashboardCollectionView.reloadData()
+                        }
+                    })
+                }
+            }
+            sheet.addAction(shiftoutAction)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             sheet.addAction(cancelAction)
@@ -377,7 +478,7 @@ extension DashboardViewController {
     // MARK: - BarButton Action
     func showLogoutBarButton() {
         self.navigationItem.leftBarButtonItem = logoutBarButton
-
+        
     }
     
     // MARK: - Shaked
@@ -392,9 +493,9 @@ extension DashboardViewController {
     // MARK: - Button Action
     @objc func logoutBarButtonClickedAction() {
         UIImpactFeedbackGenerator().impactOccurred() // haptic impact
-
+        
         if TimeSheetManager.current.isGetIn {
-
+            
             let sheet = UIAlertController(title: "You are still in office",
                                           message: "Make as to shift out?",
                                           preferredStyle: .actionSheet)
@@ -439,3 +540,9 @@ extension DashboardViewController {
 }
 
 
+extension UIAlertController{
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.tintColor = .black
+    }
+}

@@ -60,7 +60,6 @@ class DownloadManager: NSObject {
             }
             inputs.append(",,,\(totalTime.secondsToHoursMinutesSeconds())")
         }
-        
         return inputs
     }
     

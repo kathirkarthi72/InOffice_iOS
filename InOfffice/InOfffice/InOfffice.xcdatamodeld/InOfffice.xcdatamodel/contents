@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FuelDetail" representedClassName="FuelDetail" syncable="YES" codeGenerationType="class">
+        <attribute name="avgKm" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentKm" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="initialKm" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="litre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="plateNo" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="TimeSheetDetails" representedClassName="TimeSheetDetails" syncable="YES" codeGenerationType="class">
         <attribute name="getIn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="getOut" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -13,8 +21,16 @@
         <attribute name="outTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="sheetID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Vehicle" representedClassName="Vehicle" syncable="YES" codeGenerationType="class">
+        <attribute name="bestMileage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="plateNo" attributeType="String" syncable="YES"/>
+        <attribute name="totalKm" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" attributeType="String" defaultValueString="Bike" syncable="YES"/>
+    </entity>
     <elements>
+        <element name="FuelDetail" positionX="-162" positionY="9" width="128" height="135"/>
         <element name="TimeSheetDetails" positionX="-288" positionY="-36" width="128" height="120"/>
         <element name="TimeSheetSummary" positionX="-54" positionY="27" width="128" height="28"/>
+        <element name="Vehicle" positionX="-171" positionY="0" width="128" height="105"/>
     </elements>
 </model>

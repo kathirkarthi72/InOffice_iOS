@@ -12,6 +12,8 @@ class DashboardViewModel: NSObject {
     
     var timeSheetLiveUpdated: Timer?
     
+    var vehicles: [Vehicle]?
+    
     /// Stop timer
     func stopTimer() {
         if let timeSheetTimer = timeSheetLiveUpdated, timeSheetTimer.isValid {
@@ -65,14 +67,7 @@ class DashboardViewModel: NSObject {
         return (loggedInDate, loggedOutDate, workedHours)
     }
     
-    
     // MARK: User notifications
-    /**
-     schedule notifications
-     - Parameters:
-     - isUserLoggedIn: user was logged In or not.
-     */
-    
     
     /// schedule notification
     ///

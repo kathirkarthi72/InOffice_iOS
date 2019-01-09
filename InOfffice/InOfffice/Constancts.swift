@@ -15,6 +15,8 @@ struct Constants {
             static let toInitialVC = "ShowSigninPage"
             
             static let toTimesheetHistory = "ShowTimesheetHistoryPage"
+            
+            static let toMileageHistory = "mileageSegue"
         }
     }
     

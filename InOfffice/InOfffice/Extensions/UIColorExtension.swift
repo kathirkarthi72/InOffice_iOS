@@ -15,22 +15,32 @@ extension UIColor {
     
     public static func dynamicColor(secs: Int64) -> UIColor {
         switch secs {
-        case 0...3600: // 1 hours
+            
+        case 0...1*60*60: // 1 hours
             return UIColor.lightGray.withAlphaComponent(0.4)
             
-        case 3600...10800: // 3 hours
+        case 1*60*60...2*60*60: // 2 hours
+            return UIColor.purple.withAlphaComponent(0.4)
+            
+        case 2*60*60...3*60*60: // 3 hours
             return UIColor.brown.withAlphaComponent(0.4)
             
-        case 10800...14400: // 4 hours
-            return UIColor.yellow.withAlphaComponent(0.4)
+        case 3*60*60...4*60*60: // 4 hours
+            return UIColor.yellow.withAlphaComponent(0.6)
             
-        case 14400...25200: // 7 hours
+        case 4*60*60...5*60*60: // 5 hours
+            return UIColor.blue.withAlphaComponent(0.4)
+            
+        case 5*60*60...6*60*60: // 6 hours
             return UIColor.green.withAlphaComponent(0.4)
             
-        case 25200...28800: // 8 hours
+        case 6*60*60...7*60*60: // 6 hours
+            return UIColor.cyan.withAlphaComponent(0.4)
+            
+        case 7*60*60...8*60*60: // 8 hours
             return UIColor.theme.withAlphaComponent(0.4)
             
-        case 28800...32400: // 9 hours
+        case 8*60*60...9*60*60: // 9 hours
             return UIColor.orange.withAlphaComponent(0.4)
             
         default:
