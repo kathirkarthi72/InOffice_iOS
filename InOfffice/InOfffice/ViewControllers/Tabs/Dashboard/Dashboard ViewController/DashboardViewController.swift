@@ -24,7 +24,7 @@ class DashboardViewController: UIViewController {
     var logoutBarButton: UIBarButtonItem {
         
         let barButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.done, target: self, action: #selector(logoutBarButtonClickedAction))
-        barButton.tintColor = UIColor.theme
+        barButton.tintColor = UIColor.black
         
         return barButton
     }
@@ -111,7 +111,7 @@ class DashboardViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "toTodayHistory" {
+        if segue.identifier == Constants.Segues.Dashboard.toTodayHistory {
             let detailVC = segue.destination as! TimeSheetDetailViewController
             
             if TimeSheetManager.current.today != nil {
@@ -121,7 +121,18 @@ class DashboardViewController: UIViewController {
             }
         } else if segue.identifier == Constants.Segues.Dashboard.toMileageHistory {
             let fuelDetailVC = segue.destination as! MileageHistoryViewController
-            fuelDetailVC.plateNumber = sender as! String
+            
+            let detail = sender as! [String: String]
+            let plateNo = detail["plate"] ?? ""
+            let type = detail["type"] ?? ""
+            
+            fuelDetailVC.plateNumber = plateNo
+            
+            if type == "Bike" {
+                fuelDetailVC.title = "🏍 " + plateNo
+            } else {
+                fuelDetailVC.title = "🚗 " +  plateNo
+            }
         }
     }
     
@@ -158,7 +169,7 @@ class DashboardViewController: UIViewController {
     
     /// Show Today sheet.
     @objc func showTodaySheet(_ sender: Any) {
-        self.performSegue(withIdentifier: "toTodayHistory", sender: nil)
+        self.performSegue(withIdentifier: Constants.Segues.Dashboard.toTodayHistory, sender: nil)
     }
 }
 
@@ -292,8 +303,12 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 deleteButton?.tag = indexPath.row
                 deleteButton?.addTarget(self, action: #selector(deleteVechile(_:)), for: .touchUpInside) // Add new timesheet
                 
-                if let title = overView.subviews[0] as? UILabel {
-                    title.text = vechile[index].type ?? ""
+                if let title = overView.subviews[0] as? UILabel, let type = vechile[index].type {
+                    if type == "Bike" {
+                      title.text = type + " 🏍"
+                    } else {
+                        title.text = type + " 🚗"
+                    }
                 }
                 
                 if let plateNoLabel = timeSheetOverView.subviews[2] as? UILabel {
@@ -301,7 +316,7 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 }
                 
                 if let totalMileageLabel = timeSheetOverView.subviews[3] as? UILabel {
-                    totalMileageLabel.text = "Total Mileage: \(String(vechile[index].totalKm))"
+                    totalMileageLabel.text = "Best Mileage: \(String(vechile[index].bestMileage))"
                 }
             }
             
@@ -327,9 +342,12 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             UIImpactFeedbackGenerator().impactOccurred() // haptic impact
             
             let index = indexPath.row - 1
-            let vechile =  dashBoardViewModel.vehicles ?? []
+            let vehicle =  dashBoardViewModel.vehicles ?? []
             
-            self.performSegue(withIdentifier: Constants.Segues.Dashboard.toMileageHistory, sender: vechile[index].plateNo ?? "")
+            
+            
+            self.performSegue(withIdentifier: Constants.Segues.Dashboard.toMileageHistory, sender: ["plate": vehicle[index].plateNo ?? "",
+                                                                                                    "type": vehicle[index].type ?? ""])
         }
     }
 }

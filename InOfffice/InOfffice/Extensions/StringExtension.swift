@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     
+    /// To Date with time
     var toDate: Date {
         let dateFormatter = CustomDateFormatter()
         dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm:ss aa" // Your date format
@@ -19,6 +20,7 @@ extension String {
         return serverDate
     }
     
+    /// To Date only
     var toDateOnly: String {
         
         let dateFormatter = CustomDateFormatter()
@@ -32,6 +34,7 @@ extension String {
         return newDate
     }
     
+    /// to time only
     var toTimeOnly: String {
         
         let dateFormatter = CustomDateFormatter()

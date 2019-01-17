@@ -9,12 +9,17 @@
 import UIKit
 import CoreData
 
+
+/// Timesheet manager
 class TimeSheetManager: NSObject {
     
+    /// Time sheet manager
     static let current = TimeSheetManager()
     
+    /// Production hour string
     let productionHourString: [String] = ["30m", "1h", "1h 30m", "2h", "2h 30m", "3h", "3h 30m", "4h", "4h 30m", "5h", "5h 30m", "6h", "6h 30m", "7h", "7h 30m", "8h", "8h 30m", "9h", "9h 30m", "10h", "10h 30m", "11h", "11h 30m", "12h"]
-    
+
+    /// Production hour list
     let productionHourList: [Float] = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10, 10.5, 11.0, 11.5, 12.0]
     
     // Today sheet ID
@@ -49,15 +54,14 @@ class TimeSheetManager: NSObject {
         }
     }
     
-    
     /// Get Today inTime
     var todayInTime: Date?
-
 }
 
 // MARK: - CoreData Manager
 extension TimeSheetManager {
     
+    /// Object context
     var objectContext: NSManagedObjectContext? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
@@ -114,6 +118,9 @@ extension TimeSheetManager {
         }
     }
     
+    /// Update shift out data
+    ///
+    /// - Parameter toSheet: sheet value
     func updateShiftOutData(toSheet: String) {
         
         fetchData(for: toSheet) { (error, sheetDetail, additionalInfos) in
@@ -172,6 +179,13 @@ extension TimeSheetManager {
     }
     
     /// Fetch Data by ID
+    
+    
+    /// Fetch data
+    ///
+    /// - Parameters:
+    ///   - sheetID: sheet id
+    ///   - completed: completion handler
     func fetchData(for sheetID: String, completed: @escaping (FetchDataError?, [TimeSheetDetails]?, AdditionalInfo? ) -> ()) {
         
         if sheetID.isEmpty {
@@ -241,7 +255,14 @@ extension TimeSheetManager {
         return nil
     }
 
-    func fetchDate(from: Date, to: Date) -> [TimeSheetDetails]? {
+    
+    /// Fetch data
+    ///
+    /// - Parameters:
+    ///   - from: from date
+    ///   - to: to date
+    /// - Returns: array of timesheet details
+    func fetchData(from: Date, to: Date) -> [TimeSheetDetails]? {
         
        // let sheetSort = NSSortDescriptor(key: "sheetID", ascending: false)
         let getInSort = NSSortDescriptor(key: "getIn", ascending: true)
@@ -356,6 +377,13 @@ extension TimeSheetManager {
         }
     }
     
+    
+    /// Fetch summary
+    ///
+    /// - Parameters:
+    ///   - sheetID: sheet id
+    ///   - propertiesToFetch: properties to fetch
+    ///   - completed: completion handler
     func fetchSummary(_ sheetID: String, propertiesToFetch: [String]? = nil, completed: @escaping (FetchDataError?, [TimeSheetSummary]?) -> ()) {
         
         if sheetID.isEmpty {
@@ -379,6 +407,13 @@ extension TimeSheetManager {
     }
     
     /// Update summary Sheet with OutTime and Last workedHours
+    
+    /// Update summary
+    ///
+    /// - Parameters:
+    ///   - sheetID: sheet id
+    ///   - outTime: out time
+    ///   - lastWorkedHours: last worked hours
     func updateSummary(id sheetID: String, outTime: Date, lastWorkedHours: Int64) {
         
         fetchSummary(sheetID) { (error, summaries) in

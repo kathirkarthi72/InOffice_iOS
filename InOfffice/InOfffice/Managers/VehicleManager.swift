@@ -128,6 +128,7 @@ extension VehicleManager {
         
         if let context = TimeSheetManager.current.objectContext {
             let fetchRequest: NSFetchRequest = FuelDetail.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "plateNo == %@", plateNumber)
             let dateSort = NSSortDescriptor(key: "date", ascending: false)
             fetchRequest.sortDescriptors = [dateSort]
             do {

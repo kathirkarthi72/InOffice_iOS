@@ -22,10 +22,10 @@ class TimeSheetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let sheedID = sheedID, !sheedID.isEmpty {
-            detailViewModel.fetchDetail(sheedID: sheedID)
+        if let sheetID = sheedID, !sheetID.isEmpty {
+            detailViewModel.fetchDetail(sheedID: sheetID)
         }
-        
+
         DispatchQueue.main.async {
             self.detailTableView.reloadData()
         }
@@ -43,7 +43,7 @@ class TimeSheetDetailViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "goToNotesScene" {
+        if segue.identifier == Constants.Segues.Dashboard.TimeSheetHistory.toNotes {
             let notesVC = segue.destination as! TimesheetNotesViewController
             notesVC.editSheet = sender as? TimeSheetDetails
         }
@@ -121,6 +121,6 @@ extension TimeSheetDetailViewController: UITableViewDataSource, UITableViewDeleg
         
         let detail = detailViewModel.sheetDetail(indexPath: indexPath)
         
-        self.performSegue(withIdentifier: "goToNotesScene", sender: detail)
+        self.performSegue(withIdentifier: Constants.Segues.Dashboard.TimeSheetHistory.toNotes, sender: detail)
     }
 }

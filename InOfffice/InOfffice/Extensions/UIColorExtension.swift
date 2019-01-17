@@ -9,11 +9,20 @@
 import UIKit
 
 extension UIColor {
+    
+    /// Theme color
     public static let theme = UIColor(red: 36.0/255.0, green: 128.0/255.0, blue: 106.0/255.0, alpha: 1.0)
     
+    /// Worked color
     public static let worked = UIColor(red: 8.0/255.0, green: 117.0/255.0, blue: 98.0/255.0, alpha: 1.0)
     
+    
+    /// Dynamic color
+    ///
+    /// - Parameter secs: worked hours in seconds
+    /// - Returns: color
     public static func dynamicColor(secs: Int64) -> UIColor {
+        
         switch secs {
             
         case 0...1*60*60: // 1 hours
@@ -38,11 +47,11 @@ extension UIColor {
             return UIColor.cyan.withAlphaComponent(0.4)
             
         case 7*60*60...8*60*60: // 8 hours
-            return UIColor.theme.withAlphaComponent(0.4)
-            
+                return UIColor.orange.withAlphaComponent(0.4)
+
         case 8*60*60...9*60*60: // 9 hours
-            return UIColor.orange.withAlphaComponent(0.4)
-            
+            return UIColor.theme.withAlphaComponent(0.4)
+
         default:
             return UIColor.red.withAlphaComponent(0.4)
         }

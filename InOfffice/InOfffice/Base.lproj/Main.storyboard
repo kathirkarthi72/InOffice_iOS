@@ -227,8 +227,8 @@
                                                                 <constraint firstAttribute="width" constant="33" id="a5w-dP-lBC"/>
                                                                 <constraint firstAttribute="height" constant="33" id="m6f-V2-l4f"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="35"/>
-                                                            <state key="normal" image="Delete"/>
+                                                            <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="30"/>
+                                                            <state key="normal" title="x"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.77704535590277779" green="0.38609483506944442" blue="0.42936197916666669" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -356,7 +356,7 @@
         <scene sceneID="QQi-6P-ahK">
             <objects>
                 <tableViewController id="3Po-Nt-cvk" customClass="AddVehicleFormViewController" customModule="InOfffice" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="77S-uB-JF9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="10" id="77S-uB-JF9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -448,14 +448,14 @@
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="0.23004066779999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="AB0001" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dt5-L9-3BK">
                                                             <rect key="frame" x="95.666666666666657" y="0.0" width="84.333333333333343" height="27.666666666666668"/>
                                                             <color key="backgroundColor" white="0.66666666669999997" alpha="0.23004066779999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -587,6 +587,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Vehicle Form" id="Yo8-Zv-mLh">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="wip-Zq-Wdf">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveBarButtonItemClickedAction:" destination="3Po-Nt-cvk" id="3gk-CJ-qdY"/>
                             </connections>
@@ -725,13 +726,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="KSr-u0-jmi"/>
                         <rightBarButtonItems>
                             <barButtonItem image="Delete" id="omx-W0-ePY">
-                                <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="deleteBarButtonClickedAction:" destination="nfd-d8-A7S" id="8uz-HY-J3q"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="Download" id="fVP-Rd-DUN">
-                                <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="vs9-Jw-78r" kind="presentation" identifier="showIntevalPicker" id="sFU-yJ-hYo"/>
                                 </connections>
@@ -1144,7 +1143,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Login">
-                                                <color key="titleColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
                                                 <action selector="loginButtonAction:" destination="ScN-MB-Ab7" eventType="touchUpInside" id="yCr-dm-ksj"/>
@@ -1430,7 +1429,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sRQ-kM-MTo" customClass="CustomNavigationBar" customModule="InOfffice" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
                         </textAttributes>
@@ -1752,7 +1751,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="0d3-5c-tzT">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1763,7 +1762,7 @@
             </objects>
             <point key="canvasLocation" x="-247" y="758"/>
         </scene>
-        <!--Mileage-->
+        <!--Fuel History-->
         <scene sceneID="VlD-fL-OzS">
             <objects>
                 <viewController id="CSj-7v-85l" customClass="MileageHistoryViewController" customModule="InOfffice" customModuleProvider="target" sceneMemberID="viewController">
@@ -1785,7 +1784,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-Xl-0a9">
                                                     <rect key="frame" x="15" y="10" width="100" height="150"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filled litres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mH-bY-Gv5">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Litres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mH-bY-Gv5">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="25.333333333333332"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1803,13 +1802,13 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="drived km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAX-qe-zOt">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mileage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAX-qe-zOt">
                                                             <rect key="frame" x="0.0" y="93.666666666666671" width="100" height="25"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mileage / litre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXe-dr-b0H">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mileage / litres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXe-dr-b0H">
                                                             <rect key="frame" x="0.0" y="124.66666666666664" width="100" height="25.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1891,11 +1890,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Az-x1-9oI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Mileage" id="fel-2j-od8">
+                    <navigationItem key="navigationItem" title="Fuel History" id="fel-2j-od8">
                         <barButtonItem key="backBarButtonItem" title=" " id="P4W-Yh-wmo"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iPp-jx-tAd">
                             <connections>
-                                <segue destination="e9f-1F-Ga3" kind="show" id="FX5-Tq-Axm"/>
+                                <segue destination="e9f-1F-Ga3" kind="show" identifier="addFuelSegue" id="FX5-Tq-Axm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1908,7 +1907,7 @@
             </objects>
             <point key="canvasLocation" x="1453.5999999999999" y="-2218.2266009852219"/>
         </scene>
-        <!--Add Fuel-->
+        <!--Fuel Detail-->
         <scene sceneID="kyw-sh-oA4">
             <objects>
                 <tableViewController id="e9f-1F-Ga3" customClass="AddMileageTableViewController" customModule="InOfffice" customModuleProvider="target" sceneMemberID="viewController">
@@ -2149,8 +2148,8 @@
                             <outlet property="delegate" destination="e9f-1F-Ga3" id="DuN-KY-zXD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Fuel" id="l23-OP-c69">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="xJ2-BT-IJK">
+                    <navigationItem key="navigationItem" title="Fuel Detail" id="l23-OP-c69">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="xJ2-BT-IJK">
                             <connections>
                                 <action selector="saveBarButtonItemClickedAction:" destination="e9f-1F-Ga3" id="yJj-h1-fmu"/>
                             </connections>
@@ -2180,7 +2179,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4Ao-E7-Jx4">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.14009064439999999" green="0.50136744980000003" blue="0.4140380025" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -2369,7 +2368,7 @@
         <image name="workedHours" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qmF-yX-LSM"/>
-        <segue reference="CZi-Mv-HtX"/>
+        <segue reference="FX5-Tq-Axm"/>
+        <segue reference="4lZ-eX-xIC"/>
     </inferredMetricsTieBreakers>
 </document>

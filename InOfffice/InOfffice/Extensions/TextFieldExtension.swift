@@ -11,6 +11,7 @@ import UIKit
 
 extension UITextField {
     
+    /// Shake the view
     func shake() {
         DispatchQueue.main.async {
             let animation = CABasicAnimation(keyPath: "position")

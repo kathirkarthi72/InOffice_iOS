@@ -30,6 +30,8 @@ class AddMileageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+        
         if let fuel = fuelInfo {
             datePicker.date = fuel.date!
             
@@ -41,9 +43,7 @@ class AddMileageTableViewController: UITableViewController {
             
             saveBarButtonItem.title = "Update"
             
-            title = "Update Fuel"
         }
-        
             let date = datePicker.date.convert()
             dateButton.setTitle(date, for: .normal)
         
@@ -132,6 +132,9 @@ class AddMileageTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Plate number - " + plateNumber
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

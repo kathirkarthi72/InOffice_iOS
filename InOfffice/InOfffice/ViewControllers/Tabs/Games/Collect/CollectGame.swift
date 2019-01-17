@@ -23,6 +23,10 @@ struct Property {
 
 class CollectGame: SKScene {
     
+    let creditLabel: SKLabelNode = SKLabelNode(text: "Score 0")
+    
+    var credits: Int64 = 0
+    
     var bgSprite: SKSpriteNode?
     
     var avatorSprite: SKSpriteNode?
@@ -50,9 +54,16 @@ class CollectGame: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        creditLabel.fontName = "Arial"
+        creditLabel.fontSize = 25
+        creditLabel.fontColor = .white
+        creditLabel.position = CGPoint(x: 0 , y: 160)
+        creditLabel.zPosition = 4
+        self.addChild(creditLabel)
+        
         gameOverBGSprite?.isHidden = true
         physicsWorld.contactDelegate = self
-            
+        
         self.perform(#selector(newGame), with: nil, afterDelay: 1.0)
     }
     
@@ -77,23 +88,24 @@ class CollectGame: SKScene {
     
     var bgSpeed: Float = 0.0
     
-    func addAvator() {        
+    func addFruits() {
+        
         let texture = SKTexture(imageNamed: "Jetpack")
         avatorSprite = SKSpriteNode(texture: texture)
         avatorSprite?.name = "Avatar"
         avatorSprite?.position = CGPoint(x: self.frame.midX - 100, y: self.frame.maxY)
         avatorSprite?.size = CGSize(width: 90.0, height: 90.0)
         avatorSprite?.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        avatorSprite?.zPosition = 3
-        //        avatorSprite?.xScale = 0.1
-        //        avatorSprite?.xScale = 0.1
+        avatorSprite?.zPosition = 2
+        // avatorSprite?.xScale = 0.1
+        // avatorSprite?.xScale = 0.1
         avatorSprite?.physicsBody =  SKPhysicsBody(texture: texture, alphaThreshold: 0.7, size: avatorSprite?.size ?? CGSize.zero) //SKPhysicsBody(texture: spaceShipTexture, size: CGSize(width: 90.0, height: 90.0))
         avatorSprite?.physicsBody?.isDynamic = true
         avatorSprite?.physicsBody?.allowsRotation = false
         avatorSprite?.physicsBody?.affectedByGravity = false
-        //        avatorSprite?.physicsBody?.categoryBitMask = CollectPhysicsCategory.avatar // 3
-        //        avatorSprite?.physicsBody?.contactTestBitMask = CollectPhysicsCategory.enemy // 4
-        //        avatorSprite?.physicsBody?.collisionBitMask = CollectPhysicsCategory.none // 5
+        avatorSprite?.physicsBody?.categoryBitMask = CollectPhysicsCategory.avatar // 3
+        avatorSprite?.physicsBody?.contactTestBitMask = CollectPhysicsCategory.enemy // 4
+        avatorSprite?.physicsBody?.collisionBitMask = CollectPhysicsCategory.avatar // 5
         self.addChild(avatorSprite!)
         
         initialFall()
@@ -122,14 +134,14 @@ class CollectGame: SKScene {
         enemySprite.name = object!.title
         enemySprite.position = CGPoint(x: self.frame.maxX, y: yPosition)
         enemySprite.size = CGSize(width: 25.0, height: 25.0)
-        enemySprite.zPosition = 3
+        enemySprite.zPosition = 2
         enemySprite.physicsBody = SKPhysicsBody(texture: spaceShipTexture, size: CGSize(width: 25.0, height: 25.0))
         enemySprite.physicsBody?.isDynamic = true
         enemySprite.physicsBody?.allowsRotation = false
         enemySprite.physicsBody?.affectedByGravity = false
         enemySprite.physicsBody?.categoryBitMask = CollectPhysicsCategory.enemy // 3
         enemySprite.physicsBody?.contactTestBitMask = CollectPhysicsCategory.avatar // 4
-        enemySprite.physicsBody?.collisionBitMask = CollectPhysicsCategory.none // 5
+        enemySprite.physicsBody?.collisionBitMask = CollectPhysicsCategory.enemy // 5
         self.addChild(enemySprite)
         
         if object?.title == "enemy" {
@@ -254,14 +266,15 @@ class CollectGame: SKScene {
     func moveOn(node: SKSpriteNode, withRotate: Bool = false) {
         
         if withRotate {
-            let slide = SKAction.moveTo(x: self.frame.minX, duration: 4.0)
+            
+            let slide = SKAction.moveTo(x: self.frame.minX, duration:  TimeInterval(bgSpeed / 10.0))
             node.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat.pi, duration: 2.0)))
             
             node.run(slide) {
                 node.removeFromParent()
             }
         } else {
-            let slide = SKAction.moveTo(x: self.frame.minX, duration: 4.0)
+            let slide = SKAction.moveTo(x: self.frame.minX, duration:  TimeInterval(bgSpeed / 10.0))
             node.run(slide) {
                 node.removeFromParent()
             }
@@ -271,7 +284,7 @@ class CollectGame: SKScene {
     @objc func newGame() {
         gameOverBGSprite?.isHidden = true
         addBgSprite()
-        addAvator()
+        addFruits()
         bgSpeed = 30.0
         
         timer = Timer.scheduledTimer(timeInterval: inteval, target: self, selector: #selector(addEnemy), userInfo: nil, repeats: true)
@@ -319,9 +332,30 @@ extension CollectGame: SKPhysicsContactDelegate {
     
     func collisied(collected: SKNode) {
         
+        collected.removeAllActions()
+        collected.removeFromParent()
+        
         if collected.name == "collect" {
+            credits += 1
+        } else { // enemy
+            credits -= 5
         }
         
-        collected.removeFromParent()
+        if credits < 0 {
+            credits = 0
+        }
+        
+        creditLabel.text = "Score " + String(credits)
+        
+        if credits <= 0 {
+            gameOver()
+            credits = 0
+        } else  {
+            if Float(credits / 2) > 80 {
+                bgSpeed = Float(credits / 2)
+            } else {
+                bgSpeed = 30
+            }
+        }
     }
 }

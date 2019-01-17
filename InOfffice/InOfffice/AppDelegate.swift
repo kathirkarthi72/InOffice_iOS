@@ -89,20 +89,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    /// Orientation lock
     var orientationLock = UIInterfaceOrientationMask.portrait
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientationLock
     }
     
+    
+    /// Game utility
     struct GameUtility {
         
+        /// Orientation
+        ///
+        /// - Parameter orientation: orientation
         static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
             if let delegate = UIApplication.shared.delegate as?  AppDelegate {
                 delegate.orientationLock = orientation
             }
         }
         
+        /// update orientation lock
+        ///
+        /// - Parameters:
+        ///   - orientation: orientation
+        ///   - rotateOrientation: rotateOrientation
         static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
             self.lockOrientation(orientation)
             UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")

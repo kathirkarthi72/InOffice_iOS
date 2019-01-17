@@ -10,6 +10,9 @@ import Foundation
 
 extension Int64 {
     
+    /// Seconds to hours minitues and seconds
+    ///
+    /// - Returns: string value
     func secondsToHoursMinutesSeconds() -> String {
         let zero : Int64 = 0
         

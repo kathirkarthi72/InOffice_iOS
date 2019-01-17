@@ -52,7 +52,7 @@ class TimesheetHistoryViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "toTimesheetHistoryDetails" {
+        if segue.identifier == Constants.Segues.Dashboard.TimeSheetHistory.toDetail {
             let detailVC = segue.destination as! TimeSheetDetailViewController
             
             if sender != nil {
@@ -82,8 +82,6 @@ class TimesheetHistoryViewController: UIViewController {
                  intervalPicker.modalPresentationStyle = .overFullScreen
                  intervalPicker.datePicker.minimumDate = min
                  intervalPicker.datePicker.maximumDate = max
-                 
-                 
                  }
                  */
             }
@@ -93,7 +91,7 @@ class TimesheetHistoryViewController: UIViewController {
     func downloadRecord(from: Date, to: Date) {
         UIImpactFeedbackGenerator().impactOccurred() // haptic impact
         
-        if let timesheetRecord = TimeSheetManager.current.fetchDate(from: from, to: to) {
+        if let timesheetRecord = TimeSheetManager.current.fetchData(from: from, to: to) {
             let formattedString = DownloadManager.current.crateFile(timeSheets: timesheetRecord)
             
             do {
@@ -222,14 +220,14 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
                 let sending: [String: Any] = ["sheetID": today.sheetID ?? "",
                                               "show": "\(today.sheetID ?? "")-\(today.hours.secondsToHoursMinutesSeconds())",
                     "fillColor": fillColor ?? .theme]
-                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender: sending)
+                self.performSegue(withIdentifier: Constants.Segues.Dashboard.TimeSheetHistory.toDetail, sender: sending)
             }
         default: // Older
             if let olders = self.timesheetHistoryViewModel.olders {
                 let sending: [String: Any] = ["sheetID": olders[indexPath.row].sheetID ?? "",
                                               "show": "\(olders[indexPath.row].sheetID ?? "")-\(olders[indexPath.row].hours.secondsToHoursMinutesSeconds())",
                     "fillColor": fillColor ?? .theme]
-                self.performSegue(withIdentifier: "toTimesheetHistoryDetails", sender:sending)
+                self.performSegue(withIdentifier: Constants.Segues.Dashboard.TimeSheetHistory.toDetail, sender:sending)
             }
         }
     }

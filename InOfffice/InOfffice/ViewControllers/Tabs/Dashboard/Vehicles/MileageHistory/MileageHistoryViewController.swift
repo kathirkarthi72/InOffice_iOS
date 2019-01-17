@@ -28,18 +28,21 @@ class MileageHistoryViewController: UIViewController, UITableViewDataSource, UIT
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
         }
-        
     }
-
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "fuelInfoSegue" {
+        if segue.identifier == Constants.Segues.Vehicle.History.updateFuelInfo {
+            let updateFuel = segue.destination as! AddMileageTableViewController
+            updateFuel.fuelInfo = sender as? FuelDetail
+            updateFuel.plateNumber = plateNumber
+
+        } else if segue.identifier == Constants.Segues.Vehicle.History.addFuelInfo {
             let addFuel = segue.destination as! AddMileageTableViewController
-            addFuel.fuelInfo = sender as? FuelDetail
+            addFuel.plateNumber = plateNumber
         }
         
     }
@@ -79,7 +82,7 @@ class MileageHistoryViewController: UIViewController, UITableViewDataSource, UIT
         if drived <= 0 {
             (valueStack.subviews[3] as! UILabel).text = "-"
         } else {
-            (valueStack.subviews[3] as! UILabel).text = String(drived) + " Km"
+            (valueStack.subviews[3] as! UILabel).text = String.init(format: "%.2f Km", arguments: [drived])
         }
         
         if record.avgKm <= 0 {
@@ -93,7 +96,7 @@ class MileageHistoryViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 
-        self.performSegue(withIdentifier: "fuelInfoSegue", sender: fuelDetails[indexPath.section])
+        self.performSegue(withIdentifier: Constants.Segues.Vehicle.History.updateFuelInfo, sender: fuelDetails[indexPath.section])
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

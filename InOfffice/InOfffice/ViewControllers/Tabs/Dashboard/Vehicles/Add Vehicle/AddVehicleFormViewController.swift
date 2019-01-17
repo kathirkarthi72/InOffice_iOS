@@ -25,6 +25,8 @@ class AddVehicleFormViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -85,7 +87,7 @@ class AddVehicleFormViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
  /*   override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
