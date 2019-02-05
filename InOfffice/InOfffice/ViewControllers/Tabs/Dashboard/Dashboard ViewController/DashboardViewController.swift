@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TOMSMorphingLabel
 
 class DashboardViewController: UIViewController {
     
@@ -14,9 +15,9 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet var dashBoardViewModel: DashboardViewModel!
     
-    var timeSheetWorkedLabel: UILabel?
+    var timeSheetWorkedLabel: TOMSMorphingLabel?
     
-    var timeSheetBalanceLabel: UILabel?
+    var timeSheetBalanceLabel: TOMSMorphingLabel?
     
     var addNewSheet: UIButton?
     
@@ -248,20 +249,33 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 let timeSheetOverView = overView.subviews[1]
                 timeSheetOverView.layer.cornerRadius = 10
                 
-                timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? UILabel
-                timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? UILabel
+                timeSheetWorkedLabel = timeSheetOverView.subviews[2] as? TOMSMorphingLabel
+                timeSheetBalanceLabel = timeSheetOverView.subviews[3] as? TOMSMorphingLabel
                 
                 addNewSheet = overView.subviews[2] as? UIButton
                 
                 addNewSheet?.addTarget(self, action: #selector(addNewTimeSheetbuttonTapped), for: .touchUpInside) // Add new timesheet
                 
                 if let workedLabel = timeSheetWorkedLabel {
-                    workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
+                    
+                    workedLabel.setText( "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
+                    
+                    //                    let worked = NSMutableAttributedString(string: "Worked: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+                    //                    worked.append(NSAttributedString(string: "\(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+                    //
+                    //                    workedLabel.attributedText = worked
                 }
                 
                 if let balanceLabel = timeSheetBalanceLabel {
                     let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
-                    balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
+                    
+                    balanceLabel.setText( "Balance: \(balance.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
+                    
+                    
+                    //                    let balanced = NSMutableAttributedString(string: "Balance: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+                    //                    balanced.append(NSAttributedString(string: "\(balance.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+                    //
+                    //                    balanceLabel.attributedText = balanced
                 }
                 
                 if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
@@ -305,18 +319,26 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 
                 if let title = overView.subviews[0] as? UILabel, let type = vechile[index].type {
                     if type == "Bike" {
-                      title.text = type + " 🏍"
+                        title.text = type + " 🏍"
                     } else {
                         title.text = type + " 🚗"
                     }
                 }
                 
                 if let plateNoLabel = timeSheetOverView.subviews[2] as? UILabel {
-                    plateNoLabel.text = "Plate No: \(vechile[index].plateNo ?? "")"
+                    
+                    let plateAttributed = NSMutableAttributedString(string: "Plate No: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+                    plateAttributed.append(NSAttributedString(string: "\(vechile[index].plateNo ?? "")", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+                    
+                    plateNoLabel.attributedText = plateAttributed
                 }
                 
                 if let totalMileageLabel = timeSheetOverView.subviews[3] as? UILabel {
-                    totalMileageLabel.text = "Best Mileage: \(String(vechile[index].bestMileage))"
+                    
+                    let mileageAttributed = NSMutableAttributedString(string: "Best Mileage: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+                    mileageAttributed.append(NSAttributedString(string: "\(String(vechile[index].bestMileage))", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+                    
+                    totalMileageLabel.attributedText = mileageAttributed
                 }
             }
             
@@ -369,12 +391,24 @@ extension DashboardViewController {
         dashBoardViewModel.workedHoursInSec += 1
         
         if let workedLabel = timeSheetWorkedLabel {
-            workedLabel.text = "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())"
+            
+            workedLabel.setText("Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
+            
+            //            let worked = NSMutableAttributedString(string: "Worked: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+            //            worked.append(NSAttributedString(string: "\(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+            //
+            //            workedLabel.attributedText = worked
         }
         
         if let balanceLabel = timeSheetBalanceLabel {
             let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.workedHoursInSec
-            balanceLabel.text = "Balance: \(balance.secondsToHoursMinutesSeconds())"
+            
+            balanceLabel.setText("Balance: \(balance.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
+            
+            //            let balanced = NSMutableAttributedString(string: "Balance: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
+            //            balanced.append(NSAttributedString(string: "\(balance.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+            //
+            //            balanceLabel.attributedText = balanced
         }
     }
     
@@ -385,10 +419,7 @@ extension DashboardViewController {
         
         if TimeSheetManager.current.isGetIn {
             
-            let sheet = UIAlertController(title: "You are in office still now.",
-                                          message: "Make as to shift out?",
-                                          preferredStyle: .actionSheet)
-            
+            let sheet = UIAlertController(title: "You are in office still now.", message: "Make as to shift out?", preferredStyle: .actionSheet)
             let logoutAction = UIAlertAction(title: "Shift Now", style: .default) { (okAction) in
                 
                 self.timeSheetShiftInOutButtonWasClicked(self)
@@ -407,7 +438,6 @@ extension DashboardViewController {
         } else {
             
             let sheet = UIAlertController(title: "Create new sheet", message: "Check your reminding hours before creating new sheet.", preferredStyle: .actionSheet)
-            
             let saveCreateAction = UIAlertAction(title: "Save & Create", style: .default) { (okAction) in
                 TimeSheetManager.current.createNewRecord(withSave: true)
                 
@@ -449,10 +479,7 @@ extension DashboardViewController {
             
             let index = tag - 1
             
-            let sheet = UIAlertController(title: "Delete vehicle ?",
-                                          message: nil,
-                                          preferredStyle: .actionSheet)
-            
+            let sheet = UIAlertController(title: "Delete vehicle ?", message: nil, preferredStyle: .actionSheet)
             let shiftoutAction = UIAlertAction(title: "Delete now", style: .default) { (okAction) in
                 
                 if let vehicles =  self.dashBoardViewModel.vehicles, let plateNo = vehicles[index].plateNo {
@@ -514,10 +541,7 @@ extension DashboardViewController {
         
         if TimeSheetManager.current.isGetIn {
             
-            let sheet = UIAlertController(title: "You are still in office",
-                                          message: "Make as to shift out?",
-                                          preferredStyle: .actionSheet)
-            
+            let sheet = UIAlertController(title: "You are still in office", message: "Make as to shift out?", preferredStyle: .actionSheet)
             let shiftoutAction = UIAlertAction(title: "Shift out now", style: .default) { (okAction) in
                 
                 if TimeSheetManager.current.today == nil {
@@ -540,7 +564,6 @@ extension DashboardViewController {
             self.present(sheet, animated: true, completion: nil)
         } else {
             let sheet = UIAlertController(title: "Logout", message: "Clear all records and reset user details", preferredStyle: .actionSheet)
-            
             let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (okAction) in
                 
                 if InOfficeManager.current.userLoggedOut() {
@@ -557,8 +580,8 @@ extension DashboardViewController {
     }
 }
 
-
 extension UIAlertController{
+    
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.tintColor = .black
