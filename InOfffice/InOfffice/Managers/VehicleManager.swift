@@ -155,5 +155,26 @@ extension VehicleManager {
                 debugPrint("Failed to fetch a record from Timesheet: \(error.localizedDescription)")
             }
         }
-    }    
+    }
+    
+    /// Average mileage for particular vehicle
+    ///
+    /// - Parameter plateNumber: plate number
+    /// - Returns: result
+    func fetchAverageMileage(plateNumber: String) -> Double {
+        
+        var result: Double = 0.0
+        
+        if var fuels = fetchAllFuels(plateNumber: plateNumber) {
+            if fuels.first?.avgKm == 0 {
+                fuels.removeFirst()
+            }
+            
+            let averageMileages = fuels.map({$0.avgKm})
+           
+            let totalMileage = averageMileages.reduce(0, +)
+            result = totalMileage / Double(averageMileages.count)
+        }
+        return result
+    }
 }

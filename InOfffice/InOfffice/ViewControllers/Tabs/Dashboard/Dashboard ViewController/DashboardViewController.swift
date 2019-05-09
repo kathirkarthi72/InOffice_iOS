@@ -259,23 +259,12 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 if let workedLabel = timeSheetWorkedLabel {
                     
                     workedLabel.setText( "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
-                    
-                    //                    let worked = NSMutableAttributedString(string: "Worked: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
-                    //                    worked.append(NSAttributedString(string: "\(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
-                    //
-                    //                    workedLabel.attributedText = worked
                 }
                 
                 if let balanceLabel = timeSheetBalanceLabel {
                     let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
                     
                     balanceLabel.setText( "Balance: \(balance.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
-                    
-                    
-                    //                    let balanced = NSMutableAttributedString(string: "Balance: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
-                    //                    balanced.append(NSAttributedString(string: "\(balance.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
-                    //
-                    //                    balanceLabel.attributedText = balanced
                 }
                 
                 if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
@@ -335,8 +324,14 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 
                 if let totalMileageLabel = timeSheetOverView.subviews[3] as? UILabel {
                     
+                    var result = vechile[index].bestMileage
+                    
+                    if VehicleManager.current.fetchAverageMileage(plateNumber: "\(vechile[index].plateNo ?? "")") > 0.0 {
+                        result = VehicleManager.current.fetchAverageMileage(plateNumber: "\(vechile[index].plateNo ?? "")").rounded()
+                    }
+                    
                     let mileageAttributed = NSMutableAttributedString(string: "Best Mileage: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
-                    mileageAttributed.append(NSAttributedString(string: "\(String(vechile[index].bestMileage))", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
+                    mileageAttributed.append(NSAttributedString(string: "\(String(result)) km/l", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
                     
                     totalMileageLabel.attributedText = mileageAttributed
                 }

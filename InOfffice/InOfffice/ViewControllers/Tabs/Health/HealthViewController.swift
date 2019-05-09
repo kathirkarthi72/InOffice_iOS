@@ -28,13 +28,11 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var gravityBehaviour: UIGravityBehavior!
     
-    var watterButton: [RoundedBall] {
-        var watterButton: [RoundedBall] = []
+    var waterBalls: [RoundedBall] {
+        var waterButton: [RoundedBall] = []
         
-        boundaryView.subviews.forEach({
-            watterButton.append($0 as! RoundedBall) })
-        
-        return watterButton
+        boundaryView.subviews.forEach({ waterButton.append($0 as! RoundedBall) })
+        return waterButton
     }
     
     /// Add Gravity aniamtion
@@ -43,11 +41,11 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         self.animator = UIDynamicAnimator(referenceView: self.boundaryView)
         let direction = CGVector(dx: 0.0, dy: 0.2)
         
-        gravityBehaviour = UIGravityBehavior(items: watterButton)
+        gravityBehaviour = UIGravityBehavior(items: waterBalls)
         gravityBehaviour.gravityDirection = direction
         animator.addBehavior(gravityBehaviour)
         
-        let collusionBehaviour = UICollisionBehavior(items: watterButton)
+        let collusionBehaviour = UICollisionBehavior(items: waterBalls)
         collusionBehaviour.collisionDelegate = self
         
         /*     collusionBehaviour.addBoundary(withIdentifier: "navigationbar" as NSCopying,
@@ -63,16 +61,16 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         
         collusionBehaviour.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collusionBehaviour)
-        
-        let buttonBehaviour = UIDynamicItemBehavior(items: watterButton)
+    
+        let buttonBehaviour = UIDynamicItemBehavior(items: waterBalls)
         buttonBehaviour.elasticity = 1.0
         buttonBehaviour.resistance = 0.3
-        buttonBehaviour.friction = 0.5
+        buttonBehaviour.friction = 0.4
         buttonBehaviour.allowsRotation = true
-        buttonBehaviour.density = 10.0
+        buttonBehaviour.density = 8.0
         self.animator.addBehavior(buttonBehaviour)
         
-        let pushBehaviour = UIPushBehavior.init(items: watterButton, mode: UIPushBehavior.Mode.instantaneous)
+        let pushBehaviour = UIPushBehavior.init(items: waterBalls, mode: UIPushBehavior.Mode.instantaneous)
         pushBehaviour.magnitude = 0.1
         animator.addBehavior(pushBehaviour)
     }
@@ -80,7 +78,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        watterButton.forEach({
+        waterBalls.forEach({
             $0.layer.cornerRadius = $0.frame.size.width / 2
             $0.layer.masksToBounds = true
         })
@@ -97,7 +95,7 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
             }
             
             // physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.y * -50, dy: accelerometerData.acceleration.x * 50)
-            let direction = CGVector(dx: accelerometerData.acceleration.x, dy: accelerometerData.acceleration.y)
+            let direction = CGVector(dx: accelerometerData.acceleration.x, dy: -accelerometerData.acceleration.y)
             self.gravityBehaviour.gravityDirection = direction
         }
     }

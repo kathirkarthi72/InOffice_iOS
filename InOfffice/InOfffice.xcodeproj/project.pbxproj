@@ -904,7 +904,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-InOfffice/Pods-InOfffice-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-InOfffice/Pods-InOfffice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/TOMSMorphingLabel/TOMSMorphingLabel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -915,7 +915,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InOfffice/Pods-InOfffice-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InOfffice/Pods-InOfffice-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC7C81AA12F35131599CA609 /* [CP] Check Pods Manifest.lock */ = {
@@ -1190,6 +1190,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -1243,6 +1244,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1255,13 +1257,13 @@
 				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOfffice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOfflice;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.inoffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1277,13 +1279,13 @@
 				CODE_SIGN_ENTITLEMENTS = InOfffice/InOfffice.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOfffice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOfflice;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.inoffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
