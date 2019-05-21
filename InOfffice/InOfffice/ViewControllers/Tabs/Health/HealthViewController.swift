@@ -48,26 +48,15 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         let collusionBehaviour = UICollisionBehavior(items: waterBalls)
         collusionBehaviour.collisionDelegate = self
         
-        /*     collusionBehaviour.addBoundary(withIdentifier: "navigationbar" as NSCopying,
-         from: CGPoint(x: 0, y: 0),
-         to: CGPoint(x: ((self.navigationController?.navigationBar.frame.origin.x)! + (self.navigationController?.navigationBar.frame.size.width)!),
-         y: (self.navigationController?.navigationBar.frame.size.height)!))
-         
-         collusionBehaviour.addBoundary(withIdentifier: "tabbar" as NSCopying,
-         from: (self.tabBarController?.tabBar.frame.origin)!,
-         to: CGPoint(x: ((self.tabBarController?.tabBar.frame.origin.x)! + (self.tabBarController?.tabBar.frame.size.width)!),
-         y: (self.tabBarController?.tabBar.frame.origin.y)!))
-         */
-        
         collusionBehaviour.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collusionBehaviour)
     
         let buttonBehaviour = UIDynamicItemBehavior(items: waterBalls)
         buttonBehaviour.elasticity = 1.0
         buttonBehaviour.resistance = 0.3
-        buttonBehaviour.friction = 0.4
+        buttonBehaviour.friction = 0.5
         buttonBehaviour.allowsRotation = true
-        buttonBehaviour.density = 8.0
+        buttonBehaviour.density = 1.0
         self.animator.addBehavior(buttonBehaviour)
         
         let pushBehaviour = UIPushBehavior.init(items: waterBalls, mode: UIPushBehavior.Mode.instantaneous)
@@ -94,7 +83,6 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
                 return
             }
             
-            // physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.y * -50, dy: accelerometerData.acceleration.x * 50)
             let direction = CGVector(dx: accelerometerData.acceleration.x, dy: -accelerometerData.acceleration.y)
             self.gravityBehaviour.gravityDirection = direction
         }
@@ -104,11 +92,6 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-     override func viewDidAppear(_ animated: Bool) {
-     super.viewDidAppear(animated)
-     }
-     */
     
     // MARK: Button action
     @IBAction func inTakeWaterButtonClicked(_ sender: Any) {
@@ -188,8 +171,8 @@ class HealthViewController: UIViewController, UICollisionBehaviorDelegate {
      */
 }
 
-
 class RoundedBall: UIButton {
+    
     override var collisionBoundsType: UIDynamicItemCollisionBoundsType {
         return .ellipse
     }

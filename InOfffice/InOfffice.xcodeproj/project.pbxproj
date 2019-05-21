@@ -746,7 +746,7 @@
 				TargetAttributes = {
 					9F112871212E7B3400A599E8 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -755,12 +755,12 @@
 					};
 					9F112888212E7B3E00A599E8 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						TestTargetID = 9F112871212E7B3400A599E8;
 					};
 					9F112893212E7B3E00A599E8 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						TestTargetID = 9F112871212E7B3400A599E8;
 					};
 				};
@@ -1266,7 +1266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.inoffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1288,7 +1288,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.inoffice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1301,7 +1301,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOffficeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1311,7 +1311,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOffficeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InOfffice.app/InOfffice";
 			};
@@ -1325,7 +1325,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOffficeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1335,7 +1335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOffficeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InOfffice.app/InOfffice";
 			};
@@ -1348,7 +1348,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOffficeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1358,7 +1358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOffficeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = InOfffice;
 			};
@@ -1371,7 +1371,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6CLW9ML4WV;
+				DEVELOPMENT_TEAM = XS458MZC7Y;
 				INFOPLIST_FILE = InOffficeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1381,7 +1381,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ktrkathir.InOffficeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = InOfffice;
 			};
