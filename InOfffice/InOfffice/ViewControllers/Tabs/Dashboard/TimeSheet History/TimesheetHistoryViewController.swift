@@ -17,14 +17,14 @@ class TimesheetHistoryViewController: UIViewController {
     
     @IBOutlet weak var intervalPicker: UIView!
     
+    @IBOutlet weak var downloadBarButton: UIBarButtonItem!
+    @IBOutlet weak var deleteBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         TimeSheetManager.current.fetchAllSummary { (error, fetchedSummaries) in
-            
-            if let error = error {
-                debugPrint(error.localizedDescription)
-            }
+            if let error = error { debugPrint(error.localizedDescription) }
             
             guard var summaries = fetchedSummaries else { return }
             
@@ -144,9 +144,7 @@ class TimesheetHistoryViewController: UIViewController {
         sheet.addAction(cancelAction)
         
         self.present(sheet, animated: true, completion: nil)
-        
     }
-    
 }
 
 // MARK: TableView data source
@@ -159,12 +157,24 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Today"
+            if self.timesheetHistoryViewModel.today != nil {
+                return "Today"
+            } else {
+                return ""
+            }
+            
         default: // Older
-            return "Older"
+            if let olders = self.timesheetHistoryViewModel.olders, olders.count > 0 {
+                downloadBarButton.isEnabled = true
+                deleteBarButton.isEnabled = true
+                return "Older"
+            } else {
+                downloadBarButton.isEnabled = false
+                deleteBarButton.isEnabled = false
+                return ""
+            }
         }
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -174,7 +184,7 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
                 return 1
             }
         default: // Older
-            if let olders = self.timesheetHistoryViewModel.olders {
+            if let olders = self.timesheetHistoryViewModel.olders, olders.count > 0 {
                 return olders.count
             }
         }
@@ -247,12 +257,9 @@ extension TimesheetHistoryViewController: UITableViewDataSource, UITableViewDele
             if let older = self.timesheetHistoryViewModel.olders, let sheedID = older[indexPath.row].sheetID {
                 
                 TimeSheetManager.current.trashSummary(sheetID: sheedID)
-                
                 self.timesheetHistoryViewModel.olders?.remove(at: indexPath.row)
-                
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
-            
         }
     }
 }

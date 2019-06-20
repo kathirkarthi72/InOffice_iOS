@@ -22,7 +22,6 @@ class RichNotificationManager: NSObject {
             if (error != nil) {
                 debugPrint("User notification allow status:\(String(describing: error?.localizedDescription))")
             }
-            debugPrint("User notification allow status:\(permitted)")
             UNUserNotificationCenter.current().delegate = self
         }
         

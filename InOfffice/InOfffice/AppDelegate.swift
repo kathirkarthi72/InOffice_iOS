@@ -18,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+       if let tabController = window?.rootViewController as? UITabBarController {
+            switch shortcutItem.type {
+            case "S1":
+                tabController.selectedIndex = 0
+            case "S2":
+            tabController.selectedIndex = 1
+            default:
+                tabController.selectedIndex = 2
+            }
+        }
+        completionHandler(true)
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

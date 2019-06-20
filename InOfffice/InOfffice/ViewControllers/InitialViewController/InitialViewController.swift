@@ -118,6 +118,7 @@ extension InitialViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell.textLabel?.text = "Daily produciton hours"
             cell.detailTextLabel?.text = viewModel.userEnteredDetails.productionHourString
+            cell.detailTextLabel?.textColor = UIColor.label
             
             tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(recognizer:)))
             cell.addGestureRecognizer(tapGesture)

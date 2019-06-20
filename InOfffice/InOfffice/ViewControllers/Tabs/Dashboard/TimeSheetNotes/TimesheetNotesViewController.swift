@@ -21,10 +21,11 @@ class TimesheetNotesViewController: UIViewController {
     @IBOutlet weak var workedButton: UIButton!
     
     fileprivate func initalSetup() {
+        
         if let inTime = editSheet?.getIn {
-            let attributedTitle = NSMutableAttributedString(string: "InTime :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedTitle = NSMutableAttributedString(string: "InTime : ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
             let attributedValue1 = NSAttributedString(string: inTime.convert(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-            let attributedTitle2 = NSAttributedString(string: "\nOutTime :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedTitle2 = NSAttributedString(string: "\nOutTime : ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
             
             attributedTitle.append(attributedValue1)
             attributedTitle.append(attributedTitle2)
@@ -40,7 +41,7 @@ class TimesheetNotesViewController: UIViewController {
         }
         
         if let worked = editSheet?.productionHours {
-            let attributedTime = NSMutableAttributedString(string: "Worked :", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedTime = NSMutableAttributedString(string: "Worked : ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
             let attributedTime1 = NSAttributedString(string: worked.secondsToHoursMinutesSeconds(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
             
             attributedTime.append(attributedTime1)

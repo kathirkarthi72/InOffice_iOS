@@ -25,7 +25,7 @@ class DashboardViewController: UIViewController {
     var logoutBarButton: UIBarButtonItem {
         
         let barButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.done, target: self, action: #selector(logoutBarButtonClickedAction))
-        barButton.tintColor = UIColor.black
+        barButton.tintColor = UIColor.link
         
         return barButton
     }
@@ -61,8 +61,6 @@ class DashboardViewController: UIViewController {
     
     /// Dashboard is become active
     func applicationBecomeActive() {
-        
-        //   RichNotificationManager.current.clearAllDeliveredNotifications() // Clear all delivered notifications
         
         checkIfLoggedIn()
         
@@ -195,18 +193,11 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             if let greetingLabel = headerView.subviews[0] as?  UILabel {
                 greetingLabel.text = "Howdy, \(InOfficeManager.current.userInfos?.name ?? "")"
             }
-            
-            //do other header related calls or settups
             return headerView
             
         case UICollectionView.elementKindSectionFooter:
             
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "VehicleInfoFooter", for: indexPath)
-            
-            //            let addVehicleButton = footerView.subviews[0] as! UIButton
-            //            addVehicleButton.addTarget(self, action: #selector(addVehicleButtonClickedAction), for: .touchUpInside)
-            //
-            //do other header related calls or settups
             return footerView
         default:
             assert(false, "Unexpected element kind")
@@ -226,14 +217,6 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
         } else {
             return CGSize(width: self.view.frame.size.width, height: 165.0)
         }
-        
-        /* switch UIDevice.current.orientation {
-         case .landscapeLeft, .landscapeRight:
-         return CGSize(width: 230.0, height:  self.view.frame.size.width)
-         default:
-         return CGSize(width: self.view.frame.size.width, height: 230.0)
-         }
-         */
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -257,19 +240,16 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
                 addNewSheet?.addTarget(self, action: #selector(addNewTimeSheetbuttonTapped), for: .touchUpInside) // Add new timesheet
                 
                 if let workedLabel = timeSheetWorkedLabel {
-                    
                     workedLabel.setText( "Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
                 }
                 
                 if let balanceLabel = timeSheetBalanceLabel {
                     let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.fetchTodayWorkedHoursInSec().worked
-                    
                     balanceLabel.setText( "Balance: \(balance.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
                 }
                 
                 if let shiftInOutButton = timeSheetOverView.subviews[4] as? UIButton {
                     shiftInOutButton.isSelected = TimeSheetManager.current.isGetIn ? true: false
-                    
                     shiftInOutButton.addTarget(self, action: #selector(timeSheetShiftInOutButtonWasClicked(_:)), for: .touchUpInside)
                 }
                 
@@ -361,8 +341,6 @@ extension DashboardViewController : UICollectionViewDataSource, UICollectionView
             let index = indexPath.row - 1
             let vehicle =  dashBoardViewModel.vehicles ?? []
             
-            
-            
             self.performSegue(withIdentifier: Constants.Segues.Dashboard.toMileageHistory, sender: ["plate": vehicle[index].plateNo ?? "",
                                                                                                     "type": vehicle[index].type ?? ""])
         }
@@ -388,22 +366,12 @@ extension DashboardViewController {
         if let workedLabel = timeSheetWorkedLabel {
             
             workedLabel.setText("Worked: \(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
-            
-            //            let worked = NSMutableAttributedString(string: "Worked: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
-            //            worked.append(NSAttributedString(string: "\(dashBoardViewModel.workedHoursInSec.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
-            //
-            //            workedLabel.attributedText = worked
         }
         
         if let balanceLabel = timeSheetBalanceLabel {
             let balance = dashBoardViewModel.totalProductionHoursInSec - dashBoardViewModel.workedHoursInSec
             
             balanceLabel.setText("Balance: \(balance.secondsToHoursMinutesSeconds())", withCompletionBlock: nil)
-            
-            //            let balanced = NSMutableAttributedString(string: "Balance: ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15.0)])
-            //            balanced.append(NSAttributedString(string: "\(balance.secondsToHoursMinutesSeconds())", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15.0)]))
-            //
-            //            balanceLabel.attributedText = balanced
         }
     }
     

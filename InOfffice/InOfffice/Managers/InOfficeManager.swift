@@ -48,11 +48,25 @@ class InOfficeManager: NSObject {
     }
     
     /// Check user was logged in or not
+    fileprivate func setupShortcuts() {
+        let dashboard = UIApplicationShortcutItem(type: "S1", localizedTitle: "Dashboard", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "dashboard"), userInfo: nil)
+        
+        let health = UIApplicationShortcutItem(type: "S2", localizedTitle: "Health", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "Health"), userInfo: nil)
+        
+        let games = UIApplicationShortcutItem(type: "S3", localizedTitle: "Games", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "Games"), userInfo: nil)
+ 
+        UIApplication.shared.shortcutItems = [dashboard, health, games]
+    }
+    
     var isUserLoggedIn: Bool {
         
         if FileManager.default.fileExists(atPath: userPlistPath) {
+            setupShortcuts()
+            
             return true
         } else { // User not logged In
+            UIApplication.shared.shortcutItems = nil
+
             return false
         }
     }

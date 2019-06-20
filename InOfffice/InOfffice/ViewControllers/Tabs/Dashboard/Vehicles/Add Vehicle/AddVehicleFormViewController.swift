@@ -26,19 +26,15 @@ class AddVehicleFormViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.beginUpdates()
         tableView.tableFooterView = UIView()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        tableView.endUpdates()
         plateNoPrefix.becomeFirstResponder()
-    }
 
+    }
     
-    /// Bike button clicked
+    //MARK: - Button Action
+    
     ///
     /// - Parameter sender: sender button
     @IBAction func bikeButtonClicked(_ sender: Any) {
