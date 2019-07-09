@@ -486,7 +486,6 @@ extension DashboardViewController {
     // MARK: - BarButton Action
     func showLogoutBarButton() {
         self.navigationItem.leftBarButtonItem = logoutBarButton
-        
     }
     
     // MARK: - Shaked
@@ -544,9 +543,9 @@ extension DashboardViewController {
 }
 
 extension UIAlertController{
-    
+
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.tintColor = .black
+        self.view.tintColor = .label
     }
 }

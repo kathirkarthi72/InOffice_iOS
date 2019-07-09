@@ -142,7 +142,8 @@ class DashboardViewModel: NSObject {
                                                 requestID: Constants.Notification.RequestID.takeWater,
                                                 threadID: "Take some water",
                                                 header: "Health notification",
-                                                content: "If you feel hungry, drink some water to fill your stomach. 💧", triggerAfter: TimeInterval(25 * 60),
+                                                content: "If you feel hungry, drink some water to fill your stomach. 💧",
+                                                triggerAfter: TimeInterval(25 * 60),
                                                 repeat: true,
                                                 soundName: "water.mp3",
                                                 userInfo: nil)

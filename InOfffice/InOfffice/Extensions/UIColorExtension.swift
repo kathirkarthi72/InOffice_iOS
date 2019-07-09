@@ -16,7 +16,6 @@ extension UIColor {
     /// Worked color
     public static let worked = UIColor(red: 8.0/255.0, green: 117.0/255.0, blue: 98.0/255.0, alpha: 1.0)
     
-    
     /// Dynamic color
     ///
     /// - Parameter secs: worked hours in seconds
@@ -57,3 +56,12 @@ extension UIColor {
         }
     }
 }
+//
+//@available(swift, deprecated: 12.4, message: "This colors are available in iOS13")
+//extension UIColor {
+//    
+//    public static let label = UIColor.white
+//    
+//    public static let link = UIColor.black
+//
+//}
